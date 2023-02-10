@@ -39,16 +39,5 @@
             </div>
         </div>
 
-        @foreach(Auth::user()->roles as $key)
-            {{ $key->id }}
-            {{ $key->roleName }}
-        @endforeach
-
-        @foreach(Auth::user()->roles as $key)
-            @foreach($key->permissions as $per)
-                {{ $per->id }}
-                {{ $per->perName }}
-            @endforeach
-        @endforeach
     </div>
 </x-app-layout>

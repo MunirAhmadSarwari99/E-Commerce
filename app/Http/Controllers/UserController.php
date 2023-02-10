@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Policies\UserPermissionPolicy;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\EditUserRolesRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -52,7 +55,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('CMS.ruserInfo', compact('user'));
+        $roles = Role::all();
+        return view('CMS.ruserInfo', compact('user', 'roles'));
     }
 
     /**
@@ -73,9 +77,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditUserRolesRequest $request, $id)
     {
-        //
+        if (UserPermissionPolicy::Policy('Update')) {
+            abort(403, 'Sorry Munir');
+        }
+
+//        $this->authorize('Update');
+        $user = User::find($id);
+        $user->roles()->sync($request->input('roleName'));
+        return back();
     }
 
     /**
