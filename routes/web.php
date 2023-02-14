@@ -8,6 +8,9 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SellerDashboardController;
 use App\Http\Controllers\CustomerDashboardController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChildCategoryController;
+use App\Http\Controllers\ChildToChildCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('User', UserController::class);
     Route::resource('Role', RoleController::class);
     Route::resource('Permission', PermissionController::class);
+    Route::resource('Category', CategoryController::class);
+    Route::resource('ChildCategory', ChildCategoryController::class);
+    Route::resource('ChildToChildCategory', ChildToChildCategoryController::class);
 
 //  Seller
     Route::resource('SellerDashboard', SellerDashboardController::class);

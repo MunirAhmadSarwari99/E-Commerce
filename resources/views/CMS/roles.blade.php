@@ -9,8 +9,8 @@
                             <thead>
                             <tr>
                                 <th scope="col">Roller</th>
-                                <th scope="col">Oluşturulma Tarihi</th>
-                                <th scope="col">Güncellemeler</th>
+                                <th scope="col">Kayıt Tarihi</th>
+                                <th scope="col">son Güncelleme Tarihi</th>
                                 <th scope="col">
                                     <button type="button" class="btn btn-dark float-end" data-bs-target="#new-role" data-bs-toggle="modal">
                                         <i class="fa fa-plus"></i>
@@ -22,11 +22,11 @@
                             @foreach($rols as $key)
                                 <tr>
                                     <td>{{ $key->roleLabel }}</td>
-                                    <td>{{ date('n, F, Y', strtotime($key->created_at))}}</td>
+                                    <td>{{ \App\Models\App::DateTime('d, ', 'F', ' Y', $key->created_at) }}</td>
                                     <td>{{ $key->updated_at->diffForHumans()}}</td>
                                     <td>
-                                        <a href="{{ route('Role.edit', $key->id) }}" class="btn btn-outline-success m-2 float-end"><i class="fa fa-edit"></i></a>
-                                        <form class="inline-form float-end" method="post" action="{{ route('Role.destroy', $key->id) }}" class="p-6">
+                                        <a href="{{ route('Role.edit', $key->id) }}" class="btn btn-outline-success m-2"><i class="fa fa-edit"></i></a>
+                                        <form class="inline-form" method="post" action="{{ route('Role.destroy', $key->id) }}" class="p-6">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-outline-danger m-2"><i class="fa fa-trash"></i> </button>

@@ -15,4 +15,8 @@ $(document).ready(function(){
     });
 
     $(".Select2").select2();
+
+    $(document).on('click', 'button[id=btnEkle]', function () {
+        $('.modal-body').append('<div class="form-floating mb-3"><input id="categoryName" name="categoryName[]" type="text" class="form-control" required/><label for="categoryName">Kategori İsmi</label></div>')
+    });
 });

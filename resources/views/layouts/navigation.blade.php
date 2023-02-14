@@ -27,10 +27,18 @@
                     <a href="{{ route('dashboard.index') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Anasayfa</a>
                     <a href="{{ route('User.index') }}" class="nav-item nav-link"><i class="fa fa-users me-2"></i> Kullanıcılar</a>
                     <div class="nav-item dropdown">
-                        <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Rol & İzinler</a>
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-user-secret me-2"></i>Rol & İzinler</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{{ route('Role.index') }}" class="dropdown-item">Role</a>
                             <a href="{{ route('Permission.index') }}" class="dropdown-item">İzinler</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-list me-2"></i>Kategoriler</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{ route('Category.index') }}" class="dropdown-item">Kategori</a>
+                            <a href="{{ route('ChildCategory.index') }}" class="dropdown-item">Orta Kategori</a>
+                            <a href="{{ route('ChildToChildCategory.index') }}" class="dropdown-item">Küçük Kategori</a>
                         </div>
                     </div>
                 @elseif($role->roleName == 'Seller')

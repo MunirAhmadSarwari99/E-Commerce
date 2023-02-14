@@ -11,8 +11,8 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Ad Soyad</th>
                                     <th scope="col">E-posta</th>
-                                    <th scope="col">Oluşturulma Tarihi</th>
-                                    <th scope="col">Güncellemeler</th>
+                                    <th scope="col">Kayıt Tarihi</th>
+                                    <th scope="col">Son Güncelleme Tarihi</th>
                                     <th scope="col">Aksiyon</th>
                                 </tr>
                             </thead>
@@ -24,7 +24,7 @@
                                         </td>
                                         <td>{{ $key->name }}</td>
                                         <td>{{ $key->email }}</td>
-                                        <td>{{ date('n, F, Y', strtotime($key->created_at))}}</td>
+                                        <td>{{ \App\Models\App::DateTime('d, ', 'F', ' Y', $key->created_at) }}</td>
                                         <td>{{ $key->updated_at->diffForHumans()}}</td>
                                         <td>
                                             <a href="{{ route('User.show', $key->id) }}" class="btn btn-outline-info m-2"><i class="fa fa-list"></i></a>

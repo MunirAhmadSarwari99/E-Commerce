@@ -9,7 +9,7 @@ class App extends Model
 {
     use HasFactory;
 
-    public static function DateTime($monthIndex, $format, $date){
+    public static function DateTime($DayFormat, $MonthFormat, $YearFormat, $date){
         $months = [
             'January'    =>    'Ocak',
             'February'    =>    'Şubat',
@@ -32,7 +32,9 @@ class App extends Model
             'Sunday'    =>    'Pazar',
         ];
 
-        $month = date($monthIndex, strtotime($date));
-        return $months[$month] . date($format, strtotime($date));
+        $day = date($DayFormat, strtotime($date));
+        $month = date($MonthFormat, strtotime($date));
+        $year = date($YearFormat, strtotime($date));
+        return $day . $months[$month] . $year ;
     }
 }
