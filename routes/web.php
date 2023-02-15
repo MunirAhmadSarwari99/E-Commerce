@@ -9,8 +9,13 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SellerDashboardController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryTagsController;
 use App\Http\Controllers\ChildCategoryController;
 use App\Http\Controllers\ChildToChildCategoryController;
+
+//Ajax
+use App\Http\Controllers\AjaxController\AjaxController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,8 +54,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('Role', RoleController::class);
     Route::resource('Permission', PermissionController::class);
     Route::resource('Category', CategoryController::class);
+    Route::resource('CategoryTags', CategoryTagsController::class);
     Route::resource('ChildCategory', ChildCategoryController::class);
     Route::resource('ChildToChildCategory', ChildToChildCategoryController::class);
+//  Admin Ajax Requests
+    Route::get('GetCategoryChild', [AjaxController::class, 'GetCategoryChild']);
 
 //  Seller
     Route::resource('SellerDashboard', SellerDashboardController::class);

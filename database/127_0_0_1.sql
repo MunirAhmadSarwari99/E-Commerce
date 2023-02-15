@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2023 at 01:57 PM
+-- Generation Time: Feb 15, 2023 at 04:32 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -62,6 +62,27 @@ CREATE TABLE `categories_child` (
   `category_id` int(10) UNSIGNED NOT NULL,
   `child_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories_child`
+--
+
+INSERT INTO `categories_child` (`category_id`, `child_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(2, 1),
+(2, 2),
+(2, 4),
+(2, 5),
+(2, 7),
+(2, 8),
+(2, 9),
+(2, 10);
 
 -- --------------------------------------------------------
 
@@ -160,6 +181,25 @@ CREATE TABLE `child_categories_child` (
   `child_to_child_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `child_categories_child`
+--
+
+INSERT INTO `child_categories_child` (`child_id`, `child_to_child_id`) VALUES
+(1, 7),
+(1, 19),
+(1, 20),
+(1, 21),
+(1, 22),
+(1, 23),
+(1, 24),
+(1, 25),
+(1, 26),
+(1, 27),
+(1, 28),
+(1, 29),
+(1, 31);
+
 -- --------------------------------------------------------
 
 --
@@ -172,6 +212,25 @@ CREATE TABLE `child_to_child_categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `child_to_child_categories`
+--
+
+INSERT INTO `child_to_child_categories` (`id`, `childName`, `created_at`, `updated_at`) VALUES
+(7, 'Elbise', '2023-02-15 10:20:28', '2023-02-15 11:14:22'),
+(19, 'Büyük Beden', '2023-02-15 10:23:32', '2023-02-15 10:23:32'),
+(20, 'Tişört', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
+(21, 'Gömlek', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
+(22, 'Kot Pantolon', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
+(23, 'Kot Ceket', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
+(24, 'Pantolon', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
+(25, 'Mont', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
+(26, 'Bluz', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
+(27, 'Ceket', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
+(28, 'Etek', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
+(29, 'Kazak', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
+(31, 'Tesettür', '2023-02-15 11:16:39', '2023-02-15 11:16:39');
 
 -- --------------------------------------------------------
 
@@ -214,7 +273,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (46, '2023_02_06_081427_create_permissions_table', 1),
 (47, '2023_02_14_085519_create_categories_table', 2),
 (48, '2023_02_14_085623_create_child_categories_table', 2),
-(49, '2023_02_14_115043_create_child_to_child_categories_table', 3);
+(49, '2023_02_14_115043_create_child_to_child_categories_table', 3),
+(50, '2023_02_15_142307_create_products_table', 4);
 
 -- --------------------------------------------------------
 
@@ -267,6 +327,26 @@ CREATE TABLE `personal_access_tokens` (
   `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
+  `categoryChild_id` int(10) UNSIGNED NOT NULL,
+  `categoryChildTo_id` int(10) UNSIGNED NOT NULL,
+  `productName` varchar(255) NOT NULL,
+  `productModel` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `price` double(8,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -437,6 +517,16 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `products_user_id_foreign` (`user_id`),
+  ADD KEY `products_category_id_foreign` (`category_id`),
+  ADD KEY `products_categorychild_id_foreign` (`categoryChild_id`),
+  ADD KEY `products_categorychildto_id_foreign` (`categoryChildTo_id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -484,7 +574,7 @@ ALTER TABLE `child_categories`
 -- AUTO_INCREMENT for table `child_to_child_categories`
 --
 ALTER TABLE `child_to_child_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -496,7 +586,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -509,6 +599,12 @@ ALTER TABLE `permissions`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -539,6 +635,15 @@ ALTER TABLE `categories_child`
 ALTER TABLE `child_categories_child`
   ADD CONSTRAINT `child_categories_child_child_id_foreign` FOREIGN KEY (`child_id`) REFERENCES `child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `child_categories_child_child_to_child_id_foreign` FOREIGN KEY (`child_to_child_id`) REFERENCES `child_to_child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_categorychild_id_foreign` FOREIGN KEY (`categoryChild_id`) REFERENCES `child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_categorychildto_id_foreign` FOREIGN KEY (`categoryChildTo_id`) REFERENCES `child_to_child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `role_permission`

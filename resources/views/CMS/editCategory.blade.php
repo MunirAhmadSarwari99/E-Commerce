@@ -7,9 +7,6 @@
                     <form method="POST" action="{{ route('Category.update', $category->id) }}" class="p-6">
                         @csrf
                         @method('PATCH')
-                        @section('Title')
-                            {{ __('Yeni Kategori') }}
-                        @endsection
                         <div class="form-floating mb-3">
                             <x-text-input id="categoryName" name="categoryName" type="text" class="form-control" value="{{ $category->categoryName }}" />
                             <x-input-label for="categoryName" :value="__('Kategori İsmi')" />

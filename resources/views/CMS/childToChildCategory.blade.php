@@ -3,7 +3,7 @@
         <div class="row g-4">
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
-                    <h6 class="mb-4">Orta Kategori</h6>
+                    <h6 class="mb-4">Küçük Kategori</h6>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -19,25 +19,25 @@
                             </tr>
                             </thead>
                             <tbody>
-{{--                                @foreach($category as $key)--}}
-{{--                                    <tr>--}}
-{{--                                        <td>{{ $key->childName }}</td>--}}
-{{--                                        <td>{{ \App\Models\App::DateTime('d, ', 'F', ' Y', $key->created_at) }}</td>--}}
-{{--                                        <td>{{ $key->updated_at->diffForHumans()}}</td>--}}
-{{--                                        <td>--}}
-{{--                                            <a href="{{ route('ChildCategory.edit', $key->id) }}" class="btn btn-outline-success m-2"><i class="fa fa-edit"></i></a>--}}
-{{--                                            <form class="inline-form" method="post" action="{{ route('ChildCategory.destroy', $key->id) }}" class="p-6">--}}
-{{--                                                @csrf--}}
-{{--                                                @method('delete')--}}
-{{--                                                <button class="btn btn-outline-danger m-2"><i class="fa fa-trash"></i> </button>--}}
-{{--                                            </form>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                @endforeach--}}
+                                @foreach($childTo as $key)
+                                    <tr>
+                                        <td>{{ $key->childName }}</td>
+                                        <td>{{ \App\Models\App::DateTime('d, ', 'F', ' Y', $key->created_at) }}</td>
+                                        <td>{{ $key->updated_at->diffForHumans()}}</td>
+                                        <td>
+                                            <a href="{{ route('ChildToChildCategory.edit', $key->id) }}" class="btn btn-outline-success m-2"><i class="fa fa-edit"></i></a>
+                                            <form class="inline-form" method="post" action="{{ route('ChildToChildCategory.destroy', $key->id) }}" class="p-6">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-outline-danger m-2"><i class="fa fa-trash"></i> </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
-{{--                    {{ $category->links() }}--}}
+                    {{ $childTo->links() }}
                 </div>
             </div>
         </div>
@@ -51,16 +51,22 @@
             @endsection
             <div class="modal-body">
                 <div class="form-floating mb-3">
-                    <select id="childName" name="childName" class="form-control" >
-                        @foreach($childCategory as $child)
-                            <option value="{{ $child->id }}">{{ $child->childName }}</option>
+                    <select id="mainCategoryName" name="mainCategoryName" class="form-control" required>
+                        <option value=""></option>
+                        @foreach($category as $val)
+                            <option value="{{ $val->id }}">{{ $val->categoryName }}</option>
                         @endforeach
                     </select>
+                    <x-input-label for="mainCategoryName" :value="__('Kategori Seç')" />
+                    <x-input-error :messages="$errors->get('mainCategoryName')" class="mt-2" />
+                </div>
+                <div class="form-floating mb-3">
+                    <select id="childName" name="childName" class="form-control" required></select>
                     <x-input-label for="childName" :value="__('Orta Kategori Seç')" />
                     <x-input-error :messages="$errors->get('childName')" class="mt-2" />
                 </div>
                 <div class="form-floating mb-3">
-                    <x-text-input id="categoryName" name="categoryName[]" type="text" class="form-control" />
+                    <x-text-input id="categoryName" name="categoryName[]" type="text" class="form-control" required/>
                     <x-input-label for="categoryName" :value="__('Kategori İsmi')" />
                 </div>
                 <x-input-error :messages="$errors->get('categoryName')" class="mt-2" />

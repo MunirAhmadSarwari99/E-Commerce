@@ -176,6 +176,7 @@
 <!-- Template Javascript -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('js/select2.min.js') }}"></script>
+<script src="{{ asset('js/Ajax.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 

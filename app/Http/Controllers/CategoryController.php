@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\ChildCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -59,7 +60,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $childCategory = ChildCategory::all();
+        return view('CMS.showCategory', compact('category', 'childCategory'));
     }
 
     /**

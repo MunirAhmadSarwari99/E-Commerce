@@ -25,6 +25,7 @@
                                         <td>{{ \App\Models\App::DateTime('d, ', 'F', ' Y', $key->created_at) }}</td>
                                         <td>{{ $key->updated_at->diffForHumans()}}</td>
                                         <td>
+                                            <a href="{{ route('Category.show', $key->id) }}" class="btn btn-outline-primary m-2"><i class="fa fa-list"></i></a>
                                             <a href="{{ route('Category.edit', $key->id) }}" class="btn btn-outline-success m-2"><i class="fa fa-edit"></i></a>
                                             <form class="inline-form" method="post" action="{{ route('Category.destroy', $key->id) }}" class="p-6">
                                                 @csrf

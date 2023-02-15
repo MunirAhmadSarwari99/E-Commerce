@@ -3,8 +3,8 @@
         <div class="row g-4">
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
-                    <h6 class="mb-4">Orta Kategoriyi Düzenle</h6>
-                    <form method="POST" action="{{ route('ChildCategory.update', $category->id) }}" class="p-6">
+                    <h6 class="mb-4">Kategoriyi Düzenle</h6>
+                    <form method="POST" action="{{ route('ChildToChildCategory.update', $category->id) }}" class="p-6">
                         @csrf
                         @method('PATCH')
                         <div class="form-floating mb-3">
