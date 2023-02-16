@@ -3,7 +3,7 @@
         <div class="row g-4">
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
-                    <h6 class="mb-4">{{ __('Kategoriyi  ') . $category->categoryName . __(' Etiket Ekle')}}</h6>
+                    <h6 class="mb-4">{{ __('Kategoriyi Etiket Ekle')}}</h6>
                     <form method="POST" action="{{ route('CategoryTags.update', $category->id) }}" class="p-6">
                         @csrf
                         @method('PATCH')

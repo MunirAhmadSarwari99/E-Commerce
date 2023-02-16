@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\ChildToChildCategoryController;
 
 //Ajax
 use App\Http\Controllers\AjaxController\AjaxController;
+use App\Http\Controllers\AjaxController\SellerAjaxController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -62,6 +64,10 @@ Route::middleware('auth')->group(function () {
 
 //  Seller
     Route::resource('SellerDashboard', SellerDashboardController::class);
+    Route::resource('SellerProduct', ProductController::class);
+// Admin Ajax Requests
+    Route::get('GetSellerChildCategory', [SellerAjaxController::class, 'GetCategoryChild']);
+    Route::get('GetSellerChildToCategory', [SellerAjaxController::class, 'GetCategoryChildTo']);
 
 //  Customer
     Route::resource('CustomerDashboard', CustomerDashboardController::class);

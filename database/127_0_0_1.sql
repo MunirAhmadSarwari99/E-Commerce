@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2023 at 04:32 PM
+-- Generation Time: Feb 16, 2023 at 06:03 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -43,14 +43,7 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `categoryName`, `created_at`, `updated_at`) VALUES
 (1, 'Kadın', '2023-02-14 06:55:01', '2023-02-14 08:34:34'),
 (2, 'Erkek', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(3, 'Anne & Çocuk', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(4, 'Ev & Mobilya', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(5, 'Süpermarket', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(6, 'Kozmetik', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(7, 'Ayakkabı & Çanta', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(8, 'Saat & Aksesuar', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(9, 'Elektronik', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(11, 'Sopr & Outdoor', '2023-02-14 08:36:28', '2023-02-14 08:36:28');
+(9, 'Elektronik', '2023-02-14 07:38:56', '2023-02-14 07:38:56');
 
 -- --------------------------------------------------------
 
@@ -82,7 +75,18 @@ INSERT INTO `categories_child` (`category_id`, `child_id`) VALUES
 (2, 7),
 (2, 8),
 (2, 9),
-(2, 10);
+(2, 10),
+(9, 50),
+(9, 51),
+(9, 52),
+(9, 53),
+(9, 54),
+(9, 55),
+(9, 56),
+(9, 57),
+(9, 58),
+(9, 59),
+(9, 60);
 
 -- --------------------------------------------------------
 
@@ -198,7 +202,20 @@ INSERT INTO `child_categories_child` (`child_id`, `child_to_child_id`) VALUES
 (1, 27),
 (1, 28),
 (1, 29),
-(1, 31);
+(1, 31),
+(2, 32),
+(2, 33),
+(2, 34),
+(2, 35),
+(2, 36),
+(2, 37),
+(53, 38),
+(53, 39),
+(53, 40),
+(53, 41),
+(53, 42),
+(53, 43),
+(53, 44);
 
 -- --------------------------------------------------------
 
@@ -230,7 +247,20 @@ INSERT INTO `child_to_child_categories` (`id`, `childName`, `created_at`, `updat
 (27, 'Ceket', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
 (28, 'Etek', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
 (29, 'Kazak', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(31, 'Tesettür', '2023-02-15 11:16:39', '2023-02-15 11:16:39');
+(31, 'Tesettür', '2023-02-15 11:16:39', '2023-02-15 11:16:39'),
+(32, 'Topuklu Ayakkabı', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
+(33, 'Sneaker', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
+(34, 'Günlük Ayakkabı', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
+(35, 'Babet', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
+(36, 'Sandalet', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
+(37, 'Bot', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
+(38, 'Laptop', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
+(39, 'Tablet', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
+(40, 'Bilgisayar Bileşenleri', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
+(41, 'Monitör', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
+(42, 'Yazıcı & Tarayıcı', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
+(43, 'Çevre Birimleri', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
+(44, 'Ağ & Modem', '2023-02-16 10:59:24', '2023-02-16 10:59:24');
 
 -- --------------------------------------------------------
 
@@ -351,6 +381,14 @@ CREATE TABLE `products` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `user_id`, `category_id`, `categoryChild_id`, `categoryChildTo_id`, `productName`, `productModel`, `image`, `price`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, 7, 'Açelya Okcu', 'Adidas', '1676543326E1.jpg', 1500.99, '2023-02-16 10:28:46', '2023-02-16 10:28:46'),
+(2, 2, 9, 53, 39, 'LENOVO Tab M10 Plus', 'Lenovo', '1676546720app2.jpg', 2500.00, '2023-02-16 11:25:20', '2023-02-16 11:25:20');
+
 -- --------------------------------------------------------
 
 --
@@ -415,7 +453,8 @@ CREATE TABLE `role_user` (
 INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 (2, 2),
 (3, 3),
-(1, 1);
+(1, 1),
+(4, 2);
 
 -- --------------------------------------------------------
 
@@ -445,7 +484,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `gender`, `phone`, `address`, `image`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Munir Ahmad Sarwari', 'Munirahmad.sarwari@gmail.com', NULL, '$2y$10$MieiLfQAPYlOr.sFemehr.9OykkO7hKB8RAwfXr09k2DGbFQOj2Ha', 0, '05314722001', 'Adapazarı/Sakarya, Türkiye', '1675863757drese.jpg', NULL, '2023-02-08 12:07:53', '2023-02-08 13:42:37'),
 (2, 'Eiraj Ahmad Sarwari', 'Eirajahmad.sarwari@gmail.com', NULL, '$2y$10$clQrXImP6/GBdACcSv7bwO.FGnfa5lYqeGpmje1hcHGdwNxRaVRdO', NULL, NULL, NULL, 'default.png', NULL, '2023-02-08 12:12:06', '2023-02-08 12:12:06'),
-(3, 'Bayram', 'Bayram@gmail.com', NULL, '$2y$10$asccS7iH0SAEdBESj0fOUexhv52o/tp8tFCMuniP80bkNnqEOPCiq', NULL, NULL, NULL, 'default.png', NULL, '2023-02-08 12:13:29', '2023-02-08 12:13:29');
+(3, 'Bayram', 'Bayram@gmail.com', NULL, '$2y$10$asccS7iH0SAEdBESj0fOUexhv52o/tp8tFCMuniP80bkNnqEOPCiq', NULL, NULL, NULL, 'default.png', NULL, '2023-02-08 12:13:29', '2023-02-08 12:13:29'),
+(4, 'Ahmad', 'B213102551@subu.edu.tr', NULL, '$2y$10$nQsA4gfe5f4p6qs1sEzHe.VZ4sNjXxQyvHAB6fK/zy7OZ4z888sY2', NULL, NULL, NULL, 'default.png', NULL, '2023-02-16 15:07:25', '2023-02-16 15:07:25');
 
 --
 -- Indexes for dumped tables
@@ -574,7 +614,7 @@ ALTER TABLE `child_categories`
 -- AUTO_INCREMENT for table `child_to_child_categories`
 --
 ALTER TABLE `child_to_child_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -604,7 +644,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -616,7 +656,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

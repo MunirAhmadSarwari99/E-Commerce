@@ -43,6 +43,7 @@
                     </div>
                 @elseif($role->roleName == 'Seller')
                     <a href="{{ route('SellerDashboard.index') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Anasayfa</a>
+                    <a href="{{ route('SellerProduct.index') }}" class="nav-item nav-link"><i class="fa fa-list me-2"></i> Ürünler</a>
                 @else
                     <a href="{{ route('CustomerDashboard.index') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Anasayfa</a>
                 @endif

@@ -1,222 +1,451 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
-    <!-- Mobile Specific Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- ===== META TAGS ===== -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/fav.png">
-    <!-- Author Meta -->
-    <meta name="author" content="CodePixar">
-    <!-- Meta Description -->
-    <meta name="description" content="">
-    <!-- Meta Keyword -->
-    <meta name="keywords" content="">
-    <!-- meta character set -->
-    <meta charset="UTF-8">
-    <!-- Site Title -->
-    <title> .:: {{ config('app.name', 'MAS E-commerce') }} ::. </title>
-    <!--
-        CSS
-        ============================================= -->
-    <link rel="stylesheet" href="{{ asset('css/linearicons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/nouislider.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/ion.rangeSlider.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/ion.rangeSlider.skinFlat.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- ===== CSS STYLESHEET ===== -->
+    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/leaflet.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/vendors.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    @vite(['resources/js/app.js'])
+
 </head>
 
-<body>
+<body class="preloader-visible" data-barba="wrapper">
+<!-- ===== PRELOADER START ===== -->
+<div class="preloader js-preloader">
+    <div class="preloader__bg"></div>
+</div>
 
-<!-- Start Header Area -->
-<header class="header_area sticky-header">
-    <div class="main_menu">
-        <nav class="navbar navbar-expand-lg navbar-light main_box">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="{{ route('index') }}">Anasayfa</a></li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                               aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                                <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                                <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                                <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                                <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                               aria-expanded="false">Blog</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                               aria-expanded="false">Pages</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                                <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
-                                <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        @if (Route::has('login'))
-                            @auth
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
-                                </li>
-                            @else
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Giriş Yap</a>
-                                </li>
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">Üye Ol</a>
-                                    </li>
-                                @endif
-                            @endauth
-                        @endif
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-                        <li class="nav-item">
-                            <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <div class="search_input" id="search_input_box">
-        <div class="container">
-            <form class="d-flex justify-content-between">
-                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                <button type="submit" class="btn"></button>
-                <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-            </form>
-        </div>
-    </div>
-</header>
-<!-- End Header Area -->
+<!-- ===== MAIN CONTENT ===== -->
+<main class="main-content  ">
+    <!-- ===== NAVBAR HEADER ===== -->
+    <header data-anim="fade" data-add-bg="bg-dark-1" class="header -type-1 js-header">
+        <div class="header__container">
+            <div class="row justify-between items-center">
+                <div class="col-auto">
+                    <div class="header-left">
 
-{{ $slot }}
+                        <div class="header__logo ">
+                            <a data-barba href="{{ route('index') }}">
+                                <img style="width: 80px;" src="{{ asset('images/logo.png') }}" alt="logo">
+                            </a>
+                        </div>
 
-<!-- start footer Area -->
-<footer class="footer-area section_gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>About Us</h6>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
-                        magna aliqua.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4  col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Newsletter</h6>
-                    <p>Stay update with our latest</p>
-                    <div class="" id="mc_embed_signup">
+                        <div class="header__explore text-green-1 ml-60 xl:ml-30 xl:d-none">
+                            <div class="explore-content py-25 rounded-8 bg-white toggle-element js-explore-toggle">
 
-                        <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                              method="get" class="form-inline">
-
-                            <div class="d-flex flex-row">
-
-                                <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
-                                       required="" type="email">
-
-
-                                <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-                                <div style="position: absolute; left: -5000px;">
-                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                <div class="explore__item">
+                                    <a href="#" class="d-flex items-center justify-between text-dark-1">
+                                        Architecture
+                                        <div class="icon-chevron-right text-11"></div>
+                                    </a>
+                                    <div class="explore__subnav rounded-8">
+                                        <a class="text-dark-1" href="courses-single-1.html">Web Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Graphic Design</a>
+                                        <a class="text-dark-1" href="courses-single-3.html">Design Tools</a>
+                                        <a class="text-dark-1" href="courses-single-4.html">User Experience Design</a>
+                                        <a class="text-dark-1" href="courses-single-5.html">Game Design</a>
+                                        <a class="text-dark-1" href="courses-single-6.html">3D & Animation</a>
+                                        <a class="text-dark-1" href="courses-single-1.html">Fashion Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Interior Design</a>
+                                    </div>
                                 </div>
 
-                                <!-- <div class="col-lg-4 col-md-4">
-                                            <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-                                        </div>  -->
+                                <div class="explore__item">
+                                    <a href="#" class="d-flex items-center justify-between text-dark-1">
+                                        Business<div class="icon-chevron-right text-11"></div>
+                                    </a>
+                                    <div class="explore__subnav rounded-8">
+                                        <a class="text-dark-1" href="courses-single-1.html">Web Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Graphic Design</a>
+                                        <a class="text-dark-1" href="courses-single-3.html">Design Tools</a>
+                                        <a class="text-dark-1" href="courses-single-4.html">User Experience Design</a>
+                                        <a class="text-dark-1" href="courses-single-5.html">Game Design</a>
+                                        <a class="text-dark-1" href="courses-single-6.html">3D & Animation</a>
+                                        <a class="text-dark-1" href="courses-single-1.html">Fashion Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Interior Design</a>
+                                    </div>
+                                </div>
+
+
+                                <div class="explore__item">
+                                    <a href="#" class="text-dark-1">Computer Programming</a>
+                                </div>
+
+                                <div class="explore__item">
+                                    <a href="#" class="text-dark-1">Data Analysis</a>
+                                </div>
+
+
+                                <div class="explore__item">
+                                    <a href="#" class="d-flex items-center justify-between text-dark-1">
+                                        Design<div class="icon-chevron-right text-11"></div>
+                                    </a>
+                                    <div class="explore__subnav rounded-8">
+                                        <a class="text-dark-1" href="courses-single-1.html">Web Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Graphic Design</a>
+                                        <a class="text-dark-1" href="courses-single-3.html">Design Tools</a>
+                                        <a class="text-dark-1" href="courses-single-4.html">User Experience Design</a>
+                                        <a class="text-dark-1" href="courses-single-5.html">Game Design</a>
+                                        <a class="text-dark-1" href="courses-single-6.html">3D & Animation</a>
+                                        <a class="text-dark-1" href="courses-single-1.html">Fashion Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Interior Design</a>
+                                    </div>
+                                </div>
+
+                                <div class="explore__item">
+                                    <a href="courses-single-6.html" class="text-dark-1">Education</a>
+                                </div>
+
+
+                                <div class="explore__item">
+                                    <a href="#" class="d-flex items-center justify-between text-dark-1">
+                                        Electronics<div class="icon-chevron-right text-11"></div>
+                                    </a>
+                                    <div class="explore__subnav rounded-8">
+                                        <a class="text-dark-1" href="courses-single-1.html">Web Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Graphic Design</a>
+                                        <a class="text-dark-1" href="courses-single-3.html">Design Tools</a>
+                                        <a class="text-dark-1" href="courses-single-4.html">User Experience Design</a>
+                                        <a class="text-dark-1" href="courses-single-5.html">Game Design</a>
+                                        <a class="text-dark-1" href="courses-single-6.html">3D & Animation</a>
+                                        <a class="text-dark-1" href="courses-single-1.html">Fashion Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Interior Design</a>
+                                    </div>
+                                </div>
+
+                                <div class="explore__item">
+                                    <a href="#" class="d-flex items-center justify-between text-dark-1">
+                                        Language<div class="icon-chevron-right text-11"></div>
+                                    </a>
+                                    <div class="explore__subnav rounded-8">
+                                        <a class="text-dark-1" href="courses-single-1.html">Web Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Graphic Design</a>
+                                        <a class="text-dark-1" href="courses-single-3.html">Design Tools</a>
+                                        <a class="text-dark-1" href="courses-single-4.html">User Experience Design</a>
+                                        <a class="text-dark-1" href="courses-single-5.html">Game Design</a>
+                                        <a class="text-dark-1" href="courses-single-6.html">3D & Animation</a>
+                                        <a class="text-dark-1" href="courses-single-1.html">Fashion Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Interior Design</a>
+                                    </div>
+                                </div>
+
+                                <div class="explore__item">
+                                    <a href="#" class="d-flex items-center justify-between text-dark-1">
+                                        Marketing<div class="icon-chevron-right text-11"></div>
+                                    </a>
+                                    <div class="explore__subnav rounded-8">
+                                        <a class="text-dark-1" href="courses-single-1.html">Web Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Graphic Design</a>
+                                        <a class="text-dark-1" href="courses-single-3.html">Design Tools</a>
+                                        <a class="text-dark-1" href="courses-single-4.html">User Experience Design</a>
+                                        <a class="text-dark-1" href="courses-single-5.html">Game Design</a>
+                                        <a class="text-dark-1" href="courses-single-6.html">3D & Animation</a>
+                                        <a class="text-dark-1" href="courses-single-1.html">Fashion Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Interior Design</a>
+                                    </div>
+                                </div>
+
+
+                                <div class="explore__item">
+                                    <a href="#" class="text-dark-1">Music Arts</a>
+                                </div>
+
+                                <div class="explore__item">
+                                    <a href="#" class="text-dark-1">Social Science</a>
+                                </div>
+
+
+                                <div class="explore__item">
+                                    <a href="#" class="d-flex items-center justify-between text-dark-1">
+                                        Photography & Video<div class="icon-chevron-right text-11"></div>
+                                    </a>
+                                    <div class="explore__subnav rounded-8">
+                                        <a class="text-dark-1" href="courses-single-1.html">Web Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Graphic Design</a>
+                                        <a class="text-dark-1" href="courses-single-3.html">Design Tools</a>
+                                        <a class="text-dark-1" href="courses-single-4.html">User Experience Design</a>
+                                        <a class="text-dark-1" href="courses-single-5.html">Game Design</a>
+                                        <a class="text-dark-1" href="courses-single-6.html">3D & Animation</a>
+                                        <a class="text-dark-1" href="courses-single-1.html">Fashion Design</a>
+                                        <a class="text-dark-1" href="courses-single-2.html">Interior Design</a>
+                                    </div>
+                                </div>
+
+                                <div class="explore__item">
+                                    <a href="courses-single-1.html" class="text-dark-1">IT & Software</a>
+                                </div>
+
+                                <div class="explore__item">
+                                    <a href="courses-single-2.html" class="text-purple-1 underline">View All Courses</a>
+                                </div>
                             </div>
-                            <div class="info"></div>
-                        </form>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="header-menu js-mobile-menu-toggle ">
+                    <div class="header-menu__content">
+                        <div class="mobile-bg js-mobile-bg"></div>
+
+                        <div class="d-none xl:d-flex items-center px-20 py-20 border-bottom-light">
+                            @if (Route::has('login'))
+                                @auth
+                                    <a href="{{ url('/dashboard') }}" class="text-dark-1 ml-30">Dashboard</a>
+                                @else
+                                    <a href="{{ route('login') }}" class="text-dark-1 ml-30">Giriş Yap</a>
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="text-dark-1 ml-30">Üye Ol</a>
+                                    @endif
+                                @endauth
+                            @endif
+                        </div>
+
+                        <div class="menu js-navList">
+                            <ul class="menu__nav text-white -is-active" style="width: 100%;">
+
+                                <li>
+                                    <a data-barba href="{{ route('index') }}">Anasayfa</a>
+                                </li>
+
+                                @foreach(App\Models\Category::all() as $category)
+                                <li class="menu-item-has-children">
+                                    <a data-barba href="#">
+                                        {{ $category->categoryName }} <i class="icon-chevron-right text-13 ml-10"></i>
+                                    </a>
+                                    <ul class="subnav">
+                                        @foreach($category->childs as $child)
+                                            @if($child->childName)
+                                            <li class="menu-item-has-children">
+                                                <a href="#">{{ $child->childName }}<div class="icon-chevron-right text-11"></div></a>
+
+                                                <ul class="subnav">
+                                                    @foreach($child->ChildToChild as $childTo)
+                                                        <li>
+                                                            <a href="about-1.html">{{ $childTo->childName }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </li>
+                                @endforeach
+                                <li>
+                                    <a data-barba href="contact-1.html">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mobile-footer px-20 py-20 border-top-light js-mobile-footer">
+                            <div class="mobile-footer__number">
+                                <div class="text-17 fw-500 text-dark-1">Call us</div>
+                                <div class="text-17 fw-500 text-purple-1">800 388 80 90</div>
+                            </div>
+
+                            <div class="lh-2 mt-10">
+                                <div>329 Queensberry Street,<br> North Melbourne VIC 3051, Australia.</div>
+                                <div>hi@educrat.com</div>
+                            </div>
+
+                            <div class="mobile-socials mt-10">
+
+                                <a href="#" class="d-flex items-center justify-center rounded-full size-40">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+
+                                <a href="#" class="d-flex items-center justify-center rounded-full size-40">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+
+                                <a href="#" class="d-flex items-center justify-center rounded-full size-40">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+
+                                <a href="#" class="d-flex items-center justify-center rounded-full size-40">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-menu-close" data-el-toggle=".js-mobile-menu-toggle">
+                        <div class="size-40 d-flex items-center justify-center rounded-full bg-white">
+                            <div class="icon-close text-dark-1 text-16"></div>
+                        </div>
+                    </div>
+
+                    <div class="header-menu-bg"></div>
+                </div>
+
+
+                <div class="col-auto">
+                    <div class="header-right d-flex items-center">
+                        <div class="header-right__icons text-white d-flex items-center">
+                            <div class="d-none xl:d-block ml-20">
+                                <button class="text-white items-center" data-el-toggle=".js-mobile-menu-toggle">
+                                    <i class="text-11 icon icon-mobile-menu"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="header-right__buttons d-flex items-center ml-30 md:d-none">
+                            @if (Route::has('login'))
+                                @auth
+                                    <a href="{{ url('/dashboard') }}" class="button -sm -white text-dark-1 ml-30">Dashboard</a>
+                                @else
+                                    <a href="{{ route('login') }}" class="button -sm -white text-dark-1 ml-30">Giriş Yap</a>
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="button -sm -white text-dark-1 ml-30">Üye Ol</a>
+                                    @endif
+                                @endauth
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <div class="content-wrapper  js-content-wrapper">
+        <!-- ===== BODY ===== -->
+        {{ $slot }}
+
+        <footer class="footer -type-1 bg-dark-1 -green-links">
+            <div class="container">
+                <div class="footer-header">
+                    <div class="row y-gap-20 justify-between items-center">
+                        <div class="col-auto">
+                            <div class="footer-header__logo">
+                                <img style="width: 150px;" src="{{ asset('images/logo.png') }}" alt="logo">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="footer-header-socials">
+                                <div class="footer-header-socials__title text-white">Follow us on social media</div>
+                                <div class="footer-header-socials__list">
+                                    <a href="#"><i class="icon-facebook"></i></a>
+                                    <a href="#"><i class="icon-twitter"></i></a>
+                                    <a href="#"><i class="icon-instagram"></i></a>
+                                    <a href="#"><i class="icon-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-columns">
+                    <div class="row y-gap-30">
+                        <div class="col-xl-2 col-lg-4 col-md-6">
+                            <div class="text-17 fw-500 text-white uppercase mb-25">ABOUT</div>
+                            <div class="d-flex y-gap-10 flex-column">
+                                <a href="about-1.html">About Us</a>
+                                <a href="blog-list-1.html">Learner Stories</a>
+                                <a href="instructor-become.html">Careers</a>
+                                <a href="blog-list-1.html">Press</a>
+                                <a href="#">Leadership</a>
+                                <a href="contact-1.html">Contact Us</a>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-8">
+                            <div class="text-17 fw-500 text-white uppercase mb-25">CATEGORIES</div>
+                            <div class="row justify-between y-gap-20">
+                                <div class="col-md-6">
+                                    <div class="d-flex y-gap-10 flex-column">
+                                        <a href="courses-single-1.html">Development</a>
+                                        <a href="courses-single-2.html">Business</a>
+                                        <a href="courses-single-3.html">Finance & Accounting</a>
+                                        <a href="courses-single-4.html">IT & Software</a>
+                                        <a href="courses-single-5.html">Office Productivity</a>
+                                        <a href="courses-single-6.html">Design</a>
+                                        <a href="courses-single-1.html">Marketing</a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex y-gap-10 flex-column">
+                                        <a href="courses-single-1.html">Lifiestyle</a>
+                                        <a href="courses-single-2.html">Photography & Video</a>
+                                        <a href="courses-single-3.html">Health & Fitness</a>
+                                        <a href="courses-single-4.html">Music</a>
+                                        <a href="courses-single-5.html">UX Design</a>
+                                        <a href="courses-single-6.html">Seo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-2 offset-xl-1 col-lg-4 col-md-6">
+                            <div class="text-17 fw-500 text-white uppercase mb-25">SUPPORT</div>
+                            <div class="d-flex y-gap-10 flex-column">
+                                <a href="terms.html">Documentation</a>
+                                <a href="help-center.html">FAQS</a>
+                                <a href="dashboard.html">Dashboard</a>
+                                <a href="contact-1.html">Contact</a>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="text-17 fw-500 text-white uppercase mb-25">GET IN TOUCH</div>
+                            <div class="footer-columns-form">
+                                <div>We don’t send spam so don’t worry.</div>
+                                <form action="https://creativelayers.net/themes/educrat-html/post">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Email...">
+                                        <button type="submit">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="py-30 border-top-light-15">
+                    <div class="row justify-between items-center y-gap-20">
+                        <div class="col-auto">
+                            <div class="d-flex items-center h-100 text-white">
+                                © 2022 Educrat. All Right Reserved.
+                            </div>
+                        </div>
+
+                        <div class="col-auto">
+                            <div class="d-flex x-gap-20 y-gap-20 items-center flex-wrap">
+                                <div>
+                                    <div class="d-flex x-gap-15 text-white">
+                                        <a href="help-center.html">Help</a>
+                                        <a href="terms.html">Privacy Policy</a>
+                                        <a href="terms.html">Cookie Notice</a>
+                                        <a href="terms.html">Security</a>
+                                        <a href="terms.html">Terms of Use</a>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <a href="#" class="button px-30 h-50 -dark-6 rounded-200 text-white">
+                                        <i class="icon-worldwide text-20 mr-15"></i><span class="text-15">English</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3  col-md-6 col-sm-6">
-                <div class="single-footer-widget mail-chimp">
-                    <h6 class="mb-20">Instragram Feed</h6>
-                    <ul class="instafeed d-flex flex-wrap">
-                        <li><img src="img/i1.jpg" alt=""></li>
-                        <li><img src="img/i2.jpg" alt=""></li>
-                        <li><img src="img/i3.jpg" alt=""></li>
-                        <li><img src="img/i4.jpg" alt=""></li>
-                        <li><img src="img/i5.jpg" alt=""></li>
-                        <li><img src="img/i6.jpg" alt=""></li>
-                        <li><img src="img/i7.jpg" alt=""></li>
-                        <li><img src="img/i8.jpg" alt=""></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="single-footer-widget">
-                    <h6>Follow Us</h6>
-                    <p>Let us be social</p>
-                    <div class="footer-social d-flex align-items-center">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-            <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-        </div>
+        </footer>
     </div>
-</footer>
-<!-- End footer Area -->
+</main>
 
-<script src="{{ asset('js/vendor/jquery-2.2.4.min.js') }}"></script>
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"--}}
-{{--        crossorigin="anonymous"></script>--}}
-<script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
-<script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
-<script src="{{ asset('js/jquery.sticky.js') }}"></script>
-<script src="{{ asset('js/nouislider.min.js') }}"></script>
-<script src="{{ asset('js/countdown.js') }}"></script>
-<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-
-<script src="{{ asset('js/gmaps.min.js') }}"></script>
+<!-- JavaScript -->
+<script src="{{ asset('js/leaflet.js') }}" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<script src="{{ asset('js/vendors.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 </body>
-
 </html>
