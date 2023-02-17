@@ -51,7 +51,6 @@
     <!-- End banner Area -->
 </x-guest-layout>
 
-
 @foreach(App\Models\Category::all() as $category)
     <div class="col">
         <h4 class="text-17 fw-500 mb-20">{{ $category->categoryName }}</h4>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2023 at 06:03 PM
+-- Generation Time: Feb 17, 2023 at 12:25 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -43,7 +43,14 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `categoryName`, `created_at`, `updated_at`) VALUES
 (1, 'Kadın', '2023-02-14 06:55:01', '2023-02-14 08:34:34'),
 (2, 'Erkek', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(9, 'Elektronik', '2023-02-14 07:38:56', '2023-02-14 07:38:56');
+(3, 'Anne & Çocuk', '2023-02-17 10:42:26', '2023-02-17 10:42:26'),
+(4, 'Ev & Mobilya', '2023-02-17 10:44:46', '2023-02-17 10:44:46'),
+(5, 'Süpermarket', '2023-02-17 10:44:46', '2023-02-17 10:44:46'),
+(6, 'Kozmetik', '2023-02-17 10:44:46', '2023-02-17 10:44:46'),
+(7, 'Ayakkabı & Çanta', '2023-02-17 10:44:46', '2023-02-17 10:44:46'),
+(8, 'Saat & Aksesuar', '2023-02-17 10:44:46', '2023-02-17 10:44:46'),
+(9, 'Elektronik', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
+(10, 'Spor &Outdoor', '2023-02-17 10:44:46', '2023-02-17 10:44:46');
 
 -- --------------------------------------------------------
 
@@ -454,7 +461,8 @@ INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 (2, 2),
 (3, 3),
 (1, 1),
-(4, 2);
+(4, 2),
+(5, 2);
 
 -- --------------------------------------------------------
 
@@ -485,7 +493,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ge
 (1, 'Munir Ahmad Sarwari', 'Munirahmad.sarwari@gmail.com', NULL, '$2y$10$MieiLfQAPYlOr.sFemehr.9OykkO7hKB8RAwfXr09k2DGbFQOj2Ha', 0, '05314722001', 'Adapazarı/Sakarya, Türkiye', '1675863757drese.jpg', NULL, '2023-02-08 12:07:53', '2023-02-08 13:42:37'),
 (2, 'Eiraj Ahmad Sarwari', 'Eirajahmad.sarwari@gmail.com', NULL, '$2y$10$clQrXImP6/GBdACcSv7bwO.FGnfa5lYqeGpmje1hcHGdwNxRaVRdO', NULL, NULL, NULL, 'default.png', NULL, '2023-02-08 12:12:06', '2023-02-08 12:12:06'),
 (3, 'Bayram', 'Bayram@gmail.com', NULL, '$2y$10$asccS7iH0SAEdBESj0fOUexhv52o/tp8tFCMuniP80bkNnqEOPCiq', NULL, NULL, NULL, 'default.png', NULL, '2023-02-08 12:13:29', '2023-02-08 12:13:29'),
-(4, 'Ahmad', 'B213102551@subu.edu.tr', NULL, '$2y$10$nQsA4gfe5f4p6qs1sEzHe.VZ4sNjXxQyvHAB6fK/zy7OZ4z888sY2', NULL, NULL, NULL, 'default.png', NULL, '2023-02-16 15:07:25', '2023-02-16 15:07:25');
+(4, 'Ahmad', 'B213102551@subu.edu.tr', NULL, '$2y$10$nQsA4gfe5f4p6qs1sEzHe.VZ4sNjXxQyvHAB6fK/zy7OZ4z888sY2', NULL, NULL, NULL, 'default.png', NULL, '2023-02-16 15:07:25', '2023-02-16 15:07:25'),
+(5, 'Munir Ahmad Sarwari', 'B21310255v1@subu.edu.tr', NULL, '$2y$10$rIl7ZI6pBb9niJobQXbyIeVk.q1bhCvF24AH1GKhJ4VpZFOKmiuay', NULL, NULL, NULL, 'default.png', NULL, '2023-02-17 10:27:41', '2023-02-17 10:27:41');
 
 --
 -- Indexes for dumped tables
@@ -602,7 +611,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `child_categories`
@@ -656,7 +665,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
