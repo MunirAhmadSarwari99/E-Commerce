@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
-use App\Models\Category;
+use App\Http\Requests\CategoryTagsRequest;
+use App\Models\CategoryTag;
 use App\Models\ChildCategory;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CategoryTagController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('UserAuthorized:' . 0);
@@ -21,8 +21,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::paginate(10);
-        return view('CMS.category', compact('category'));
+        //
     }
 
     /**
@@ -41,12 +40,14 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(CategoryTagsRequest $request)
     {
-        $category = $request->input('categoryName');
+        $category = ChildCategory::findOrFail($request->input('category'));
+        $categoryName = $request->input('categoryName');
 
-        foreach ($category as $key => $key){
-            Category::create(['categoryName' => $request->input('categoryName')[$key]]);
+        foreach ($categoryName as $key => $key){
+            $tag= new CategoryTag(['tagName' => $request->input('categoryName')[$key]]);
+            $category->tags()->save($tag);
         }
 
         return back();
@@ -60,8 +61,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::findOrFail($id);
-        return view('CMS.showCategory', compact('category'));
+        //
     }
 
     /**
@@ -72,8 +72,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
-        return view('CMS.editCategory', compact('category'));
+        $category = CategoryTag::findOrFail($id);
+        return view('CMS.editCategoryTag', compact('category'));
     }
 
     /**
@@ -85,11 +85,10 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        $category = Category::findOrFail($id);
-        $category->categoryName = $request->input('categoryName');
+        $category = CategoryTag::findOrFail($id);
+        $category->tagName =  $request->input('categoryName');
         $category->save();
-
-        return redirect(route('Category.index'));
+        return back();
     }
 
     /**
@@ -100,9 +99,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
+        $category = CategoryTag::findOrFail($id);
         $category->delete();
-
         return back();
     }
 }

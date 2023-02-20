@@ -33,6 +33,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     @vite(['resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body>
@@ -163,6 +164,7 @@
 </div>
 
 <!-- JavaScript Libraries -->
+@livewireScripts
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('assets/lib/chart/chart.min.js') }}"></script>
@@ -176,8 +178,7 @@
 <!-- Template Javascript -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('js/select2.min.js') }}"></script>
-<script src="{{ asset('js/Ajax.js') }}"></script>
+{{--<script src="{{ asset('js/Ajax.js') }}"></script>--}}
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
-
 </html>

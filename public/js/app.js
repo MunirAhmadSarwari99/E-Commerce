@@ -14,6 +14,33 @@ $(document).ready(function(){
         }
     });
 
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img class="col-md-4 mt-3">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#images').on('change', function() {
+        imagesPreview(this, 'div#preview');
+    });
+
+    $("#image-view").click(function () {
+        $('#images').trigger('click');
+    });
+
+
     $(".Select2").select2();
 
     $(document).on('click', 'button[id=btnEkle]', function () {

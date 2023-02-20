@@ -37,7 +37,17 @@
                     </div>
                 </div>
             </div>
-        </div>
 
+{{--            @foreach($category as $category)--}}
+{{--                {{ $category->categoryName }}<br/>--}}
+{{--                @foreach($category->childs as $child)--}}
+{{--                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{{ $child->childName }}<br/>--}}
+{{--                    @foreach($child->ChildToChild as $childTo)--}}
+{{--                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{{ $childTo->childName }}<br/>--}}
+{{--                    @endforeach--}}
+{{--                @endforeach--}}
+
+{{--            @endforeach--}}
+        </div>
     </div>
 </x-app-layout>

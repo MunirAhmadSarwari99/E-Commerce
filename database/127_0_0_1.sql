@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2023 at 12:25 PM
+-- Generation Time: Feb 20, 2023 at 04:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -41,59 +41,76 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `categoryName`, `created_at`, `updated_at`) VALUES
-(1, 'Kadın', '2023-02-14 06:55:01', '2023-02-14 08:34:34'),
-(2, 'Erkek', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(3, 'Anne & Çocuk', '2023-02-17 10:42:26', '2023-02-17 10:42:26'),
-(4, 'Ev & Mobilya', '2023-02-17 10:44:46', '2023-02-17 10:44:46'),
-(5, 'Süpermarket', '2023-02-17 10:44:46', '2023-02-17 10:44:46'),
-(6, 'Kozmetik', '2023-02-17 10:44:46', '2023-02-17 10:44:46'),
-(7, 'Ayakkabı & Çanta', '2023-02-17 10:44:46', '2023-02-17 10:44:46'),
-(8, 'Saat & Aksesuar', '2023-02-17 10:44:46', '2023-02-17 10:44:46'),
-(9, 'Elektronik', '2023-02-14 07:38:56', '2023-02-14 07:38:56'),
-(10, 'Spor &Outdoor', '2023-02-17 10:44:46', '2023-02-17 10:44:46');
+(1, 'Kadın', '2023-02-20 07:00:37', '2023-02-20 07:01:04'),
+(2, 'Erkek', '2023-02-20 07:00:37', '2023-02-20 07:00:37');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories_child`
+-- Table structure for table `category_tags`
 --
 
-CREATE TABLE `categories_child` (
-  `category_id` int(10) UNSIGNED NOT NULL,
-  `child_id` int(10) UNSIGNED NOT NULL
+CREATE TABLE `category_tags` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `child_id` int(10) UNSIGNED NOT NULL,
+  `tagName` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `categories_child`
+-- Dumping data for table `category_tags`
 --
 
-INSERT INTO `categories_child` (`category_id`, `child_id`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5),
-(1, 6),
-(1, 7),
-(2, 1),
-(2, 2),
-(2, 4),
-(2, 5),
-(2, 7),
-(2, 8),
-(2, 9),
-(2, 10),
-(9, 50),
-(9, 51),
-(9, 52),
-(9, 53),
-(9, 54),
-(9, 55),
-(9, 56),
-(9, 57),
-(9, 58),
-(9, 59),
-(9, 60);
+INSERT INTO `category_tags` (`id`, `child_id`, `tagName`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Elbise', '2023-02-20 09:02:18', '2023-02-20 09:14:30'),
+(2, 1, 'Tişört', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(3, 1, 'Gömlek', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(4, 1, 'Kot Pantolon', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(5, 1, 'Kot Ceket', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(6, 1, 'Pantolon', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(7, 1, 'Mont', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(8, 1, 'Bluz', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(9, 1, 'Ceket', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(10, 1, 'Etek', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(11, 1, 'Kazak', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(12, 1, 'Tesettür', '2023-02-20 09:04:52', '2023-02-20 09:04:52'),
+(14, 1, 'Büyük Beden', '2023-02-20 09:15:49', '2023-02-20 09:15:49'),
+(15, 9, 'Tişört', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(16, 9, 'Şort', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(17, 9, 'Gömlek', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(18, 9, 'Eşofman', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(19, 9, 'Pantolon', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(20, 9, 'Ceket', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(21, 9, 'Kot Pantolon', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(22, 9, 'Yelek', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(23, 9, 'Kazak', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(24, 9, 'Mont', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(25, 9, 'Takım Elbise', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(26, 9, 'Sweatshirt', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(27, 9, 'Forma', '2023-02-20 09:18:40', '2023-02-20 09:18:40'),
+(28, 2, 'Topuklu Ayakkabı', '2023-02-20 09:26:07', '2023-02-20 09:26:07'),
+(29, 2, 'Sneaker', '2023-02-20 09:26:07', '2023-02-20 09:26:07'),
+(30, 2, 'Günlük Ayakkabı', '2023-02-20 09:26:07', '2023-02-20 09:26:07'),
+(31, 2, 'Babet', '2023-02-20 09:26:07', '2023-02-20 09:26:07'),
+(32, 2, 'Sandalet', '2023-02-20 09:26:07', '2023-02-20 09:26:07'),
+(33, 2, 'Bot', '2023-02-20 09:26:07', '2023-02-20 09:26:07'),
+(34, 3, 'Çanta', '2023-02-20 09:28:07', '2023-02-20 09:28:07'),
+(35, 3, 'Saat', '2023-02-20 09:28:07', '2023-02-20 09:28:07'),
+(36, 3, 'Takı', '2023-02-20 09:28:07', '2023-02-20 09:28:07'),
+(37, 3, 'Şapka', '2023-02-20 09:28:07', '2023-02-20 09:28:07'),
+(38, 3, 'Cüzdan', '2023-02-20 09:28:07', '2023-02-20 09:28:07'),
+(39, 4, 'Pijama Takımı', '2023-02-20 09:29:41', '2023-02-20 09:29:41'),
+(40, 4, 'Gecelik', '2023-02-20 09:29:42', '2023-02-20 09:29:42'),
+(41, 4, 'Sütyen', '2023-02-20 09:29:42', '2023-02-20 09:29:42'),
+(42, 4, 'İç Çamaşırı Takımları', '2023-02-20 09:29:42', '2023-02-20 09:29:42'),
+(43, 4, 'Fantezi Giyim', '2023-02-20 09:29:42', '2023-02-20 09:29:42'),
+(44, 4, 'Çorap', '2023-02-20 09:29:42', '2023-02-20 09:29:42'),
+(45, 5, 'Lüks Çanta', '2023-02-20 09:31:09', '2023-02-20 09:31:09'),
+(46, 5, 'Lüks Giyim', '2023-02-20 09:31:09', '2023-02-20 09:31:09'),
+(47, 5, 'Lüks Ayakkabı', '2023-02-20 09:31:09', '2023-02-20 09:31:09'),
+(48, 5, 'Tasarım Giyim', '2023-02-20 09:31:09', '2023-02-20 09:31:09'),
+(49, 5, 'Tasarım Ayakkabı', '2023-02-20 09:31:09', '2023-02-20 09:31:09');
 
 -- --------------------------------------------------------
 
@@ -103,6 +120,7 @@ INSERT INTO `categories_child` (`category_id`, `child_id`) VALUES
 
 CREATE TABLE `child_categories` (
   `id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
   `childName` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -112,162 +130,22 @@ CREATE TABLE `child_categories` (
 -- Dumping data for table `child_categories`
 --
 
-INSERT INTO `child_categories` (`id`, `childName`, `created_at`, `updated_at`) VALUES
-(1, 'Giyim', '2023-02-14 10:49:38', '2023-02-14 11:30:38'),
-(2, 'Ayakkabı', '2023-02-14 10:49:38', '2023-02-14 10:49:38'),
-(3, 'Aksesuar & Çanta', '2023-02-14 10:49:38', '2023-02-14 10:49:38'),
-(4, 'İç Giyim', '2023-02-14 10:49:38', '2023-02-14 10:49:38'),
-(5, 'Lüks & Designer', '2023-02-14 10:49:38', '2023-02-14 10:49:38'),
-(6, 'Kozmetik', '2023-02-14 10:49:38', '2023-02-14 10:49:38'),
-(7, 'Spor & Outdoor', '2023-02-14 10:49:38', '2023-02-14 10:49:38'),
-(8, 'Kişisel Bakım', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(9, 'Saat & Aksesuar', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(10, 'Elektronik', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(11, 'Bebek', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(12, 'Kız Çocuk', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(13, 'Erkek Çocuk', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(14, 'Bebek Bakım', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(15, 'Oyuncak', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(16, 'Taşıma & Güvenlik', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(17, 'Beslenme Emzirme', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(18, 'Sofra & Mutfak', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(19, 'Banyo', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(20, 'Ev Tekstili', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(21, 'Ev Dekorasyon', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(22, 'Aydınlatma', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(23, 'Mobilya', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(24, 'Ev Gereçleri', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(25, 'Hobi', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(26, 'Kırtasiye & Ofis', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(27, 'Otomobil & Motosiklet', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(28, 'Yapı Market', '2023-02-14 11:01:51', '2023-02-14 11:01:51'),
-(29, 'Ev & Temizlik', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(30, 'Gıda', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(31, 'Sağlık & Spor', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(32, 'Petshop', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(33, 'Makyaj', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(34, 'Parfüm & Deodorant', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(35, 'Cilt Bakımı', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(36, 'Saç Bakımı', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(37, 'Epilasyon & Tıraş', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(38, 'Genel Bakım', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(39, 'Kadın Ayakkabı', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(40, 'Kadın Çanta', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(41, 'Erkek Ayakkabı', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(42, 'Erkek Çanta', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(43, 'Çocuk Ayakkabı', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(44, 'Çocuk Çanta', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(45, 'Kadın', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(46, 'Takı & Mücevher', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(47, 'Elektronik Aksesuarlar', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(48, 'Erkek', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(49, 'Çocuk Aksesuar', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(50, 'Küçük Ev Aletleri', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(51, 'Giyilebilir Teknoloji', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(52, 'Telefon', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(53, 'Bilgisayar & Tablet', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(54, 'TV & Görüntü & Ses', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(55, 'Kişisel Bakım Aletleri', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(56, 'Beyaz Eşya', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(57, 'Elektronik Aksesuarlar', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(58, 'Oyunculara Özel', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(59, 'Foto & Kamera', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(60, 'Dijital Kod & Ürünler', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(61, 'Spor Giyim', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(62, 'Spor Ayakkabı', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(63, 'Spor Malzemeleri', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(64, 'Bisiklet', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(65, 'Fitness Kondisyon', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(66, 'Sporcu Besinleri', '2023-02-14 11:18:45', '2023-02-14 11:18:45'),
-(68, 'Top', '2023-02-14 12:16:30', '2023-02-14 12:16:30');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `child_categories_child`
---
-
-CREATE TABLE `child_categories_child` (
-  `child_id` int(10) UNSIGNED NOT NULL,
-  `child_to_child_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `child_categories_child`
---
-
-INSERT INTO `child_categories_child` (`child_id`, `child_to_child_id`) VALUES
-(1, 7),
-(1, 19),
-(1, 20),
-(1, 21),
-(1, 22),
-(1, 23),
-(1, 24),
-(1, 25),
-(1, 26),
-(1, 27),
-(1, 28),
-(1, 29),
-(1, 31),
-(2, 32),
-(2, 33),
-(2, 34),
-(2, 35),
-(2, 36),
-(2, 37),
-(53, 38),
-(53, 39),
-(53, 40),
-(53, 41),
-(53, 42),
-(53, 43),
-(53, 44);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `child_to_child_categories`
---
-
-CREATE TABLE `child_to_child_categories` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `childName` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `child_to_child_categories`
---
-
-INSERT INTO `child_to_child_categories` (`id`, `childName`, `created_at`, `updated_at`) VALUES
-(7, 'Elbise', '2023-02-15 10:20:28', '2023-02-15 11:14:22'),
-(19, 'Büyük Beden', '2023-02-15 10:23:32', '2023-02-15 10:23:32'),
-(20, 'Tişört', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(21, 'Gömlek', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(22, 'Kot Pantolon', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(23, 'Kot Ceket', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(24, 'Pantolon', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(25, 'Mont', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(26, 'Bluz', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(27, 'Ceket', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(28, 'Etek', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(29, 'Kazak', '2023-02-15 10:28:24', '2023-02-15 10:28:24'),
-(31, 'Tesettür', '2023-02-15 11:16:39', '2023-02-15 11:16:39'),
-(32, 'Topuklu Ayakkabı', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
-(33, 'Sneaker', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
-(34, 'Günlük Ayakkabı', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
-(35, 'Babet', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
-(36, 'Sandalet', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
-(37, 'Bot', '2023-02-16 10:47:07', '2023-02-16 10:47:07'),
-(38, 'Laptop', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
-(39, 'Tablet', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
-(40, 'Bilgisayar Bileşenleri', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
-(41, 'Monitör', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
-(42, 'Yazıcı & Tarayıcı', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
-(43, 'Çevre Birimleri', '2023-02-16 10:59:24', '2023-02-16 10:59:24'),
-(44, 'Ağ & Modem', '2023-02-16 10:59:24', '2023-02-16 10:59:24');
+INSERT INTO `child_categories` (`id`, `category_id`, `childName`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Giyim', '2023-02-20 07:58:53', '2023-02-20 08:31:48'),
+(2, 1, 'Ayakkabı', '2023-02-20 08:00:17', '2023-02-20 08:00:17'),
+(3, 1, 'Aksesuar & Çanta', '2023-02-20 08:00:17', '2023-02-20 08:00:17'),
+(4, 1, 'İç Giyim', '2023-02-20 08:00:17', '2023-02-20 08:00:17'),
+(5, 1, 'Lüks & Designer', '2023-02-20 08:00:17', '2023-02-20 08:00:17'),
+(6, 1, 'Kozmetik', '2023-02-20 08:00:17', '2023-02-20 08:00:17'),
+(8, 1, 'Spor & Outdoor', '2023-02-20 08:33:44', '2023-02-20 08:33:44'),
+(9, 2, 'Giyim', '2023-02-20 08:35:49', '2023-02-20 08:35:49'),
+(10, 2, 'Ayakkabı', '2023-02-20 08:35:49', '2023-02-20 08:35:49'),
+(11, 2, 'Kişisel Bakım', '2023-02-20 08:35:49', '2023-02-20 08:35:49'),
+(12, 2, 'Saat & Aksesuar', '2023-02-20 08:35:49', '2023-02-20 08:35:49'),
+(13, 2, 'İç Giyim', '2023-02-20 08:35:49', '2023-02-20 08:35:49'),
+(14, 2, 'Spor & Outdoor', '2023-02-20 08:35:49', '2023-02-20 08:35:49'),
+(15, 2, 'Elektronik', '2023-02-20 08:35:49', '2023-02-20 08:35:49'),
+(16, 2, 'Lüks & Designer', '2023-02-20 08:35:49', '2023-02-20 08:35:49');
 
 -- --------------------------------------------------------
 
@@ -308,10 +186,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (44, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (45, '2023_02_06_081401_create_roles_table', 1),
 (46, '2023_02_06_081427_create_permissions_table', 1),
-(47, '2023_02_14_085519_create_categories_table', 2),
-(48, '2023_02_14_085623_create_child_categories_table', 2),
-(49, '2023_02_14_115043_create_child_to_child_categories_table', 3),
-(50, '2023_02_15_142307_create_products_table', 4);
+(51, '2023_02_20_092826_create_categories_table', 2),
+(52, '2023_02_20_093553_create_child_categories_table', 2),
+(53, '2023_02_20_093644_create_category_tags_table', 2),
+(54, '2023_02_20_125457_create_products_table', 3),
+(55, '2023_02_20_131649_create_product_details_table', 3);
 
 -- --------------------------------------------------------
 
@@ -378,23 +257,30 @@ CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `category_id` int(10) UNSIGNED NOT NULL,
-  `categoryChild_id` int(10) UNSIGNED NOT NULL,
-  `categoryChildTo_id` int(10) UNSIGNED NOT NULL,
+  `ChildCategory_id` int(10) UNSIGNED NOT NULL,
+  `CategoryTag_id` int(10) UNSIGNED NOT NULL,
   `productName` varchar(255) NOT NULL,
-  `productModel` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `details` text NOT NULL,
+  `tax` int(11) NOT NULL DEFAULT 18,
   `price` double(8,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `products`
+-- Table structure for table `product_details`
 --
 
-INSERT INTO `products` (`id`, `user_id`, `category_id`, `categoryChild_id`, `categoryChildTo_id`, `productName`, `productModel`, `image`, `price`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 1, 7, 'Açelya Okcu', 'Adidas', '1676543326E1.jpg', 1500.99, '2023-02-16 10:28:46', '2023-02-16 10:28:46'),
-(2, 2, 9, 53, 39, 'LENOVO Tab M10 Plus', 'Lenovo', '1676546720app2.jpg', 2500.00, '2023-02-16 11:25:20', '2023-02-16 11:25:20');
+CREATE TABLE `product_details` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `images` varchar(255) NOT NULL,
+  `colors` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -507,30 +393,18 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categories_child`
+-- Indexes for table `category_tags`
 --
-ALTER TABLE `categories_child`
-  ADD KEY `categories_child_category_id_foreign` (`category_id`),
-  ADD KEY `categories_child_child_id_foreign` (`child_id`);
+ALTER TABLE `category_tags`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_tags_child_id_foreign` (`child_id`);
 
 --
 -- Indexes for table `child_categories`
 --
 ALTER TABLE `child_categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `child_categories_child`
---
-ALTER TABLE `child_categories_child`
-  ADD KEY `child_categories_child_child_id_foreign` (`child_id`),
-  ADD KEY `child_categories_child_child_to_child_id_foreign` (`child_to_child_id`);
-
---
--- Indexes for table `child_to_child_categories`
---
-ALTER TABLE `child_to_child_categories`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `child_categories_category_id_foreign` (`category_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -572,8 +446,15 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `products_user_id_foreign` (`user_id`),
   ADD KEY `products_category_id_foreign` (`category_id`),
-  ADD KEY `products_categorychild_id_foreign` (`categoryChild_id`),
-  ADD KEY `products_categorychildto_id_foreign` (`categoryChildTo_id`);
+  ADD KEY `products_childcategory_id_foreign` (`ChildCategory_id`),
+  ADD KEY `products_categorytag_id_foreign` (`CategoryTag_id`);
+
+--
+-- Indexes for table `product_details`
+--
+ALTER TABLE `product_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_details_product_id_foreign` (`product_id`);
 
 --
 -- Indexes for table `roles`
@@ -611,19 +492,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `category_tags`
+--
+ALTER TABLE `category_tags`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `child_categories`
 --
 ALTER TABLE `child_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
-
---
--- AUTO_INCREMENT for table `child_to_child_categories`
---
-ALTER TABLE `child_to_child_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -635,7 +516,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -653,7 +534,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_details`
+--
+ALTER TABLE `product_details`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -672,27 +559,31 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `categories_child`
+-- Constraints for table `category_tags`
 --
-ALTER TABLE `categories_child`
-  ADD CONSTRAINT `categories_child_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `categories_child_child_id_foreign` FOREIGN KEY (`child_id`) REFERENCES `child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `category_tags`
+  ADD CONSTRAINT `category_tags_child_id_foreign` FOREIGN KEY (`child_id`) REFERENCES `child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `child_categories_child`
+-- Constraints for table `child_categories`
 --
-ALTER TABLE `child_categories_child`
-  ADD CONSTRAINT `child_categories_child_child_id_foreign` FOREIGN KEY (`child_id`) REFERENCES `child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `child_categories_child_child_to_child_id_foreign` FOREIGN KEY (`child_to_child_id`) REFERENCES `child_to_child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `child_categories`
+  ADD CONSTRAINT `child_categories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `products_categorychild_id_foreign` FOREIGN KEY (`categoryChild_id`) REFERENCES `child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `products_categorychildto_id_foreign` FOREIGN KEY (`categoryChildTo_id`) REFERENCES `child_to_child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_categorytag_id_foreign` FOREIGN KEY (`CategoryTag_id`) REFERENCES `category_tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `products_childcategory_id_foreign` FOREIGN KEY (`ChildCategory_id`) REFERENCES `child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `products_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_details`
+--
+ALTER TABLE `product_details`
+  ADD CONSTRAINT `product_details_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `role_permission`

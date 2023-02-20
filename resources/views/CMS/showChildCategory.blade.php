@@ -5,7 +5,7 @@
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">{{ __('Kategori Bilgileri')}}</h6>
 
-                    <strong>Kategori Adı: {{ $category->categoryName }}</strong>
+                    <strong>Alt Kategori Adı: {{ $category->category->categoryName . ' / '.$category->childName }}</strong>
 
                     <div class="table-responsive">
                         <table class="table">
@@ -15,22 +15,21 @@
                                 <th scope="col">Kayıt Tarihi</th>
                                 <th scope="col">Son Güncelleme Tarihi</th>
                                 <th scope="col">
-                                    <button type="button" class="btn btn-dark float-end" data-bs-target="#NewChildCategory" data-bs-toggle="modal">
+                                    <button type="button" class="btn btn-dark float-end" data-bs-target="#NewCategoryTag" data-bs-toggle="modal">
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($category->childs as $key)
+                            @foreach($category->tags as $key)
                                 <tr>
-                                    <td>{{ $key->childName }}</td>
+                                    <td>{{ $key->tagName }}</td>
                                     <td>{{ \App\Models\App::DateTime('d, ', 'F', ' Y', $key->created_at) }}</td>
                                     <td>{{ $key->updated_at->diffForHumans()}}</td>
                                     <td>
-                                        <a href="{{ route('Child-Category.show', $key->id) }}" class="btn btn-outline-primary m-2"><i class="fa fa-list"></i></a>
-                                        <a href="{{ route('Child-Category.edit', $key->id) }}" class="btn btn-outline-success m-2"><i class="fa fa-edit"></i></a>
-                                        <form class="inline-form" method="post" action="{{ route('Child-Category.destroy', $key->id) }}" class="p-6">
+                                        <a href="{{ route('Category-Tag.edit', $key->id) }}" class="btn btn-outline-success m-2"><i class="fa fa-edit"></i></a>
+                                        <form class="inline-form" method="post" action="{{ route('Category-Tag.destroy', $key->id) }}" class="p-6">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-outline-danger m-2"><i class="fa fa-trash"></i> </button>
@@ -46,11 +45,11 @@
         </div>
     </div>
 
-    <x-modal name="NewChildCategory">
-        <form method="POST" action="{{ route('Child-Category.store') }}" class="p-6">
+    <x-modal name="NewCategoryTag">
+        <form method="POST" action="{{ route('Category-Tag.store') }}" class="p-6">
             @csrf
             @section('Title')
-                {{ __('Yeni Alt kategori') }}
+                {{ __('Yeni Alt kategori Etiketi') }}
             @endsection
             <div class="modal-body">
                 <div class="form-floating mb-3">

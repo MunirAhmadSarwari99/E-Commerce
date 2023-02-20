@@ -24,7 +24,8 @@ class CategoryTagsRequest extends FormRequest
     public function rules()
     {
         return [
-            'categoryName' => ['required'],
+            'categoryName' => ['required',  'max:60'],
+            'category' => ['required'],
         ];
     }
 }

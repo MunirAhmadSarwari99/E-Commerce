@@ -33,14 +33,7 @@
                             <a href="{{ route('Permission.index') }}" class="dropdown-item">İzinler</a>
                         </div>
                     </div>
-                    <div class="nav-item dropdown">
-                        <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-list me-2"></i>Kategoriler</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="{{ route('Category.index') }}" class="dropdown-item">Kategori</a>
-                            <a href="{{ route('ChildCategory.index') }}" class="dropdown-item">Orta Kategori</a>
-                            <a href="{{ route('ChildToChildCategory.index') }}" class="dropdown-item">Küçük Kategori</a>
-                        </div>
-                    </div>
+                    <a href="{{ route('Category.index') }}" class="nav-item nav-link"><i class="fa fa-list me-2"></i>Kategoriler</a>
                 @elseif($role->roleName == 'Seller')
                     <a href="{{ route('SellerDashboard.index') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Anasayfa</a>
                     <a href="{{ route('SellerProduct.index') }}" class="nav-item nav-link"><i class="fa fa-list me-2"></i> Ürünler</a>

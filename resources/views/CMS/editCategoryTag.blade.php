@@ -4,11 +4,11 @@
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Alt Kategoriyi Düzenle</h6>
-                    <form method="POST" action="{{ route('Child-Category.update', $category->id) }}" class="p-6">
+                    <form method="POST" action="{{ route('Category-Tag.update', $category->id) }}" class="p-6">
                         @csrf
                         @method('PATCH')
                         <div class="form-floating mb-3">
-                            <x-text-input id="categoryName" name="categoryName" type="text" class="form-control" value="{{ $category->childName }}" />
+                            <x-text-input id="categoryName" name="categoryName" type="text" class="form-control" value="{{ $category->tagName }}" />
                             <x-input-label for="categoryName" :value="__('Kategori İsmi')" />
                             <x-input-error :messages="$errors->get('categoryName')" class="mt-2" />
                         </div>

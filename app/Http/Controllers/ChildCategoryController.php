@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\CategoryTagsRequest;
+use App\Models\Category;
 use App\Models\ChildCategory;
 use Illuminate\Http\Request;
 
 class ChildCategoryController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('UserAuthorized:' . 0);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +23,7 @@ class ChildCategoryController extends Controller
      */
     public function index()
     {
-        $category = ChildCategory::paginate(10);
-        return view('CMS.childCategory', compact('category'));
+        //
     }
 
     /**
@@ -39,12 +42,14 @@ class ChildCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(CategoryTagsRequest $request)
     {
-        $category = $request->input('categoryName');
+        $category = Category::findOrFail($request->input('category'));
+        $categoryName = $request->input('categoryName');
 
-        foreach ($category as $key => $key){
-            ChildCategory::create(['childName' => $request->input('categoryName')[$key]]);
+        foreach ($categoryName as $key => $key){
+            $child = new ChildCategory(['childName' => $request->input('categoryName')[$key]]);
+            $category->childs()->save($child);
         }
 
         return back();
@@ -58,7 +63,8 @@ class ChildCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = ChildCategory::findOrFail($id);
+        return view('CMS.showChildCategory', compact('category'));
     }
 
     /**
@@ -83,10 +89,9 @@ class ChildCategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $category = ChildCategory::findOrFail($id);
-        $category->childName = $request->input('categoryName');
+        $category->childName =  $request->input('categoryName');
         $category->save();
-
-        return redirect(route('ChildCategory.index'));
+        return back();
     }
 
     /**
@@ -99,7 +104,6 @@ class ChildCategoryController extends Controller
     {
         $category = ChildCategory::findOrFail($id);
         $category->delete();
-
         return back();
     }
 }

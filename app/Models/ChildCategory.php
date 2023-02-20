@@ -11,15 +11,14 @@ class ChildCategory extends Model
 
     protected $fillable = ['childName'];
 
-    public function categories(){
-        return $this->belongsToMany(Category::class, 'categories_child', 'child_id', 'category_id');
+    public function tags(){
+        return $this->hasMany(CategoryTag::class, 'child_id', 'id');
     }
 
+    public function category(){
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
     public function products(){
-        return $this->hasMany(Product::class, 'categoryChild_id', 'id');
-    }
-
-    public function ChildToChild(){
-        return $this->belongsToMany(ChildToChildCategory::class, 'child_categories_child', 'child_id', 'child_to_child_id');
+        return $this->hasMany(Product::class, 'ChildCategory_id', 'id');
     }
 }

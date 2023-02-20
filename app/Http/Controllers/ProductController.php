@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
+use App\Models\CategoryTag;
 use App\Models\ChildCategory;
 use App\Models\ChildToChildCategory;
 use App\Models\Product;
+use App\Models\ProductDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,9 +26,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
         $products = Product::where('user_id', Auth::user()->id)->paginate(10);
-        return view('CMS.Seller.products', compact('category', 'products'));
+        return view('CMS.Seller.products', compact('products'));
     }
 
     /**
@@ -47,20 +48,54 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $imageName = time() . $request->file('image')->getClientOriginalName();
-        $request->image->move('images/Products/', $imageName);
+
         $product = new Product([
-           'category_id' => $request->input('CategoryName'),
-           'categoryChild_id' => $request->input('childName'),
-           'categoryChildTo_id' => $request->input('childTo'),
            'productName' => $request->input('productName'),
-           'productModel' => $request->input('productModel'),
-           'image' => $imageName,
+           'details' => $request->input('details'),
            'price' => $request->input('price'),
         ]);
 
         $user = User::findOrFail(Auth::user()->id);
         $user->products()->save($product);
+
+        $category = Category::findOrFail($request->input('CategoryName'));
+        $category->products()->save($product);
+
+        $ChildCategory = ChildCategory::findOrFail($request->input('childName'));
+        $ChildCategory->products()->save($product);
+
+        $CategoryTag = CategoryTag::findOrFail($request->input('tagName'));
+        $CategoryTag->products()->save($product);
+
+        $img = $request->file('image');
+
+        $imageName = null;
+        foreach ($img as $key => $key){
+            $imageName = time() . $request->file('image')->getClientOriginalName();
+            $request->image->move('images/Products/', $imageName);
+
+            $details = new ProductDetail([
+                'images' => $imageName,
+                'colors' => $request->input('colors'),
+            ]);
+
+            $Prod = Product::findOrFail($product->id);
+            $Prod->details()->save($details);
+        }
+
+
+//        $product = new Product([
+//           'category_id' => $request->input('CategoryName'),
+//           'categoryChild_id' => $request->input('childName'),
+//           'categoryChildTo_id' => $request->input('childTo'),
+//           'productName' => $request->input('productName'),
+//           'productModel' => $request->input('productModel'),
+//           'image' => $imageName,
+//           'price' => $request->input('price'),
+//        ]);
+//
+//        $user = User::findOrFail(Auth::user()->id);
+//        $user->products()->save($product);
 
         return back();
 

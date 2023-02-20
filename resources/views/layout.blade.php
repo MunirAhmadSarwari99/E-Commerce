@@ -62,7 +62,7 @@
                         @foreach($child->ChildToChild as $childTo)
                             <li><a data-barba href="courses-list-1.html">{{ $childTo->childName }}</a></li>
                         @endforeach
-                    </ul
+                    </ul>
                 </li>
             @endforeach
         </ul>
