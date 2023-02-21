@@ -13,8 +13,4 @@ class CategoryTag extends Model
     public function child(){
         return $this->hasMany(ChildCategory::class, 'child_id', 'id');
     }
-
-    public function products(){
-        return $this->hasMany(Product::class, 'ChildCategory_id', 'id');
-    }
 }

@@ -51,7 +51,13 @@
                 {{ __('Yeni Ürün') }}
             @endsection
             <div class="modal-body">
-                @livewire('child-category')
+                <div id="preview" class="row"></div>
+                <div class="form-floating mb-3">
+                    <button type="button" id="image-view" class="btn btn-primary mt-5">Ürün Fotoğrafını Seçin</button>
+                    <x-text-input id="images" name="image[]" type="file" class="hidden"  required multiple/>
+                    <x-input-error :messages="$errors->get('image')" class="mt-2 text-uppercase" />
+                </div>
+                @livewire('categories')
             </div>
             <div class="modal-footer">
                 <div class="row">

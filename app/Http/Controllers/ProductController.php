@@ -50,6 +50,9 @@ class ProductController extends Controller
     {
 
         $product = new Product([
+           'category_id' => $request->input('CategoryName'),
+           'ChildCategory_id' => $request->input('childName'),
+           'CategoryTag_id' => $request->input('tagName'),
            'productName' => $request->input('productName'),
            'details' => $request->input('details'),
            'price' => $request->input('price'),
@@ -58,21 +61,12 @@ class ProductController extends Controller
         $user = User::findOrFail(Auth::user()->id);
         $user->products()->save($product);
 
-        $category = Category::findOrFail($request->input('CategoryName'));
-        $category->products()->save($product);
-
-        $ChildCategory = ChildCategory::findOrFail($request->input('childName'));
-        $ChildCategory->products()->save($product);
-
-        $CategoryTag = CategoryTag::findOrFail($request->input('tagName'));
-        $CategoryTag->products()->save($product);
-
         $img = $request->file('image');
 
         $imageName = null;
         foreach ($img as $key => $key){
-            $imageName = time() . $request->file('image')->getClientOriginalName();
-            $request->image->move('images/Products/', $imageName);
+            $imageName = time() . $request->file('image')[$key]->getClientOriginalName();
+            $request->image[$key]->move('images/Products/', $imageName);
 
             $details = new ProductDetail([
                 'images' => $imageName,
@@ -80,22 +74,8 @@ class ProductController extends Controller
             ]);
 
             $Prod = Product::findOrFail($product->id);
-            $Prod->details()->save($details);
+            $Prod->detail()->save($details);
         }
-
-
-//        $product = new Product([
-//           'category_id' => $request->input('CategoryName'),
-//           'categoryChild_id' => $request->input('childName'),
-//           'categoryChildTo_id' => $request->input('childTo'),
-//           'productName' => $request->input('productName'),
-//           'productModel' => $request->input('productModel'),
-//           'image' => $imageName,
-//           'price' => $request->input('price'),
-//        ]);
-//
-//        $user = User::findOrFail(Auth::user()->id);
-//        $user->products()->save($product);
 
         return back();
 

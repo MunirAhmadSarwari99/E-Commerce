@@ -51,21 +51,5 @@
     <!-- End banner Area -->
 </x-guest-layout>
 
-@foreach(App\Models\Category::all() as $category)
-    <div class="col">
-        <h4 class="text-17 fw-500 mb-20">{{ $category->categoryName }}</h4>
 
-        <ul class="mega__list">
-            @foreach($category->childs as $child)
-                <li><a data-barba href="courses-list-1.html">{{ $child->childName }}</a>
-                    <ul class="mega__list">
-                        @foreach($child->ChildToChild as $childTo)
-                            <li><a data-barba href="courses-list-1.html">{{ $childTo->childName }}</a></li>
-                        @endforeach
-                    </ul>
-                </li>
-            @endforeach
-        </ul>
 
-    </div>
-@endforeach

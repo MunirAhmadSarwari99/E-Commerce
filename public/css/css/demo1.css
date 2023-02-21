@@ -19319,7 +19319,6 @@ body.ec-open:before {
 
 .ec-slide-1 {
   width: 100%;
-  background-image: url("../images/main-slider-banner/1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -20214,7 +20213,7 @@ a.wishlist .svg_img.pro_svg {
   margin: auto;
   opacity: 0;
   display: none;
-  background: url(../images/common/pro-loader.gif) no-repeat scroll 50% 50%;
+  background: url(../../images/pro-loader.gif) no-repeat scroll 50% 50%;
   background-color: rgba(255, 255, 255, 0.9);
   background-size: 75px;
 }

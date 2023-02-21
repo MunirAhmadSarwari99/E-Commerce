@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,8 +15,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $slider = Product::orderBy('id', 'desc')->take(5)->get();
+        $products = Product::all();
         $category = Category::all();
-        return view('welcome', compact('category'));
+        return view('welcome', compact('slider', 'category', 'products'));
     }
 
     /**

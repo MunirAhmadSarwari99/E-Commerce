@@ -9,21 +9,26 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['productName', 'details', 'tax', 'price'];
+    protected $fillable = ['category_id', 'ChildCategory_id', 'CategoryTag_id', 'productName', 'details', 'tax', 'price'];
 
-    public function details(){
+    public function detail(){
         return $this->hasMany(ProductDetail::class, 'product_id', 'id');
+    }
+
+    public function GetOneImage($id){
+        $product = ProductDetail::where('product_id', $id)->first();
+        return $product->images;
     }
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function categories(){
+    public function category(){
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function cholds(){
+    public function chold(){
         return $this->belongsTo(ChildCategory::class, 'ChildCategory_id', 'id');
     }
 

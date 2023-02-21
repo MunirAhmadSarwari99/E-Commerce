@@ -23,7 +23,7 @@ $(document).ready(function(){
                 var reader = new FileReader();
 
                 reader.onload = function(event) {
-                    $($.parseHTML('<img class="col-md-4 mt-3">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                    $($.parseHTML('<img class="col-md-3 mt-3">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
                 }
 
                 reader.readAsDataURL(input.files[i]);

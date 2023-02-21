@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2023 at 04:14 PM
+-- Generation Time: Feb 21, 2023 at 06:34 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -267,6 +267,15 @@ CREATE TABLE `products` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `user_id`, `category_id`, `ChildCategory_id`, `CategoryTag_id`, `productName`, `details`, `tax`, `price`, `created_at`, `updated_at`) VALUES
+(5, 2, 1, 1, 1, 'TRENDYOLMİLLA Siyah Yarım Boğazlı Bodycon Örme Elbise TWOAW21EL2244', 'Modelin Ölçüleri: Boy: 1.77 Göğüs: 83 Bel: 63 Kalça: 92\r\nMankenin üzerindeki ürün S/36 bedendir.\r\n%58 Pamuk %41 Polyester %1 Elastan, Örme Kumaş\r\nOmuzdan Boy: 95 cm\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 100 adetten fazla stok sunulmuştur.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.\r\nÜrünlerimiz TRENDYOL etiketi ile gönderilecektir.', 18, 107.99, '2023-02-21 06:24:44', '2023-02-21 06:24:44'),
+(6, 2, 2, 9, 25, 'D\'S Damat SİYAH RENK ERKEK YELEKLİ TAKIM ELBİSE SLİM FİT 4HFY5ORT01599_001', 'D\'S DAMAT ERKEK TAKIM ELBİSESLİM FİTGÜNCEL MODEL Ürün Gömlek ve Kravat içermemektedir.\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 50 adetten fazla stok sunulmuştur.\r\nİncelemiş olduğunuz ürünün satış fiyatını satıcı belirlemektedir.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.', 18, 107.99, '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
+(8, 2, 1, 1, 2, 'Munir Ahmad Sarwari', 'Munir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad Sarwari', 18, 1500.99, '2023-02-21 11:41:59', '2023-02-21 11:41:59');
+
 -- --------------------------------------------------------
 
 --
@@ -281,6 +290,27 @@ CREATE TABLE `product_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `product_details`
+--
+
+INSERT INTO `product_details` (`id`, `product_id`, `images`, `colors`, `created_at`, `updated_at`) VALUES
+(4, 5, '16769606842_org_zoom.jpg', '#000000', '2023-02-21 06:24:44', '2023-02-21 06:24:44'),
+(5, 5, '16769606843_org_zoom.jpg', '#000000', '2023-02-21 06:24:44', '2023-02-21 06:24:44'),
+(6, 5, '16769606844_org_zoom.jpg', '#000000', '2023-02-21 06:24:44', '2023-02-21 06:24:44'),
+(7, 5, '16769606845_org_zoom.jpg', '#000000', '2023-02-21 06:24:44', '2023-02-21 06:24:44'),
+(8, 6, '16769609341_org_zoom.jpg', '#000000', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
+(9, 6, '16769609342_org_zoom (2).jpg', '#000000', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
+(10, 6, '16769609343_org_zoom (1).jpg', '#000000', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
+(11, 8, '1676979719image1.jpg', '#122f45', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
+(12, 8, '1676979719image2.jpg', '#122f45', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
+(13, 8, '1676979719image3.jpg', '#122f45', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
+(14, 8, '1676979719image4.jpg', '#122f45', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
+(15, 8, '1676979719image5.jpg', '#122f45', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
+(16, 8, '1676979719img3.jpg', '#122f45', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
+(17, 8, '1676979719img4.jpg', '#122f45', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
+(18, 8, '1676979719img5.jpg', '#122f45', '2023-02-21 11:41:59', '2023-02-21 11:41:59');
 
 -- --------------------------------------------------------
 
@@ -534,13 +564,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `product_details`
 --
 ALTER TABLE `product_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `roles`

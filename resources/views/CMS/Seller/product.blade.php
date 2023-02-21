@@ -4,10 +4,12 @@
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Ürün Detaylar</h6>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img class="col-md-12 img-thumbnail" src="{{ asset('images/Products/' . $product->image) }}" alt="{{ $product->image }}">
-                        </div>
+                    <div class="row mb-3">
+                        @foreach($product->detail as $key)
+                            <div class="col-md-3">
+                                <img class="col-md-12 img-thumbnail" src="{{ asset('images/Products/' . $key->images) }}" alt="{{ $product->productName }}">
+                            </div>
+                        @endforeach
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -17,12 +19,12 @@
                                     <td>{{ $product->productName }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="col">Ürün Modeli</th>
-                                    <td>{{ $product->productModel }}</td>
+                                    <th scope="col">Ürün KDV</th>
+                                    <td>{{ $product->tax }} %</td>
                                 </tr>
                                 <tr>
                                     <th scope="col">Ürün Kategorisi</th>
-                                    <td>{{ $product->category->categoryName }} >> {{ $product->childCategory->childName }} >> {{ $product->childToCategory->childName }}</td>
+                                    <td>{{ $product->category->categoryName }} >> {{ $product->chold->childName }} >> {{ $product->tag->tagName }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="col">Fiyat</th>
