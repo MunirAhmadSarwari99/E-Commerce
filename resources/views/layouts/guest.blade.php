@@ -36,6 +36,7 @@
     <!-- Background css -->
     <link rel="stylesheet" id="bg-switcher-css" href="{{ asset('css/css/backgrounds/bg-4.css') }}">
     @vite(['resources/js/app.js'])
+    @livewireStyles
 </head>
 <body>
 <div id="ec-overlay">
@@ -721,7 +722,7 @@
 
 
 <!-- Vendor JS -->
-
+@livewireScripts
 </script><script src="{{ asset('js/vendor/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ asset('js/vendor/popper.min.js') }}"></script>
 <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>

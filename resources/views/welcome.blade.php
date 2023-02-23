@@ -77,21 +77,9 @@
                                                     <img class="main-image" src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" alt="Product" />
                                                     <img class="hover-image" src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" alt="Product" />
                                                 </a>
-                                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal{{ $product->id }}">
+                                                <a href="#" class="quickview" data-link-action="quickview" title="Hızlı Görünüm" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal{{ $product->id }}">
                                                     <img src="{{ asset('images/icons/quickview.svg') }}" class="svg_img pro_svg" alt="" />
                                                 </a>
-                                                <div class="ec-pro-actions">
-                                                    <a href="compare.html" class="ec-btn-group compare" title="Compare">
-                                                        <img src="{{ asset('images/icons/compare.svg') }}" class="svg_img pro_svg" alt="" />
-                                                    </a>
-                                                    <button title="Add To Cart" class="add-to-cart">
-                                                        <img src="{{ asset('images/icons/cart.svg') }}" class="svg_img pro_svg" alt="" />
-                                                        Add To Cart
-                                                    </button>
-                                                    <a class="ec-btn-group wishlist" title="Wishlist">
-                                                        <img src="{{ asset('images/icons/wishlist.svg') }}" class="svg_img pro_svg" alt="" />
-                                                    </a>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="ec-pro-content">
@@ -166,18 +154,7 @@
                                                                 <div class="ec-quickview-price">
                                                                     <span class="new-price">{{ $product->price }}</span>
                                                                 </div>
-
-                                                                <div class="ec-quickview-qty">
-                                                                    <div class="qty-plus-minus">
-                                                                        <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                                                                    </div>
-                                                                    <div class="ec-quickview-cart ">
-                                                                        <button class="btn btn-primary">
-                                                                            <img src="{{ asset('images/icons/cart.svg') }}" class="svg_img pro_svg" alt="" />
-                                                                            Add To Cart
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
+                                                                <livewire:add-to-cart :product="$product->id">
                                                             </div>
                                                         </div>
                                                     </div>
