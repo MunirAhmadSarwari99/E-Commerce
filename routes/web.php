@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
 //  Seller
     Route::resource('SellerDashboard', SellerDashboardController::class);
     Route::resource('SellerProduct', ProductController::class);
+    Route::patch('SellerProductPhoto/{id}', [ProductController::class, 'SellerProductPhoto'])->name('SellerProductPhoto.update');
 // Admin Ajax Requests
     Route::get('GetSellerChildCategory', [SellerAjaxController::class, 'GetCategoryChild']);
     Route::get('GetSellerChildToCategory', [SellerAjaxController::class, 'GetCategoryChildTo']);

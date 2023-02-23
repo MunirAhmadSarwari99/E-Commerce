@@ -10,7 +10,7 @@
                             <tr>
                                 <th scope="col">Ürünler</th>
                                 <th scope="col">Kayıt Tarihi</th>
-                                <th scope="col">son Güncelleme Tarihi</th>
+                                <th scope="col" colspan="2">Son Güncelleme</th>
                                 <th scope="col">
                                     <button type="button" class="btn btn-dark float-end" data-bs-target="#NewProduct" data-bs-toggle="modal">
                                         <i class="fa fa-plus"></i>
@@ -30,7 +30,7 @@
                                             <form class="inline-form" method="post" action="{{ route('SellerProduct.destroy', $key->id) }}" class="p-6">
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-outline-danger m-2"><i class="fa fa-trash"></i> </button>
+                                                <button type="submit" class="btn btn-outline-danger m-2"><i class="fa fa-trash"></i> </button>
                                             </form>
                                         </td>
                                     </tr>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditProductImageRequest;
+use App\Http\Requests\EditProductRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\CategoryTag;
@@ -70,7 +72,6 @@ class ProductController extends Controller
 
             $details = new ProductDetail([
                 'images' => $imageName,
-                'colors' => $request->input('colors'),
             ]);
 
             $Prod = Product::findOrFail($product->id);
@@ -113,9 +114,46 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditProductRequest $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $category = $product->category_id;
+        $ChildCategory = $product->ChildCategory_id;
+        $CategoryTag = $product->CategoryTag_id;
+
+        if ($request->input('CategoryName') != null){
+            $category = $request->input('CategoryName');
+        }
+        if ($request->input('childName') != null){
+            $ChildCategory = $request->input('childName');
+        }
+        if ($request->input('tagName') != null){
+            $CategoryTag = $request->input('tagName');
+        }
+        $product->category_id = $category;
+        $product->ChildCategory_id = $ChildCategory;
+        $product->CategoryTag_id = $CategoryTag;
+        $product->productName = $request->input('productName');
+        $product->details = $request->input('details');
+        $product->price = $request->input('price');
+        $product->save();
+
+        return back();
+    }
+
+    public function SellerProductPhoto(EditProductImageRequest $request, $id){
+        $product = ProductDetail::findOrFail($id);
+
+        $imageName = $product->images;
+        if ($request->file('image') != null){
+
+            unlink(public_path('images/Products/' . $product->images));
+            $imageName = time() . $request->file('image')->getClientOriginalName();
+            $request->image->move('images/Products/', $imageName);
+        }
+        $product->images = $imageName;
+        $product->save();
+        return back();
     }
 
     /**
@@ -127,7 +165,9 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-        unlink(public_path('images/Products/' . $product->image));
+        foreach ($product->detail as $item){
+            unlink(public_path('images/Products/' . $item->images));
+        }
         $product->delete();
 
         return back();

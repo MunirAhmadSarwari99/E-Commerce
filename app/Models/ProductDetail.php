@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductDetail extends Model
 {
     use HasFactory;
-    protected $fillable = ['images', 'colors'];
+    protected $fillable = ['images'];
 
     public function product(){
         return $this->belongsTo(Product::class, 'product_id', 'id');

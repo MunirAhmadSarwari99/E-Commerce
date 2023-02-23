@@ -77,7 +77,6 @@
                                                     <img class="main-image" src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" alt="Product" />
                                                     <img class="hover-image" src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" alt="Product" />
                                                 </a>
-                                                <span class="percentage">20%</span>
                                                 <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal{{ $product->id }}">
                                                     <img src="{{ asset('images/icons/quickview.svg') }}" class="svg_img pro_svg" alt="" />
                                                 </a>
@@ -105,7 +104,6 @@
                                                 <i class="ecicon eci-star"></i>
                                             </div>
                                             <span class="ec-price">
-                                                <span class="old-price">{{ $product->price }} TL</span>
                                                 <span class="new-price">{{ $product->price }} TL</span>
                                             </span>
                                             <div class="ec-pro-option">
@@ -113,38 +111,13 @@
                                                     <span class="ec-pro-opt-label">Color</span>
                                                     <ul class="ec-opt-swatch ec-change-img">
                                                         <li class="active">
-                                                            <a href="#" class="ec-opt-clr-img loaded" data-src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-src-hover="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-tooltip="Gray">
-                                                                <span style="background-color:#e8c2ff;"></span>
+                                                            <a href="#" class="ec-opt-clr-img" data-src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-src-hover="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-tooltip="Gray">
+
                                                             </a>
                                                         </li>
                                                         <li>
                                                             <a href="#" class="ec-opt-clr-img" data-src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-src-hover="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-tooltip="Orange">
-                                                                <span style="background-color:#9cfdd5;"></span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ec-pro-size">
-                                                    <span class="ec-pro-opt-label">Size</span>
-                                                    <ul class="ec-opt-size">
-                                                        <li class="active">
-                                                            <a href="#" class="ec-opt-sz" data-old="$25.00" data-new="$20.00" data-tooltip="Small">
-                                                                S
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" class="ec-opt-sz" data-old="$27.00" data-new="$22.00" data-tooltip="Medium">
-                                                                M
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" class="ec-opt-sz" data-old="$30.00" data-new="$25.00" data-tooltip="Large">
-                                                                X
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" class="ec-opt-sz" data-old="$35.00" data-new="$30.00" data-tooltip="Extra Large">
-                                                                XL
+
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -191,43 +164,18 @@
 
                                                                 <div class="ec-quickview-desc">{{ $product->details }}</div>
                                                                 <div class="ec-quickview-price">
-                                                                    <span class="old-price">$100.00</span>
-                                                                    <span class="new-price">$80.00</span>
+                                                                    <span class="new-price">{{ $product->price }}</span>
                                                                 </div>
 
-                                                                <div class="ec-pro-variation">
-                                                                    <div class="ec-pro-variation-inner ec-pro-variation-color">
-                                                                        <span>Color</span>
-                                                                        <div class="ec-pro-color">
-                                                                            <ul class="ec-opt-swatch">
-                                                                                <li><span style="background-color:#ebbf60;"></span></li>
-                                                                                <li><span style="background-color:#75e3ff;"></span></li>
-                                                                                <li><span style="background-color:#11f7d8;"></span></li>
-                                                                                <li><span style="background-color:#acff7c;"></span></li>
-                                                                                <li><span style="background-color:#e996fa;"></span></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ec-pro-variation-inner ec-pro-variation-size ec-pro-size">
-                                                                        <span>Size</span>
-                                                                        <div class="ec-pro-variation-content">
-                                                                            <ul class="ec-opt-size">
-                                                                                <li class="active"><a href="#" class="ec-opt-sz"
-                                                                                                      data-tooltip="Small">S</a></li>
-                                                                                <li><a href="#" class="ec-opt-sz" data-tooltip="Medium">M</a></li>
-                                                                                <li><a href="#" class="ec-opt-sz" data-tooltip="Large">X</a></li>
-                                                                                <li><a href="#" class="ec-opt-sz" data-tooltip="Extra Large">XL</a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
                                                                 <div class="ec-quickview-qty">
                                                                     <div class="qty-plus-minus">
                                                                         <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
                                                                     </div>
                                                                     <div class="ec-quickview-cart ">
-                                                                        <button class="btn btn-primary"><img src="assets/images/icons/cart.svg"
-                                                                                                             class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                                                        <button class="btn btn-primary">
+                                                                            <img src="{{ asset('images/icons/cart.svg') }}" class="svg_img pro_svg" alt="" />
+                                                                            Add To Cart
+                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                             </div>

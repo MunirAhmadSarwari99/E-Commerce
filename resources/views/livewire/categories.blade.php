@@ -1,10 +1,5 @@
 <div>
     <div class="form-floating mb-3">
-        <x-text-input id="colors" name="colors" type="color" class="form-control" required/>
-        <x-input-label for="colors" :value="__('Ürün Rengi')" />
-        <x-input-error :messages="$errors->get('colors')" class="mt-2" />
-    </div>
-    <div class="form-floating mb-3">
         <x-text-input id="productName" name="productName" type="text" class="form-control" required/>
         <x-input-label for="productName" :value="__('Ürün Etiketi')" />
         <x-input-error :messages="$errors->get('productName')" class="mt-2" />
@@ -41,7 +36,7 @@
         <x-input-error :messages="$errors->get('tagName')" class="mt-2" />
     </div>
     <div class="form-floating mb-3">
-        <textarea id="details" name="details" class="form-control h-100" required></textarea>
+        <textarea id="details" style="height: 250px;" name="details" class="form-control" required></textarea>
         <x-input-label for="details" :value="__('Not')" />
         <x-input-error :messages="$errors->get('details')" class="mt-2" />
     </div>
