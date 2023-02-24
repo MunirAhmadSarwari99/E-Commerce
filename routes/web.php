@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryTagController;
 use App\Http\Controllers\ChildCategoryController;
 use App\Http\Controllers\DashboardController;
@@ -12,10 +13,6 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SellerDashboardController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\CategoryController;
-
-//Ajax
-use App\Http\Controllers\AjaxController\AjaxController;
-use App\Http\Controllers\AjaxController\SellerAjaxController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -57,19 +54,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('Category', CategoryController::class);
     Route::resource('Child-Category', ChildCategoryController::class);
     Route::resource('Category-Tag', CategoryTagController::class);
-//  Admin Ajax Requests
-    Route::get('GetCategoryChild', [AjaxController::class, 'GetCategoryChild']);
 
 //  Seller
     Route::resource('SellerDashboard', SellerDashboardController::class);
     Route::resource('SellerProduct', ProductController::class);
     Route::patch('SellerProductPhoto/{id}', [ProductController::class, 'SellerProductPhoto'])->name('SellerProductPhoto.update');
-// Admin Ajax Requests
-    Route::get('GetSellerChildCategory', [SellerAjaxController::class, 'GetCategoryChild']);
-    Route::get('GetSellerChildToCategory', [SellerAjaxController::class, 'GetCategoryChildTo']);
 
 //  Customer
     Route::resource('CustomerDashboard', CustomerDashboardController::class);
+    Route::resource('Cart',CartController::class);
 });
 
 require __DIR__.'/auth.php';

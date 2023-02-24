@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Cart;
-use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -19,6 +18,9 @@ class AddToCart extends Component
             'product_id' => $this->product,
             'quantity' => $this->quantity,
         ]);
+//        $cart = new MyCart();
+//        $cart->render();
+        $this->emitTo('MyCart', '$refresh');
     }
     public function render()
     {

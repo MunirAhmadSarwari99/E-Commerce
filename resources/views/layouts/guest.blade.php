@@ -200,7 +200,7 @@
                             </a>
                             <!-- Header wishlist End -->
                             <!-- Header Cart Start -->
-                            <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+                            <a href="{{ route('Cart.index') }}" class="ec-header-btn">
                                 <div class="header-icon">
                                     <img src="{{ asset('images/icons/cart.svg') }}" class="svg_img header_svg" alt="" />
                                 </div>
@@ -706,8 +706,8 @@
         </div>
     </div>
 </div>
-<!-- Footer navigation panel for responsive display end -->
 
+<!-- Footer navigation panel for responsive display end -->
 
 <!-- Cart Floating Button -->
 <div class="ec-cart-float">

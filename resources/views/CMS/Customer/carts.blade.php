@@ -11,7 +11,7 @@
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item"><a href="{{ route('index') }}">Anasayfa</a></li>
-                                <li class="ec-breadcrumb-item active">Page Name</li>
+                                <li class="ec-breadcrumb-item active">Sepete Ekle</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
                         </div>
@@ -20,6 +20,11 @@
             </div>
         </div>
     </div>
+    <section class="ec-page-content section-space-p">
+        <div class="container">
+            <livewire:my-cart />
+        </div>
+    </section>
 </x-guest-layout>
 
 
