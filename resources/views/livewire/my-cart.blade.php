@@ -29,25 +29,32 @@
                                                 <td data-label="Price" class="ec-cart-pro-price" colspan="2">
                                                     <span class="amount">{{ $cart->product->price }} TL</span>
                                                 </td>
-                                                <td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;" colspan="2">
-                                                    <span class="ec-cart-select-inner">
-                                                        <select name="ec_cart_country" id="ec-cart-select-country" class="ec-cart-select" wire:change="Quantity">
-                                                            @for($i = 1; $i < 11; $i ++)
-                                                                <option
-                                                                    @if($i == $cart->quantity)
-                                                                        selected
-                                                                    @endif
-                                                                    value="{{ $i }}">{{ $i }}</option>
-                                                            @endfor
-                                                        </select>
-                                                    </span>
+                                                <td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;">
+                                                    <div class="cart-qty-plus-minus">
+                                                        <input  type="text" name="cartqtybutton" wire:keydown="quantity({{$cart->product_id}})" value="1">
+                                                    </div>
                                                 </td>
+{{--                                                <td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;" colspan="2">--}}
+{{--                                                    <span class="ec-cart-select-inner">--}}
+{{--                                                        <input type="text" class="ec-cart-select" wire:change="quantity({{$cart->product_id}})" value="1">--}}
+{{--                                                        <select name="ec_cart_country" id="ec-cart-select-country" class="ec-cart-select" wire:change="quantity({{$cart->product_id}})">--}}
+{{--                                                            @for($i = 1; $i < 11; $i ++)--}}
+{{--                                                                <option--}}
+{{--                                                                    @if($i == $cart->quantity)--}}
+{{--                                                                        selected--}}
+{{--                                                                    @endif--}}
+{{--                                                                    value="{{ $i }}">{{ $i }}</option>--}}
+{{--                                                            @endfor--}}
+{{--                                                        </select>--}}
+{{--                                                    </span>--}}
+{{--                                                </td>--}}
                                                 <td data-label="Total" class="ec-cart-pro-subtotal" colspan="2">
-                                                    @if($productTotal)
-                                                        {{ $cart->product->price * $cart->quantity }} TL
-                                                    @else
-                                                        {{ $productTotal }} TL
-                                                    @endif
+{{--                                                    @if($productTotal )--}}
+{{--                                                        {{ $cart->product->price * $cart->quantity }} TL--}}
+{{--                                                    @else--}}
+{{--                                                        {{ $productTotal }} TL--}}
+{{--                                                    @endif--}}
+                                                    {{ $productTotal }} TL
                                                     </td>
                                                 <td data-label="Remove" class="ec-cart-pro-remove" colspan="2">
                                                     <a href="#">

@@ -742,5 +742,6 @@
 <!-- Main Js -->
 <script src="{{ asset('js/vendor/index.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/Ajax.js') }}"></script>
 </body>
 </html>

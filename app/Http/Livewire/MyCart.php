@@ -9,20 +9,12 @@ use Livewire\Component;
 class MyCart extends Component
 {
     public $carts;
-    public $productTotal;
+
     public $quantity;
     public $SubTotal;
     public $kdv;
     public $total;
 
-    public function Quantity(){
-        $pro = Cart::where('product_id', 6)->get();
-        foreach ($pro as $cart){
-
-            dd( $cart->product->price * $this->quantity);
-//            $this->productTotal =  $cart->product->price * $this->quantity;
-        }
-    }
     public function mount(){
         $this->carts = Cart::where('user_id', Auth::user()->id)->get();
         foreach ($this->carts as $cart){

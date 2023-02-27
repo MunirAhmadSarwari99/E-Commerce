@@ -18,4 +18,8 @@ class Cart extends Model
     public function product(){
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
+
+    public function orders(){
+        return $this->hasMany(Order::class, 'cart_id', 'id');
+    }
 }

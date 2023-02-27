@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AjaxController\CustomerAjaxController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryTagController;
 use App\Http\Controllers\ChildCategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
@@ -63,6 +65,9 @@ Route::middleware('auth')->group(function () {
 //  Customer
     Route::resource('CustomerDashboard', CustomerDashboardController::class);
     Route::resource('Cart',CartController::class);
+    Route::get('QuantityUpdate',[CustomerAjaxController::class, 'QuantityUpdate']);
+    Route::get('QuantityCart',[CustomerAjaxController::class, 'Cart']);
+    Route::resource('Order',OrderController::class);
 });
 
 require __DIR__.'/auth.php';

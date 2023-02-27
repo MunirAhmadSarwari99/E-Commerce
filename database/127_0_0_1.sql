@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2023 at 12:58 PM
+-- Generation Time: Feb 27, 2023 at 04:31 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -43,7 +43,8 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(7, 3, 6, 1, '2023-02-23 11:52:25', '2023-02-23 11:52:25');
+(7, 3, 6, 1, '2023-02-23 11:52:25', '2023-02-27 11:53:17'),
+(20, 3, 5, 4, '2023-02-27 14:56:46', '2023-02-27 15:23:46');
 
 -- --------------------------------------------------------
 
@@ -213,7 +214,23 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (53, '2023_02_20_093644_create_category_tags_table', 2),
 (54, '2023_02_20_125457_create_products_table', 3),
 (55, '2023_02_20_131649_create_product_details_table', 3),
-(56, '2023_02_23_121219_create_carts_table', 4);
+(56, '2023_02_23_121219_create_carts_table', 4),
+(57, '2023_02_27_171046_create_orders_table', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `cart_id` int(10) UNSIGNED NOT NULL,
+  `orderNo` int(11) NOT NULL,
+  `total` double(8,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -295,8 +312,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `user_id`, `category_id`, `ChildCategory_id`, `CategoryTag_id`, `productName`, `details`, `tax`, `price`, `created_at`, `updated_at`) VALUES
-(5, 2, 1, 1, 1, 'TRENDYOLMİLLA Siyah Yarım Boğazlı Bodycon Örme Elbise TWOAW21EL2244', 'Modelin Ölçüleri: Boy: 1.77 Göğüs: 83 Bel: 63 Kalça: 92\r\nMankenin üzerindeki ürün S/36 bedendir.\r\n%58 Pamuk %41 Polyester %1 Elastan, Örme Kumaş\r\nOmuzdan Boy: 95 cm\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 100 adetten fazla stok sunulmuştur.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.\r\nÜrünlerimiz TRENDYOL etiketi ile gönderilecektir.', 18, 107.99, '2023-02-21 06:24:44', '2023-02-23 07:40:01'),
-(6, 2, 2, 9, 25, 'D\'S Damat SİYAH RENK ERKEK YELEKLİ TAKIM ELBİSE SLİM FİT 4HFY5ORT01599_001', 'D\'S DAMAT ERKEK TAKIM ELBİSESLİM FİTGÜNCEL MODEL Ürün Gömlek ve Kravat içermemektedir.\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 50 adetten fazla stok sunulmuştur.\r\nİncelemiş olduğunuz ürünün satış fiyatını satıcı belirlemektedir.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.', 18, 107.99, '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
+(5, 2, 1, 1, 1, 'Siyah Yarım Boğazlı Bodycon Örme Elbise', 'Modelin Ölçüleri: Boy: 1.77 Göğüs: 83 Bel: 63 Kalça: 92\r\nMankenin üzerindeki ürün S/36 bedendir.\r\n%58 Pamuk %41 Polyester %1 Elastan, Örme Kumaş\r\nOmuzdan Boy: 95 cm\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 100 adetten fazla stok sunulmuştur.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.\r\nÜrünlerimiz TRENDYOL etiketi ile gönderilecektir.', 18, 107.99, '2023-02-21 06:24:44', '2023-02-23 07:40:01'),
+(6, 2, 2, 9, 25, 'SİYAH RENK ERKEK YELEKLİ TAKIM ELBİSE', 'D\'S DAMAT ERKEK TAKIM ELBİSESLİM FİTGÜNCEL MODEL Ürün Gömlek ve Kravat içermemektedir.\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 50 adetten fazla stok sunulmuştur.\r\nİncelemiş olduğunuz ürünün satış fiyatını satıcı belirlemektedir.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.', 18, 107.99, '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
 (8, 2, 1, 1, 2, 'Munir Ahmad Sarwari', 'Munir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad Sarwari', 18, 1500.99, '2023-02-21 11:41:59', '2023-02-21 11:41:59');
 
 -- --------------------------------------------------------
@@ -480,6 +497,14 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `orders_orderno_unique` (`orderNo`),
+  ADD KEY `orders_cart_id_foreign` (`cart_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -552,7 +577,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -582,7 +607,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -642,6 +673,12 @@ ALTER TABLE `category_tags`
 --
 ALTER TABLE `child_categories`
   ADD CONSTRAINT `child_categories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_cart_id_foreign` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `products`

@@ -1,46 +1,29 @@
 $(document).ready(function(){
+    $(document).on('change', 'select[name=quantity]', function () {
+        var query = $(this).data('role');
+        var query2 = $(this).data('id');
 
-    $(document).on('change', 'select[id=mainCategoryName]', function () {
-        const query = $(this).val();
+        $('td#Total'+query2).text((query * $(this).val()).toFixed(2));
+
         $.ajax({
-            url: "GetCategoryChild",
+            url: "QuantityUpdate",
             type: 'GET',
             data: {
                 _token:'{{ csrf_token() }}',
-                'data' : query,
+                id:query2,
+                quantity: $(this).val(),
             },
             success: function (data) {
-                $('#childName').html(data);
-            }
-        });
-    });
-
-    $(document).on('change', 'select[id=CategoryName]', function () {
-        const query = $(this).val();
-        $.ajax({
-            url: "GetSellerChildCategory",
-            type: 'GET',
-            data: {
-                _token:'{{ csrf_token() }}',
-                'data' : query,
-            },
-            success: function (data) {
-                $('#child').html(data);
-            }
-        });
-    });
-
-    $(document).on('change', 'select[id=child]', function () {
-        const query = $(this).val();
-        $.ajax({
-            url: "GetSellerChildToCategory",
-            type: 'GET',
-            data: {
-                _token:'{{ csrf_token() }}',
-                'data' : query,
-            },
-            success: function (data) {
-                $('#childTo').html(data);
+                $.ajax({
+                    url: "QuantityCart",
+                    type: 'GET',
+                    success: function (data) {
+                        $('span#AraToplam').text((data.SubTotal).toFixed(2) + ' TL');
+                        $('span#kdv').text(data.kdv + ' TL');
+                        $('span#Toplam').text((data.total).toFixed(2) + ' TL');
+                        $('input#inputToplam').val((data.total).toFixed(2));
+                    }
+                });
             }
         });
     });

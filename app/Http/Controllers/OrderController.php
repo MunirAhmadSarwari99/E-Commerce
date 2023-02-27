@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CartController extends Controller
+class OrderController extends Controller
 {
     public function __construct()
     {
@@ -19,16 +20,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carts = Cart::where('user_id', Auth::user()->id)->get();
-        $SubTotal = null;
-        $kdv = null;
-        $total = null;
-        foreach ($carts as $cart){
-            $SubTotal =  $cart->product->price * $cart->sum('quantity');
-            $kdv = round(($cart->product->price * $cart->product->tax) / 100 * $cart->sum('quantity'), 0);
-            $total = $SubTotal + $kdv;
-        }
-        return view('CMS.Customer.carts', compact('carts', 'SubTotal', 'kdv', 'total'));
+        //
     }
 
     /**
@@ -47,9 +39,13 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        //
+        $order = $request->input('order');
+
+        foreach ($order as $key => $key){
+            Order::create(['cart_id' => $request->input('order')[$key],'orderNo' => rand(10,2000), 'total' => $request->input('inputToplam')]);
+        }
     }
 
     /**
@@ -94,8 +90,6 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        $cart = Cart::findOrFail($id);
-        $cart->delete();
-        return back();
+        //
     }
 }
