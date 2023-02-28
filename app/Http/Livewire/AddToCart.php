@@ -13,14 +13,16 @@ class AddToCart extends Component
 
     public function AddCart()
     {
-        Cart::create([
-            'user_id' => Auth::user()->id,
-            'product_id' => $this->product,
-            'quantity' => $this->quantity,
-        ]);
-//        $cart = new MyCart();
-//        $cart->render();
-        $this->emitTo('MyCart', '$refresh');
+        if (Auth::check()) {
+            Cart::create([
+                'user_id' => Auth::user()->id,
+                'product_id' => $this->product,
+                'quantity' => $this->quantity,
+            ]);
+            $this->emitTo('MyCart', '$refresh');
+        }else{
+            return redirect(route('login'));
+        }
     }
     public function render()
     {

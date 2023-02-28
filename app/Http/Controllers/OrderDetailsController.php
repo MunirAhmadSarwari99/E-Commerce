@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OrderRequest;
 use App\Models\Cart;
-use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class OrderDetailsController extends Controller
 {
     public function __construct()
     {
@@ -20,7 +19,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $carts = Cart::where('user_id', Auth::user()->id)->get();
+        return view('CMS.Customer.order', compact('carts'));
     }
 
     /**
@@ -39,14 +39,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OrderRequest $request)
+    public function store(Request $request)
     {
-        $order = $request->input('order');
-
-        foreach ($order as $key => $key){
-            Order::create(['cart_id' => $request->input('order')[$key],'orderNo' => rand(10,2000), 'total' => $request->input('inputToplam')]);
-        }
-        return back();
+        //
     }
 
     /**

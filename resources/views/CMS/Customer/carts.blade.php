@@ -5,7 +5,7 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">Title</h2>
+                            <h2 class="ec-breadcrumb-title">Sepetim</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <!-- ec-breadcrumb-list start -->
@@ -46,7 +46,7 @@
                                                     @foreach($carts as $cart)
                                                         <tr id="{{ $cart->id }}">
                                                             <td data-label="order" class="ec-cart-pro-order">
-                                                                <input type="checkbox" name="order[]" value="{{ $cart->id }}" checked required>
+                                                                <input type="checkbox" name="order[]" value="{{ $cart->id }}" checked>
                                                             </td>
                                                             <td data-label="Product" class="ec-cart-pro-name">
                                                                 <a href="product-left-sidebar.html">
@@ -76,6 +76,7 @@
                                                             </td>
                                                         </tr>
                                                         <x-input-error :messages="$errors->get('order')" class="mt-2" />
+                                                        <x-input-error :messages="$errors->get('inputToplam')" class="mt-2" />
                                                     @endforeach
                                                     </tbody>
                                                 </table>
@@ -83,8 +84,9 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="ec-cart-update-bottom">
-                                                    <a href="#">Continue Shopping</a>
+                                                    <a href="#">Alışverişe Devam Et</a>
                                                     <button type="submit" class="btn btn-primary">Sepeti Onayla</button>
+                                                    <input id="inputToplam" type="text" name="inputToplam" value="{{ $total }}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -122,7 +124,6 @@
                                         <div class="ec-cart-summary-total">
                                             <span class="text-left">Toplam tutar:</span>
                                             <span id="Toplam" class="text-right">{{ $total }} TL</span>
-                                            <input id="inputToplam" type="text" name="inputToplam" value="{{ $total }}" required>
                                         </div>
                                     </div>
 

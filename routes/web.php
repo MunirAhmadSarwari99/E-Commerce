@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AjaxController\CustomerAjaxController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryMenuController;
 use App\Http\Controllers\CategoryTagController;
 use App\Http\Controllers\ChildCategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
@@ -37,6 +39,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/', HomeController::class);
+Route::get('Category/{id}', [CategoryMenuController::class, 'Woman']);
+Route::get('ChildCategory/{id}', [CategoryMenuController::class, 'ChildCategory']);
+Route::get('Tag/{id}', [CategoryMenuController::class, 'Tag']);
 
 
 //Route::get('/dashboard', function () {
@@ -65,9 +70,14 @@ Route::middleware('auth')->group(function () {
 //  Customer
     Route::resource('CustomerDashboard', CustomerDashboardController::class);
     Route::resource('Cart',CartController::class);
+    Route::resource('Order',OrderController::class);
+    Route::resource('OrderDetails',OrderDetailsController::class);
+
+//  Customer Ajax
     Route::get('QuantityUpdate',[CustomerAjaxController::class, 'QuantityUpdate']);
     Route::get('QuantityCart',[CustomerAjaxController::class, 'Cart']);
-    Route::resource('Order',OrderController::class);
+    Route::get('IncrementCart',[CustomerAjaxController::class, 'IncrementCart']);
+    Route::get('DecrementCart',[CustomerAjaxController::class, 'DecrementCart']);
 });
 
 require __DIR__.'/auth.php';

@@ -27,4 +27,39 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(document).on('change', 'input[type=checkbox]', function () {
+        var query = $(this).val();
+        if(this.checked) {
+            $.ajax({
+                url: "IncrementCart",
+                type: 'GET',
+                data: {
+                    _token:'{{ csrf_token() }}',
+                    id:query,
+                },
+                success: function (data) {
+                    $('span#AraToplam').text((data.SubTotal).toFixed(2) + ' TL');
+                    $('span#kdv').text(data.kdv + ' TL');
+                    $('span#Toplam').text((data.total).toFixed(2) + ' TL');
+                    $('input#inputToplam').val((data.total).toFixed(2));
+                }
+            });
+        } else {
+            $.ajax({
+                url: "DecrementCart",
+                type: 'GET',
+                data: {
+                    _token:'{{ csrf_token() }}',
+                    id:query,
+                },
+                success: function (data) {
+                    $('span#AraToplam').text((data.SubTotal).toFixed(2) + ' TL');
+                    $('span#kdv').text(data.kdv + ' TL');
+                    $('span#Toplam').text((data.total).toFixed(2) + ' TL');
+                    $('input#inputToplam').val((data.total).toFixed(2));
+                }
+            });
+        }
+    });
 });

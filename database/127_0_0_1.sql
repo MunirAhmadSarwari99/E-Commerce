@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2023 at 04:31 PM
+-- Generation Time: Feb 28, 2023 at 04:04 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -43,7 +43,7 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(7, 3, 6, 1, '2023-02-23 11:52:25', '2023-02-27 11:53:17'),
+(7, 3, 6, 1, '2023-02-23 11:52:25', '2023-02-28 04:41:40'),
 (20, 3, 5, 4, '2023-02-27 14:56:46', '2023-02-27 15:23:46');
 
 -- --------------------------------------------------------
@@ -232,6 +232,14 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `cart_id`, `orderNo`, `total`, `created_at`, `updated_at`) VALUES
+(3, 7, 39, 636.95, '2023-02-28 04:15:53', '2023-02-28 04:15:53'),
+(4, 20, 706, 636.95, '2023-02-28 04:15:53', '2023-02-28 04:15:53');
+
 -- --------------------------------------------------------
 
 --
@@ -314,7 +322,7 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `user_id`, `category_id`, `ChildCategory_id`, `CategoryTag_id`, `productName`, `details`, `tax`, `price`, `created_at`, `updated_at`) VALUES
 (5, 2, 1, 1, 1, 'Siyah Yarım Boğazlı Bodycon Örme Elbise', 'Modelin Ölçüleri: Boy: 1.77 Göğüs: 83 Bel: 63 Kalça: 92\r\nMankenin üzerindeki ürün S/36 bedendir.\r\n%58 Pamuk %41 Polyester %1 Elastan, Örme Kumaş\r\nOmuzdan Boy: 95 cm\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 100 adetten fazla stok sunulmuştur.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.\r\nÜrünlerimiz TRENDYOL etiketi ile gönderilecektir.', 18, 107.99, '2023-02-21 06:24:44', '2023-02-23 07:40:01'),
 (6, 2, 2, 9, 25, 'SİYAH RENK ERKEK YELEKLİ TAKIM ELBİSE', 'D\'S DAMAT ERKEK TAKIM ELBİSESLİM FİTGÜNCEL MODEL Ürün Gömlek ve Kravat içermemektedir.\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 50 adetten fazla stok sunulmuştur.\r\nİncelemiş olduğunuz ürünün satış fiyatını satıcı belirlemektedir.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.', 18, 107.99, '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
-(8, 2, 1, 1, 2, 'Munir Ahmad Sarwari', 'Munir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad SarwariMunir Ahmad Sarwari', 18, 1500.99, '2023-02-21 11:41:59', '2023-02-21 11:41:59');
+(8, 2, 1, 1, 2, 'TRENDYOLMİLLA Beyaz-Gri-Siyah', 'TRENDYOLMİLLA Beyaz-Gri-Siyah %100 Pamuk 3\'lü Paket Basic Bisiklet Yaka Örme T-Shirt TWOAW21TS0094', 18, 1500.99, '2023-02-21 11:41:59', '2023-02-28 13:55:27');
 
 -- --------------------------------------------------------
 
@@ -342,14 +350,14 @@ INSERT INTO `product_details` (`id`, `product_id`, `images`, `created_at`, `upda
 (8, 6, '16769609341_org_zoom.jpg', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
 (9, 6, '16769609342_org_zoom (2).jpg', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
 (10, 6, '16769609343_org_zoom (1).jpg', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
-(11, 8, '1676979719image1.jpg', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
-(12, 8, '1676979719image2.jpg', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
-(13, 8, '1676979719image3.jpg', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
-(14, 8, '1676979719image4.jpg', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
-(15, 8, '1676979719image5.jpg', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
-(16, 8, '1676979719img3.jpg', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
-(17, 8, '1676979719img4.jpg', '2023-02-21 11:41:59', '2023-02-21 11:41:59'),
-(18, 8, '1676979719img5.jpg', '2023-02-21 11:41:59', '2023-02-21 11:41:59');
+(11, 8, '16775922362_org_zoom (3).jpg', '2023-02-21 11:41:59', '2023-02-28 13:50:36'),
+(12, 8, '16775922462_org_zoom (4).jpg', '2023-02-21 11:41:59', '2023-02-28 13:50:46'),
+(13, 8, '16775922562_org_zoom (5).jpg', '2023-02-21 11:41:59', '2023-02-28 13:50:56'),
+(14, 8, '16775922652_org_zoom (6).jpg', '2023-02-21 11:41:59', '2023-02-28 13:51:05'),
+(15, 8, '16775922762_org_zoom (7).jpg', '2023-02-21 11:41:59', '2023-02-28 13:51:16'),
+(16, 8, '16775922882_org_zoom (8).jpg', '2023-02-21 11:41:59', '2023-02-28 13:51:28'),
+(17, 8, '16775922992_org_zoom (9).jpg', '2023-02-21 11:41:59', '2023-02-28 13:51:39'),
+(18, 8, '16775923232_org_zoom (4).jpg', '2023-02-21 11:41:59', '2023-02-28 13:52:03');
 
 -- --------------------------------------------------------
 
@@ -613,7 +621,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `permissions`

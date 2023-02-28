@@ -24,6 +24,8 @@
                         @endforeach
                     </div>
                     <form method="POST" action="{{ route('SellerProduct.update', $product->id) }}" class="p-6" enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
                         <div class="form-floating mb-3">
                             <x-text-input id="productName" name="productName" type="text" class="form-control" value="{{ $product->productName }}" required/>
                             <x-input-label for="productName" :value="__('Ürün Etiketi')" />
