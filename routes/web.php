@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AjaxController\CustomerAjaxController;
+use App\Http\Controllers\AjaxController\SellerAjaxController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryMenuController;
 use App\Http\Controllers\CategoryTagController;
@@ -39,7 +40,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/', HomeController::class);
-Route::get('Category/{id}', [CategoryMenuController::class, 'Woman']);
+Route::get('Categories/{id}', [CategoryMenuController::class, 'Woman']);
 Route::get('ChildCategory/{id}', [CategoryMenuController::class, 'ChildCategory']);
 Route::get('Tag/{id}', [CategoryMenuController::class, 'Tag']);
 
@@ -66,6 +67,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('SellerDashboard', SellerDashboardController::class);
     Route::resource('SellerProduct', ProductController::class);
     Route::patch('SellerProductPhoto/{id}', [ProductController::class, 'SellerProductPhoto'])->name('SellerProductPhoto.update');
+
+//  Seller Ajax
+    Route::get('CategoryChild',[SellerAjaxController::class, 'CategoryChild']);
+    Route::get('CategoryTags',[SellerAjaxController::class, 'CategoryTags']);
 
 //  Customer
     Route::resource('CustomerDashboard', CustomerDashboardController::class);

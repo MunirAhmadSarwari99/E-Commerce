@@ -39,7 +39,4 @@
             </div>
         </div>
     </div>
-    @foreach(Auth::user()->roles as $key)
-        {{ $key->roleName }}
-    @endforeach
 </x-app-layout>

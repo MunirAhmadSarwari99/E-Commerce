@@ -53,18 +53,15 @@
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6  ec-product-content" data-animation="fadeIn">
                                         <div class="ec-product-inner">
                                         <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
+                                            <div class="ec-pro-image" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal{{ $product->id }}">
+                                                <a href="javascript:void(0);" class="image">
                                                     <img class="main-image" src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" alt="Product" />
                                                     <img class="hover-image" src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" alt="Product" />
-                                                </a>
-                                                <a href="#" class="quickview" data-link-action="quickview" title="Hızlı Görünüm" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal{{ $product->id }}">
-                                                    <img src="{{ asset('images/icons/quickview.svg') }}" class="svg_img pro_svg" alt="" />
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ $product->productName }}</a></h5>
+                                            <h5 class="ec-pro-title"><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal{{ $product->id }}">{{ $product->productName }}</a></h5>
                                             <div class="ec-pro-rating">
                                                 <i class="ecicon eci-star fill"></i>
                                                 <i class="ecicon eci-star fill"></i>
@@ -80,14 +77,10 @@
                                                     <span class="ec-pro-opt-label">Color</span>
                                                     <ul class="ec-opt-swatch ec-change-img">
                                                         <li class="active">
-                                                            <a href="#" class="ec-opt-clr-img" data-src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-src-hover="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-tooltip="Gray">
-
-                                                            </a>
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal{{ $product->id }}" class="ec-opt-clr-img" data-src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-src-hover="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-tooltip="Gray"></a>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="ec-opt-clr-img" data-src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-src-hover="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-tooltip="Orange">
-
-                                                            </a>
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal{{ $product->id }}" class="ec-opt-clr-img" data-src="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-src-hover="{{ asset('images/Products/' . $product->GetOneImage($product->id) ) }}" data-tooltip="Orange"></a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -146,6 +139,7 @@
                                 <!-- Modal end -->
                                 @endforeach
                             </div>
+                            <div class="col-sm-12 shop-all-btn"><a href="shop-left-sidebar-col-3.html">Tüm Ürünler!</a></div>
                         </div>
                         <!-- ec 1st Product tab end -->
                     </div>

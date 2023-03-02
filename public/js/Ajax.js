@@ -62,4 +62,36 @@ $(document).ready(function(){
             });
         }
     });
+
+    $(document).on('change', 'select[name=CategoryName]', function () {
+        var query = $(this).val();
+        $.ajax({
+            url: "CategoryChild",
+            type: 'GET',
+            data: {
+                _token:'{{ csrf_token() }}',
+                id:query,
+            },
+            success: function (data) {
+                $('select[name=childName]').removeAttr('disabled');
+                $('select[name=childName]').html(data);
+            }
+        });
+    });
+
+    $(document).on('change', 'select[name=childName]', function () {
+        var query = $(this).val();
+        $.ajax({
+            url: "CategoryTags",
+            type: 'GET',
+            data: {
+                _token:'{{ csrf_token() }}',
+                id:query,
+            },
+            success: function (data) {
+                $('select[name=tagName]').removeAttr('disabled');
+                $('select[name=tagName]').html(data);
+            }
+        });
+    });
 });

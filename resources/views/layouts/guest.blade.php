@@ -73,7 +73,15 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 @if (Route::has('login'))
                                     @auth
-                                        <li><a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                        @foreach(Auth::user()->roles as $role)
+                                            @if($role->roleName == 'Admin')
+                                                <li><a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                            @elseif($role->roleName == 'Seller')
+                                                <li><a class="dropdown-item" href="{{ route('SellerDashboard.index') }}">Dashboard</a></li>
+                                            @else
+                                                <li><a class="dropdown-item" href="{{ route('CustomerDashboard.index') }}">Dashboard</a></li>
+                                            @endif
+                                        @endforeach
                                     @else
                                         <li><a class="dropdown-item" href="{{ route('login') }}">Giriş Yap</a></li>
                                         @if (Route::has('register'))
@@ -89,7 +97,6 @@
                             <div class="header-icon">
                                 <img src="{{ asset('images/icons/cart.svg') }}" class="svg_img header_svg" alt="" />
                             </div>
-                            <span class="ec-header-count cart-count-lable">3</span>
                         </a>
                         <!-- Header Cart End -->
                         <!-- Header menu Start -->
@@ -144,7 +151,16 @@
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     @if (Route::has('login'))
                                         @auth
-                                            <li><a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                            @foreach(Auth::user()->roles as $role)
+                                                @if($role->roleName == 'Admin')
+                                                    <li><a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                                @elseif($role->roleName == 'Seller')
+                                                    <li><a class="dropdown-item" href="{{ route('SellerDashboard.index') }}">Dashboard</a></li>
+                                                @else
+                                                    <li><a class="dropdown-item" href="{{ route('CustomerDashboard.index') }}">Dashboard</a></li>
+                                                @endif
+                                            @endforeach
+
                                         @else
                                             <li><a class="dropdown-item" href="{{ route('login') }}">Giriş Yap</a></li>
                                             @if (Route::has('register'))
@@ -208,7 +224,7 @@
                     <div class="ec-main-menu">
                         <ul>
                             @foreach(App\Models\Category::all() as $category)
-                                <li class="dropdown"><a href="/Category/{{{ $category->id }}}">{{ $category->categoryName }}</a>
+                                <li class="dropdown"><a href="/Categories/{{{ $category->id }}}">{{ $category->categoryName }}</a>
                                 <ul class="sub-menu">
                                     @foreach($category->childs as $child)
                                         <li class="dropdown position-static">
@@ -442,9 +458,21 @@
             <div class="ec-nav-panel-icons">
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="ec-header-btn">
-                            <img src="{{ asset('images/icons/user.svg') }}" class="svg_img header_svg" alt="icon" />
-                        </a>
+                        @foreach(Auth::user()->roles as $role)
+                            @if($role->roleName == 'Admin')
+                                <a href="{{ url('/dashboard') }}" class="ec-header-btn">
+                                    <img src="{{ asset('images/icons/user.svg') }}" class="svg_img header_svg" alt="icon" />
+                                </a>
+                            @elseif($role->roleName == 'Seller')
+                                <a href="{{ route('SellerDashboard.index') }}" class="ec-header-btn">
+                                    <img src="{{ asset('images/icons/user.svg') }}" class="svg_img header_svg" alt="icon" />
+                                </a>
+                            @else
+                                <a href="{{ route('CustomerDashboard.index') }}" class="ec-header-btn">
+                                    <img src="{{ asset('images/icons/user.svg') }}" class="svg_img header_svg" alt="icon" />
+                                </a>
+                            @endif
+                        @endforeach
                     @else
                         <a href="{{ route('login') }}" class="ec-header-btn">
                             <img src="{{ asset('images/icons/user.svg') }}" class="svg_img header_svg" alt="icon" />

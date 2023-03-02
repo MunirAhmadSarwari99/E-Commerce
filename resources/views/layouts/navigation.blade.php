@@ -39,6 +39,7 @@
                     <a href="{{ route('SellerProduct.index') }}" class="nav-item nav-link"><i class="fa fa-list me-2"></i> Ürünler</a>
                 @else
                     <a href="{{ route('CustomerDashboard.index') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Anasayfa</a>
+                    <a href="{{ route('Cart.index') }}" target="_blank" class="nav-item nav-link"><i class="fa fa-table me-2"></i> Sepetim</a>
                     <a href="{{ route('OrderDetails.index') }}" class="nav-item nav-link"><i class="fa fa-list me-2"></i> Siparişlerim</a>
                 @endif
             @endforeach

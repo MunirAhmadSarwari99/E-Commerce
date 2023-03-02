@@ -6,9 +6,6 @@ use App\Http\Requests\EditProductImageRequest;
 use App\Http\Requests\EditProductRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
-use App\Models\CategoryTag;
-use App\Models\ChildCategory;
-use App\Models\ChildToChildCategory;
 use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\User;
@@ -29,7 +26,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::where('user_id', Auth::user()->id)->paginate(10);
-        return view('CMS.Seller.products', compact('products'));
+        $category = Category::all();
+        return view('CMS.Seller.products', compact('products', 'category'));
     }
 
     /**

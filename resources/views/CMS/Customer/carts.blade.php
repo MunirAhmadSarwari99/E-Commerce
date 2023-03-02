@@ -86,7 +86,7 @@
                                                 <div class="ec-cart-update-bottom">
                                                     <a href="#">Alışverişe Devam Et</a>
                                                     <button type="submit" class="btn btn-primary">Sepeti Onayla</button>
-                                                    <input id="inputToplam" type="text" name="inputToplam" value="{{ $total }}" required>
+                                                    <input id="inputToplam" type="hidden" name="inputToplam" value="{{ $total }}" required>
                                                 </div>
                                             </div>
                                         </div>

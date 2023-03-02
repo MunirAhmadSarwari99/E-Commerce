@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $slider = Product::orderBy('id', 'desc')->take(5)->get();
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->take(8)->get();
         $category = Category::orderBy('id', 'desc')->take(2)->get();
         return view('welcome', compact('slider', 'category', 'products'));
     }
