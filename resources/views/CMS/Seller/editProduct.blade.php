@@ -32,11 +32,48 @@
                                <x-input-error :messages="$errors->get('productName')" class="mt-2" />
                         </div>
                         <strong>{{ $product->category->categoryName .' / '. $product->chold->childName .' / '. $product->tag->tagName }}</strong>
-                        @livewire('edit-product')
+                        <div class="form-floating mb-3">
+                            <select id="CategoryName" name="CategoryName" class="form-control">
+                                <option value=""></option>
+                                @foreach($category as $val)
+                                    <option value="{{ $val->id }}">{{ $val->categoryName }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-label for="CategoryName" :value="__('Kategori')" />
+                            <x-input-error :messages="$errors->get('CategoryName')" class="mt-2" />
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select id="child" name="childName" class="form-control" disabled></select>
+                            <x-input-label for="child" :value="__('Orta Kategori Seç')" />
+                            <x-input-error :messages="$errors->get('childName')" class="mt-2" />
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select id="tagName" name="tagName" class="form-control" disabled> </select>
+                            <x-input-label for="tagName" :value="__('Küçük Kategori Seç')" />
+                            <x-input-error :messages="$errors->get('tagName')" class="mt-2" />
+                        </div>
                         <div class="form-floating mb-3">
                             <x-text-input id="price" name="price" type="text" class="form-control" value="{{ $product->price }}" required/>
                             <x-input-label for="price" :value="__('Fiyat')" />
                             <x-input-error :messages="$errors->get('price')" class="mt-2" />
+                        </div>
+                        <strong class="text-uppercase text-danger">
+                            @for($i = 20; $i < 101; $i ++)
+                                @if($product->discount == $i)
+                                    Fiyatı Değiştirmek İçin Once İndirimi Kaldırmanız lazım..!
+                                @endif
+                            @endfor
+                        </strong>
+                        <div class="form-floating mb-3">
+                            <select id="discount" name="discount" type="text" class="form-control">
+                                <option value=""></option>
+                                <option value="0">İndirimi Kaldır</option>
+                                @for($i = 20; $i < 101; $i ++)
+                                    <option @if($product->discount == $i) selected @endif value="{{ $i }}">{{ $i }}%</option>
+                                @endfor
+                            </select>
+                            <x-input-label for="discount" :value="__('İndirim')" />
+                            <x-input-error :messages="$errors->get('discount')" class="mt-2" />
                         </div>
                         <div class="form-floating mb-3">
                             <textarea id="details" style="height: 250px;" name="details" class="form-control" required>{{ $product->details }}</textarea>

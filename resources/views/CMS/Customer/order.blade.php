@@ -18,17 +18,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($carts as $key)
+                                @foreach($order as $key)
                                     <tr>
-                                        <td>{{ $key->product->productName }}</td>
-                                        <td>{{ $key->product->price }} TL</td>
-                                        <td>{{ $key->quantity }}</td>
-                                        @foreach($key->orders as $order)
-                                            <td>{{ $order->orderNo }}</td>
-                                            <td>{{ round(($key->product->price * $key->product->tax) / 100 * $key->quantity, 0) }}</td>
-                                            <td>{{ $key->product->price *  $key->quantity }}</td>
-                                            <td>{{ \App\Models\App::DateTime('d, ', 'F', ' Y', $order->created_at) }}</td>
-                                        @endforeach
+                                        <td>{{ $key->cart->product->productName }}</td>
+                                        <td>{{ $key->cart->product->price }} TL</td>
+                                        <td>{{ $key->cart->quantity }}</td>
+                                        <td>{{ $key->orderNo }}</td>
+                                        <td>{{ round(($key->cart->product->price * $key->cart->product->tax) / 100 * $key->cart->quantity, 0) }}</td>
+                                        <td>{{ $key->cart->product->price *  $key->cart->quantity }}</td>
+                                        <td>{{ \App\Models\App::DateTime('d, ', 'F', ' Y', $key->created_at) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

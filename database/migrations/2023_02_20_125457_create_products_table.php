@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('productName');
             $table->text('details');
             $table->integer('tax')->default(18);
-            $table->float('price');
+            $table->double('price');
+            $table->double('oldPrice');
+            $table->double('discount');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ProductDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $slider = Product::orderBy('id', 'desc')->take(5)->get();
-        $products = Product::orderBy('id', 'desc')->take(9)->get();
-        $allProduct = Product::orderBy('id', 'desc')->take(100)->get();
-        return view('welcome', compact('slider', 'products', 'allProduct'));
+        //
     }
 
     /**
@@ -50,7 +46,8 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('productDetails', compact('product'));
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Requests\OrderRequest;
 use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -44,7 +45,7 @@ class OrderController extends Controller
         $order = $request->input('order');
 
         foreach ($order as $key => $key){
-            Order::create(['cart_id' => $request->input('order')[$key],'orderNo' => rand(10,2000), 'total' => $request->input('inputToplam')]);
+            Order::create(['user_id' => Auth::user()->id,'cart_id' => $request->input('order')[$key],'orderNo' => rand(10,2000), 'total' => $request->input('inputToplam')]);
         }
         return back();
     }

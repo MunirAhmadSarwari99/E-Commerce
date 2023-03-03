@@ -30,6 +30,18 @@ class CustomerAjaxController extends Controller
         return false;
     }
 
+    public function AddToCart(Request $request){
+        Cart::create([
+            'user_id' => Auth::user()->id,
+            'product_id' => $request->input('id'),
+            'quantity' => 1,
+        ]);
+    }
+    public function DeleteCart(Request $request){
+        $cart = Cart::findOrFail($request->input('id'));
+        $cart->delete();
+    }
+
     public function QuantityUpdate(Request $request){
         $cart = Cart::findOrFail($request->input('id'));
         $cart->quantity = $request->input('quantity');

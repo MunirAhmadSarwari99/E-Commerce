@@ -18,6 +18,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SellerDashboardController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductDetailsController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/', HomeController::class);
+Route::resource('ProductDetails', ProductDetailsController::class);
 Route::get('Categories/{id}', [CategoryMenuController::class, 'Woman']);
 Route::get('ChildCategory/{id}', [CategoryMenuController::class, 'ChildCategory']);
 Route::get('Tag/{id}', [CategoryMenuController::class, 'Tag']);
@@ -79,6 +81,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('OrderDetails',OrderDetailsController::class);
 
 //  Customer Ajax
+    Route::get('AddToCart',[CustomerAjaxController::class, 'AddToCart']);
+    Route::get('DeleteCart',[CustomerAjaxController::class, 'DeleteCart']);
     Route::get('QuantityUpdate',[CustomerAjaxController::class, 'QuantityUpdate']);
     Route::get('QuantityCart',[CustomerAjaxController::class, 'Cart']);
     Route::get('IncrementCart',[CustomerAjaxController::class, 'IncrementCart']);

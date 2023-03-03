@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,8 +20,8 @@ class OrderDetailsController extends Controller
      */
     public function index()
     {
-        $carts = Cart::where('user_id', Auth::user()->id)->get();
-        return view('CMS.Customer.order', compact('carts'));
+        $order = Order::where('user_id', Auth::user()->id)->get();
+        return view('CMS.Customer.order', compact('order'));
     }
 
     /**

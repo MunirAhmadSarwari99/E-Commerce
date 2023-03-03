@@ -30,6 +30,7 @@ class EditProductRequest extends FormRequest
             'tagName' => [],
             'details' => ['required', 'max:9999'],
             'price' => ['required', 'max:10'],
+            'discount' => ['max:2'],
         ];
     }
 }

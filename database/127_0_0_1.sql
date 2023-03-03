@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2023 at 04:04 PM
+-- Generation Time: Mar 03, 2023 at 02:29 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -43,8 +43,8 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(7, 3, 6, 1, '2023-02-23 11:52:25', '2023-02-28 04:41:40'),
-(20, 3, 5, 4, '2023-02-27 14:56:46', '2023-02-27 15:23:46');
+(7, 3, 6, 1, '2023-02-23 11:52:25', '2023-03-02 18:27:42'),
+(35, 3, 5, 1, '2023-03-02 18:11:54', '2023-03-02 18:11:54');
 
 -- --------------------------------------------------------
 
@@ -133,7 +133,79 @@ INSERT INTO `category_tags` (`id`, `child_id`, `tagName`, `created_at`, `updated
 (46, 5, 'Lüks Giyim', '2023-02-20 09:31:09', '2023-02-20 09:31:09'),
 (47, 5, 'Lüks Ayakkabı', '2023-02-20 09:31:09', '2023-02-20 09:31:09'),
 (48, 5, 'Tasarım Giyim', '2023-02-20 09:31:09', '2023-02-20 09:31:09'),
-(49, 5, 'Tasarım Ayakkabı', '2023-02-20 09:31:09', '2023-02-20 09:31:09');
+(49, 5, 'Tasarım Ayakkabı', '2023-02-20 09:31:09', '2023-02-20 09:31:09'),
+(50, 6, 'Parfüm', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(51, 6, 'Göz Makyajı', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(52, 6, 'Cilt Bakım', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(53, 6, 'Saç Bakımı', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(54, 6, 'Makyaj', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(55, 6, 'Ağız Bakım', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(56, 6, 'Cinsel Sağlık', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(57, 6, 'Vücut Bakım', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(58, 6, 'Hijyenik Ped', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(59, 6, 'Duş Jeli & Kremleri', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(60, 6, 'Epilasyon Ürünleri', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(61, 6, 'Ruj', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(62, 6, 'Güneş Kremi', '2023-03-02 13:22:53', '2023-03-02 13:22:53'),
+(63, 8, 'Sweatshirt', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(64, 8, 'Tişört', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(65, 8, 'Spor Sütyeni', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(66, 8, 'Tayt', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(67, 8, 'Eşofman', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(68, 8, 'Koşu Ayakkabısı', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(69, 8, 'Spor Çantası', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(70, 8, 'Spor Ekipmanları', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(71, 8, 'Outdoor Ayakkabı', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(72, 8, 'Kar Botu', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(73, 8, 'Outdoor Ekipmanları', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(74, 8, 'Sporcu Besinleri', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(75, 8, 'Sporcu Aksesuarları', '2023-03-02 13:27:26', '2023-03-02 13:27:26'),
+(76, 10, 'Spor Ayakkabı', '2023-03-02 13:31:38', '2023-03-02 13:31:38'),
+(77, 10, 'Günlük Ayakkabı', '2023-03-02 13:31:38', '2023-03-02 13:31:38'),
+(78, 10, 'Yürüyüş Ayakkabısı', '2023-03-02 13:31:38', '2023-03-02 13:31:38'),
+(79, 10, 'Krampon', '2023-03-02 13:31:38', '2023-03-02 13:31:38'),
+(80, 10, 'Sneaker', '2023-03-02 13:31:38', '2023-03-02 13:31:38'),
+(81, 10, 'Klasik', '2023-03-02 13:31:38', '2023-03-02 13:31:38'),
+(82, 10, 'Bot', '2023-03-02 13:31:38', '2023-03-02 13:31:38'),
+(83, 11, 'Parfüm', '2023-03-02 13:32:59', '2023-03-02 13:32:59'),
+(84, 11, 'Cinsel Sağlık', '2023-03-02 13:32:59', '2023-03-02 13:32:59'),
+(85, 11, 'Tıraş Sonrası Ürünler', '2023-03-02 13:32:59', '2023-03-02 13:32:59'),
+(86, 11, 'Tıraş Bıçağı', '2023-03-02 13:32:59', '2023-03-02 13:32:59'),
+(87, 12, 'Saat', '2023-03-02 13:35:23', '2023-03-02 13:35:23'),
+(88, 12, 'Güneş Gözlüğü', '2023-03-02 13:35:23', '2023-03-02 13:35:23'),
+(89, 12, 'Cüzdan', '2023-03-02 13:35:23', '2023-03-02 13:35:23'),
+(90, 12, 'Kemer', '2023-03-02 13:35:23', '2023-03-02 13:35:23'),
+(91, 12, 'Çanta', '2023-03-02 13:35:23', '2023-03-02 13:35:23'),
+(92, 12, 'Şapka', '2023-03-02 13:35:23', '2023-03-02 13:35:23'),
+(93, 12, 'Bileklik', '2023-03-02 13:35:23', '2023-03-02 13:35:23'),
+(94, 13, 'Boxer', '2023-03-02 13:36:42', '2023-03-02 13:36:42'),
+(95, 13, 'Çorap', '2023-03-02 13:36:42', '2023-03-02 13:36:42'),
+(96, 13, 'Pijama', '2023-03-02 13:36:42', '2023-03-02 13:36:42'),
+(97, 13, 'Atlet', '2023-03-02 13:36:42', '2023-03-02 13:36:42'),
+(98, 14, 'Eşofman', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(99, 14, 'Spor Ayakkabı', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(100, 14, 'T-shirt', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(101, 14, 'Sweatshirt', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(102, 14, 'Forma', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(103, 14, 'Spor Çorap', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(104, 14, 'Spor Giyim', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(105, 14, 'Outdoor Ayakkabı', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(106, 14, 'Outdoor Bot', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(107, 14, 'Spor Ekipmanları', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(108, 14, 'Outdoor Ekipmanları', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(109, 14, 'Sporcu Besinleri', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(110, 14, 'Sporcu Aksesuarları', '2023-03-02 13:40:26', '2023-03-02 13:40:26'),
+(111, 15, 'Tıraş Makinesi', '2023-03-02 13:42:58', '2023-03-02 13:42:58'),
+(112, 15, 'Cep Telefonu', '2023-03-02 13:42:58', '2023-03-02 13:42:58'),
+(113, 15, 'Akıllı Saat', '2023-03-02 13:42:58', '2023-03-02 13:42:58'),
+(114, 15, 'Akıllı Bileklik', '2023-03-02 13:42:58', '2023-03-02 13:42:58'),
+(115, 15, 'Laptop', '2023-03-02 13:42:58', '2023-03-02 13:42:58'),
+(116, 15, 'Oyun & Konsollar', '2023-03-02 13:42:58', '2023-03-02 13:42:58'),
+(117, 15, 'Elektrikli Bisiklet', '2023-03-02 13:42:58', '2023-03-02 13:42:58'),
+(118, 15, 'E-pin ve Cüzdan Kodu', '2023-03-02 13:42:58', '2023-03-02 13:42:58'),
+(119, 16, 'Lüks Giyim', '2023-03-02 13:43:49', '2023-03-02 13:43:49'),
+(120, 16, 'Lüks Ayakkabı', '2023-03-02 13:43:49', '2023-03-02 13:43:49'),
+(121, 16, 'Lüks Çanta', '2023-03-02 13:43:49', '2023-03-02 13:43:49');
 
 -- --------------------------------------------------------
 
@@ -225,6 +297,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
   `cart_id` int(10) UNSIGNED NOT NULL,
   `orderNo` int(11) NOT NULL,
   `total` double(8,2) NOT NULL,
@@ -236,9 +309,8 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `cart_id`, `orderNo`, `total`, `created_at`, `updated_at`) VALUES
-(3, 7, 39, 636.95, '2023-02-28 04:15:53', '2023-02-28 04:15:53'),
-(4, 20, 706, 636.95, '2023-02-28 04:15:53', '2023-02-28 04:15:53');
+INSERT INTO `orders` (`id`, `user_id`, `cart_id`, `orderNo`, `total`, `created_at`, `updated_at`) VALUES
+(4, 3, 7, 601, 509.96, '2023-03-02 17:32:46', '2023-03-02 17:32:46');
 
 -- --------------------------------------------------------
 
@@ -311,6 +383,8 @@ CREATE TABLE `products` (
   `details` text NOT NULL,
   `tax` int(11) NOT NULL DEFAULT 18,
   `price` double(8,2) NOT NULL,
+  `oldPrice` double DEFAULT NULL,
+  `discount` double DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -319,10 +393,10 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `user_id`, `category_id`, `ChildCategory_id`, `CategoryTag_id`, `productName`, `details`, `tax`, `price`, `created_at`, `updated_at`) VALUES
-(5, 2, 1, 1, 1, 'Siyah Yarım Boğazlı Bodycon Örme Elbise', 'Modelin Ölçüleri: Boy: 1.77 Göğüs: 83 Bel: 63 Kalça: 92\r\nMankenin üzerindeki ürün S/36 bedendir.\r\n%58 Pamuk %41 Polyester %1 Elastan, Örme Kumaş\r\nOmuzdan Boy: 95 cm\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 100 adetten fazla stok sunulmuştur.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.\r\nÜrünlerimiz TRENDYOL etiketi ile gönderilecektir.', 18, 107.99, '2023-02-21 06:24:44', '2023-02-23 07:40:01'),
-(6, 2, 2, 9, 25, 'SİYAH RENK ERKEK YELEKLİ TAKIM ELBİSE', 'D\'S DAMAT ERKEK TAKIM ELBİSESLİM FİTGÜNCEL MODEL Ürün Gömlek ve Kravat içermemektedir.\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 50 adetten fazla stok sunulmuştur.\r\nİncelemiş olduğunuz ürünün satış fiyatını satıcı belirlemektedir.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.', 18, 107.99, '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
-(8, 2, 1, 1, 2, 'TRENDYOLMİLLA Beyaz-Gri-Siyah', 'TRENDYOLMİLLA Beyaz-Gri-Siyah %100 Pamuk 3\'lü Paket Basic Bisiklet Yaka Örme T-Shirt TWOAW21TS0094', 18, 1500.99, '2023-02-21 11:41:59', '2023-02-28 13:55:27');
+INSERT INTO `products` (`id`, `user_id`, `category_id`, `ChildCategory_id`, `CategoryTag_id`, `productName`, `details`, `tax`, `price`, `oldPrice`, `discount`, `created_at`, `updated_at`) VALUES
+(5, 2, 1, 1, 1, 'Siyah Yarım Boğazlı Bodycon Örme Elbise', 'Modelin Ölçüleri: Boy: 1.77 Göğüs: 83 Bel: 63 Kalça: 92\r\nMankenin üzerindeki ürün S/36 bedendir.\r\n%58 Pamuk %41 Polyester %1 Elastan, Örme Kumaş\r\nOmuzdan Boy: 95 cm\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 100 adetten fazla stok sunulmuştur.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.\r\nÜrünlerimiz TRENDYOL etiketi ile gönderilecektir.', 18, 1600.00, 2000, 20, '2023-02-21 06:24:44', '2023-03-03 10:07:12'),
+(6, 2, 2, 9, 25, 'SİYAH RENK ERKEK YELEKLİ TAKIM ELBİSE', 'D\'S DAMAT ERKEK TAKIM ELBİSESLİM FİTGÜNCEL MODEL Ürün Gömlek ve Kravat içermemektedir.\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 50 adetten fazla stok sunulmuştur.\r\nİncelemiş olduğunuz ürünün satış fiyatını satıcı belirlemektedir.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.', 18, 107.99, NULL, NULL, '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
+(8, 2, 1, 1, 2, 'TRENDYOLMİLLA Beyaz-Gri-Siyah', 'TRENDYOLMİLLA Beyaz-Gri-Siyah %100 Pamuk 3\'lü Paket Basic Bisiklet Yaka Örme T-Shirt TWOAW21TS0094', 18, 1500.99, NULL, NULL, '2023-02-21 11:41:59', '2023-02-28 13:55:27');
 
 -- --------------------------------------------------------
 
@@ -343,10 +417,10 @@ CREATE TABLE `product_details` (
 --
 
 INSERT INTO `product_details` (`id`, `product_id`, `images`, `created_at`, `updated_at`) VALUES
-(4, 5, '16771409522_org_zoom.jpg', '2023-02-21 06:24:44', '2023-02-23 08:29:12'),
-(5, 5, '16769606843_org_zoom.jpg', '2023-02-21 06:24:44', '2023-02-21 06:24:44'),
-(6, 5, '16769606844_org_zoom.jpg', '2023-02-21 06:24:44', '2023-02-21 06:24:44'),
-(7, 5, '16769606845_org_zoom.jpg', '2023-02-21 06:24:44', '2023-02-21 06:24:44'),
+(4, 5, '1677830303A1.jpg', '2023-02-21 06:24:44', '2023-03-03 07:58:23'),
+(5, 5, '1677830313A2.jpg', '2023-02-21 06:24:44', '2023-03-03 07:58:33'),
+(6, 5, '1677830323A3.jpg', '2023-02-21 06:24:44', '2023-03-03 07:58:43'),
+(7, 5, '1677830334A4.jpg', '2023-02-21 06:24:44', '2023-03-03 07:58:54'),
 (8, 6, '16769609341_org_zoom.jpg', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
 (9, 6, '16769609342_org_zoom (2).jpg', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
 (10, 6, '16769609343_org_zoom (1).jpg', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
@@ -510,7 +584,8 @@ ALTER TABLE `migrations`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `orders_orderno_unique` (`orderNo`),
-  ADD KEY `orders_cart_id_foreign` (`cart_id`);
+  ADD KEY `orders_cart_id_foreign` (`cart_id`),
+  ADD KEY `orders_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -585,7 +660,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -597,7 +672,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `category_tags`
 --
 ALTER TABLE `category_tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT for table `child_categories`
@@ -621,7 +696,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -639,13 +714,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `product_details`
 --
 ALTER TABLE `product_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -686,7 +761,8 @@ ALTER TABLE `child_categories`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_cart_id_foreign` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orders_cart_id_foreign` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `products`

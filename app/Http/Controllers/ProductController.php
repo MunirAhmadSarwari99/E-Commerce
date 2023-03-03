@@ -133,7 +133,22 @@ class ProductController extends Controller
         $product->CategoryTag_id = $CategoryTag;
         $product->productName = $request->input('productName');
         $product->details = $request->input('details');
-        $product->price = $request->input('price');
+        $discount = null;
+        $oldPrice = null;
+        $price = $request->input('price');
+
+        if($request->input('discount') != null && $request->input('discount') == 0){
+            $price = $product->price = $product->oldPrice;
+            $oldPrice = $product->oldPrice = null;
+        } elseif($request->input('discount') != null){
+            $oldPrice = $product->oldPrice = $product->price;
+            $discount = $request->input('discount');
+            $discoun = $product->price * $request->input('discount') / 100;
+            $price = round($product->price - $discoun, 2);
+        }
+        $product->price = $price;
+        $product->oldPrice = $oldPrice;
+        $product->discount = $discount;
         $product->save();
 
         return back();

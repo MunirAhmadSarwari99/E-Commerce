@@ -44,9 +44,9 @@
                                                     </thead>
                                                     <tbody>
                                                     @foreach($carts as $cart)
-                                                        <tr id="{{ $cart->id }}">
+                                                        <tr>
                                                             <td data-label="order" class="ec-cart-pro-order">
-                                                                <input type="checkbox" name="order[]" value="{{ $cart->id }}" checked>
+                                                                <input type="checkbox" name="order[]" value="{{ $cart->id }}">
                                                             </td>
                                                             <td data-label="Product" class="ec-cart-pro-name">
                                                                 <a href="product-left-sidebar.html">
@@ -72,7 +72,7 @@
                                                                 {{ $cart->product->price * $cart->quantity }} TL
                                                             </td>
                                                             <td data-label="Remove" class="ec-cart-pro-remove" colspan="2">
-                                                                <button type="button" class="btn btn-primary  m-2"><i class="ecicon eci-trash-o"></i> </button>
+                                                                <button type="button" name="DeleteCart" value="{{ $cart->id }}" class="btn btn-primary  m-2"><i class="ecicon eci-trash-o"></i> </button>
                                                             </td>
                                                         </tr>
                                                         <x-input-error :messages="$errors->get('order')" class="mt-2" />
@@ -86,7 +86,7 @@
                                                 <div class="ec-cart-update-bottom">
                                                     <a href="#">Alışverişe Devam Et</a>
                                                     <button type="submit" class="btn btn-primary">Sepeti Onayla</button>
-                                                    <input id="inputToplam" type="hidden" name="inputToplam" value="{{ $total }}" required>
+                                                    <input id="inputToplam" type="text" name="inputToplam" value="{{ $total }}" required>
                                                 </div>
                                             </div>
                                         </div>

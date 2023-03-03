@@ -30,6 +30,12 @@ $(document).ready(function(){
 
     $(document).on('change', 'input[type=checkbox]', function () {
         var query = $(this).val();
+
+        $('span#AraToplam').text(0.00 + ' TL');
+        $('span#kdv').text(0 + ' TL');
+        $('span#Toplam').text(0.00 + ' TL');
+        $('input#inputToplam').val('');
+
         if(this.checked) {
             $.ajax({
                 url: "IncrementCart",
@@ -57,7 +63,11 @@ $(document).ready(function(){
                     $('span#AraToplam').text((data.SubTotal).toFixed(2) + ' TL');
                     $('span#kdv').text(data.kdv + ' TL');
                     $('span#Toplam').text((data.total).toFixed(2) + ' TL');
-                    $('input#inputToplam').val((data.total).toFixed(2));
+                    if ((data.total).toFixed(2) == 0.00 || (data.total).toFixed(2) == 0){
+                        $('input#inputToplam').val('');
+                    }else {
+                        $('input#inputToplam').val((data.total).toFixed(2));
+                    }
                 }
             });
         }
@@ -66,7 +76,7 @@ $(document).ready(function(){
     $(document).on('change', 'select[name=CategoryName]', function () {
         var query = $(this).val();
         $.ajax({
-            url: "CategoryChild",
+            url: "/CategoryChild",
             type: 'GET',
             data: {
                 _token:'{{ csrf_token() }}',
@@ -82,7 +92,7 @@ $(document).ready(function(){
     $(document).on('change', 'select[name=childName]', function () {
         var query = $(this).val();
         $.ajax({
-            url: "CategoryTags",
+            url: "/CategoryTags",
             type: 'GET',
             data: {
                 _token:'{{ csrf_token() }}',
@@ -91,6 +101,37 @@ $(document).ready(function(){
             success: function (data) {
                 $('select[name=tagName]').removeAttr('disabled');
                 $('select[name=tagName]').html(data);
+            }
+        });
+    });
+
+    $(document).on('click', 'button[name=AddToCart]', function () {
+        var query = $(this).val();
+        $.ajax({
+            url: "/AddToCart",
+            type: 'GET',
+            data: {
+                _token:'{{ csrf_token() }}',
+                id:query,
+            },
+            success: function (data) {
+                $('select[name=tagName]').removeAttr('disabled');
+                $('select[name=tagName]').html(data);
+            }
+        });
+    });
+
+    $(document).on('click', 'button[name=DeleteCart]', function () {
+        var query = $(this).val();
+        $.ajax({
+            url: "DeleteCart",
+            type: 'GET',
+            data: {
+                _token:'{{ csrf_token() }}',
+                id:query,
+            },
+            success: function (data) {
+                location.reload();
             }
         });
     });
