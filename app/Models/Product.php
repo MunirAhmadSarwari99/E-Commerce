@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['category_id', 'ChildCategory_id', 'CategoryTag_id', 'productName', 'details', 'tax', 'price', 'oldPrice', 'discount'];
+    protected $fillable = ['productName', 'details', 'tax', 'price', 'oldPrice', 'discount'];
 
     public function detail(){
         return $this->hasMany(ProductDetail::class, 'product_id', 'id');

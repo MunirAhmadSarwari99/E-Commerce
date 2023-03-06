@@ -49,17 +49,15 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
 
-        $product = new Product([
-           'category_id' => $request->input('CategoryName'),
-           'ChildCategory_id' => $request->input('childName'),
-           'CategoryTag_id' => $request->input('tagName'),
-           'productName' => $request->input('productName'),
-           'details' => $request->input('details'),
-           'price' => $request->input('price'),
-        ]);
-
-        $user = User::findOrFail(Auth::user()->id);
-        $user->products()->save($product);
+        $product = new Product;
+        $product->productName = $request->input('productName');
+        $product->details = $request->input('details');
+        $product->price = $request->input('price');
+        $product->user()->associate(Auth::user());
+        $product->category()->associate($request->input('CategoryName'));
+        $product->chold()->associate($request->input('childName'));
+        $product->tag()->associate($request->input('tagName'));
+        $product->save();
 
         $img = $request->file('image');
 

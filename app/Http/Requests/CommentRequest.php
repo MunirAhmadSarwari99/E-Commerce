@@ -25,11 +25,11 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'rating' => ['regex:/^\d+(\.\d{1,2})?$/'],
+            'rating' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
             'product' => ['required'],
             'name' => ['required', 'max:60'],
             'email' => ['required', 'max:60'],
-            'commemt' => ['required', 'max:9999'],
+            'comment' => ['required', 'max:9999'],
         ];
     }
 }

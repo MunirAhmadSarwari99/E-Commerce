@@ -139,35 +139,41 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <div class="ec-ratting-content">
-                                            <h3>Yorum Yaz</h3>
-                                            <div class="ec-ratting-form">
-                                                <form method="POST" action="{{ route('Comment.store') }}">
-                                                    @csrf
-                                                    <div class="ec-ratting-star">
-                                                        <span>Yıldız Ekle:</span>
-                                                        <div class="ec-t-review-rating">
-                                                            <div id="rateYo"></div>
+                                        @if(Auth::check())
+                                            @foreach(Auth::user()->roles as $role)
+                                                @if($role->roleName == 'Customer')
+                                                    <div class="ec-ratting-content">
+                                                        <h3>Yorum Yaz</h3>
+                                                        <div class="ec-ratting-form">
+                                                            <form method="POST" action="{{ route('Comment.store') }}">
+                                                                @csrf
+                                                                <div class="ec-ratting-star">
+                                                                    <span>Yıldız Ekle:</span>
+                                                                    <div class="ec-t-review-rating">
+                                                                        <div id="rateYo"></div>
+                                                                    </div>
+                                                                    <input type="hidden" name="rating" value="0" required/>
+                                                                </div>
+                                                                <div class="ec-ratting-input">
+                                                                    <input name="name" placeholder="Ad Soyad" type="text" value="{{ Auth::user()->name }}" required/>
+                                                                    <x-input-error :messages="$errors->get('name')" class="mt-2 text-uppercase" />
+                                                                </div>
+                                                                <div class="ec-ratting-input">
+                                                                    <input name="email" placeholder="E-posta*" type="email" value="{{ Auth::user()->email }}" required />
+                                                                    <x-input-error :messages="$errors->get('email')" class="mt-2 text-uppercase" />
+                                                                </div>
+                                                                <div class="ec-ratting-input form-submit">
+                                                                    <textarea name="comment" placeholder="Yorumunuzu Yazın" required></textarea>
+                                                                    <x-input-error :messages="$errors->get('comment')" class="mt-2 text-uppercase" />
+                                                                    <input type="hidden" name="product" value="{{ $product->id }}" required/>
+                                                                    <button class="btn btn-primary" type="submit" value="Submit">Gönder</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                        <input type="hidden" name="rating" />
                                                     </div>
-                                                    <div class="ec-ratting-input">
-                                                        <input name="name" placeholder="Ad Soyad" type="text" value="{{ Auth::user()->name }}" required/>
-                                                        <x-input-error :messages="$errors->get('name')" class="mt-2 text-uppercase" />
-                                                    </div>
-                                                    <div class="ec-ratting-input">
-                                                        <input name="email" placeholder="E-posta*" type="email" value="{{ Auth::user()->email }}" required />
-                                                        <x-input-error :messages="$errors->get('email')" class="mt-2 text-uppercase" />
-                                                    </div>
-                                                    <div class="ec-ratting-input form-submit">
-                                                        <textarea name="commemt" placeholder="Yorumunuzu Yazın" required></textarea>
-                                                        <x-input-error :messages="$errors->get('commemt')" class="mt-2 text-uppercase" />
-                                                        <input type="hidden" name="product" value="{{ $product->id }}" required/>
-                                                        <button class="btn btn-primary" type="submit" value="Submit">Gönder</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>

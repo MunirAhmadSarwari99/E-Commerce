@@ -45,15 +45,13 @@ class CommentController extends Controller
         if ($request->input('email') == Auth::user()->email){
             $product = Product::findOrFail($request->input('product'));
 
-            $comment = new Comment([
-                'user_id' => Auth::user()->id,
-                'comment' => $request->input('commemt'),
-                'rating' => $request->input('rating'),
-            ]);
-
-            $product->comments()->save($comment);
+            $comment = new Comment;
+            $comment->comment = $request->input('comment');
+            $comment->rating = $request->input('rating');
+            $comment->user()->associate(Auth::user());
+            $comment->product()->associate($product);
+            $comment->save();
         }
-
         return back();
     }
 
