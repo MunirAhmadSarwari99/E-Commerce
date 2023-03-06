@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryMenuController;
 use App\Http\Controllers\CategoryTagController;
 use App\Http\Controllers\ChildCategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailsController;
@@ -79,6 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('Cart',CartController::class);
     Route::resource('Order',OrderController::class);
     Route::resource('OrderDetails',OrderDetailsController::class);
+    Route::resource('Comment',CommentController::class);
 
 //  Customer Ajax
     Route::get('AddToCart',[CustomerAjaxController::class, 'AddToCart']);

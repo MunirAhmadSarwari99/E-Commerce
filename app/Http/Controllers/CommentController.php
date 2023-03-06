@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Http\Requests\CommentRequest;
+use App\Models\Comment;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('UserAuthorized:' . 2);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,11 +21,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $slider = Product::orderBy('id', 'desc')->take(5)->get();
-        $products = Product::orderBy('id', 'desc')->take(9)->get();
-        $allProduct = Product::orderBy('id', 'desc')->take(100)->get();
-
-        return view('welcome', compact('slider', 'products', 'allProduct'));
+        //
     }
 
     /**
@@ -38,9 +40,21 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
-        //
+        if ($request->input('email') == Auth::user()->email){
+            $product = Product::findOrFail($request->input('product'));
+
+            $comment = new Comment([
+                'user_id' => Auth::user()->id,
+                'comment' => $request->input('commemt'),
+                'rating' => $request->input('rating'),
+            ]);
+
+            $product->comments()->save($comment);
+        }
+
+        return back();
     }
 
     /**

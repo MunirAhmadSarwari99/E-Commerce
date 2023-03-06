@@ -108,82 +108,61 @@
                                 <div id="ec-spt-nav-review" class="tab-pane fade">
                                     <div class="row">
                                         <div class="ec-t-review-wrapper">
-                                            <div class="ec-t-review-item">
-                                                <div class="ec-t-review-avtar">
-                                                    <img src="assets/images/review-image/1.jpg" alt="" />
-                                                </div>
-                                                <div class="ec-t-review-content">
-                                                    <div class="ec-t-review-top">
-                                                        <div class="ec-t-review-name">Jeny Doe</div>
-                                                        <div class="ec-t-review-rating">
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star-o"></i>
+                                            @foreach($product->comments as $comment)
+                                                <div class="ec-t-review-item">
+                                                    <div class="ec-t-review-avtar">
+                                                        <img src="{{ asset('images/users/' . $comment->user->image) }}" alt="" />
+                                                    </div>
+                                                    <div class="ec-t-review-content">
+                                                        <div class="ec-t-review-top">
+                                                            <div class="ec-t-review-name">
+                                                                {{ $comment->user->name }}
+                                                            </div>
+                                                            <div class="ec-t-review-rating">
+                                                                <div class="rateYo"></div>
+                                                                @section('script')
+                                                                    <script>
+                                                                        $(function () {
+                                                                            $("div.rateYo").rateYo({
+                                                                                rating: {{$comment->rating}},
+                                                                                spacing: "5px"
+                                                                            });
+                                                                        });
+                                                                    </script>
+                                                                @endsection
+                                                            </div>
+                                                        </div>
+                                                        <div class="ec-t-review-bottom">
+                                                            <p>{{ $comment->comment }}</p>
                                                         </div>
                                                     </div>
-                                                    <div class="ec-t-review-bottom">
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and
-                                                            typesetting industry. Lorem Ipsum has been the industry's
-                                                            standard dummy text ever since the 1500s, when an unknown
-                                                            printer took a galley of type and scrambled it to make a
-                                                            type specimen.
-                                                        </p>
-                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="ec-t-review-item">
-                                                <div class="ec-t-review-avtar">
-                                                    <img src="assets/images/review-image/2.jpg" alt="" />
-                                                </div>
-                                                <div class="ec-t-review-content">
-                                                    <div class="ec-t-review-top">
-                                                        <div class="ec-t-review-name">Linda Morgus</div>
-                                                        <div class="ec-t-review-rating">
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star-o"></i>
-                                                            <i class="ecicon eci-star-o"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="ec-t-review-bottom">
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and
-                                                            typesetting industry. Lorem Ipsum has been the industry's
-                                                            standard dummy text ever since the 1500s, when an unknown
-                                                            printer took a galley of type and scrambled it to make a
-                                                            type specimen.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
+                                            @endforeach
                                         </div>
                                         <div class="ec-ratting-content">
-                                            <h3>Add a Review</h3>
+                                            <h3>Yorum Yaz</h3>
                                             <div class="ec-ratting-form">
-                                                <form action="#">
+                                                <form method="POST" action="{{ route('Comment.store') }}">
+                                                    @csrf
                                                     <div class="ec-ratting-star">
-                                                        <span>Your rating:</span>
+                                                        <span>Yıldız Ekle:</span>
                                                         <div class="ec-t-review-rating">
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star-o"></i>
-                                                            <i class="ecicon eci-star-o"></i>
-                                                            <i class="ecicon eci-star-o"></i>
+                                                            <div id="rateYo"></div>
                                                         </div>
+                                                        <input type="hidden" name="rating" />
                                                     </div>
                                                     <div class="ec-ratting-input">
-                                                        <input name="your-name" placeholder="Name" type="text" />
+                                                        <input name="name" placeholder="Ad Soyad" type="text" value="{{ Auth::user()->name }}" required/>
+                                                        <x-input-error :messages="$errors->get('name')" class="mt-2 text-uppercase" />
                                                     </div>
                                                     <div class="ec-ratting-input">
-                                                        <input name="your-email" placeholder="Email*" type="email"
-                                                               required />
+                                                        <input name="email" placeholder="E-posta*" type="email" value="{{ Auth::user()->email }}" required />
+                                                        <x-input-error :messages="$errors->get('email')" class="mt-2 text-uppercase" />
                                                     </div>
                                                     <div class="ec-ratting-input form-submit">
-                                                        <textarea name="your-commemt"
-                                                                  placeholder="Enter Your Comment"></textarea>
+                                                        <textarea name="commemt" placeholder="Yorumunuzu Yazın" required></textarea>
+                                                        <x-input-error :messages="$errors->get('commemt')" class="mt-2 text-uppercase" />
+                                                        <input type="hidden" name="product" value="{{ $product->id }}" required/>
                                                         <button class="btn btn-primary" type="submit" value="Submit">Gönder</button>
                                                     </div>
                                                 </form>

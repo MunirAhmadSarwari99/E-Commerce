@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('css/css/demo1.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/css/responsive.css') }}" />
-
+    <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}" />
     <!-- Background css -->
     <link rel="stylesheet" id="bg-switcher-css" href="{{ asset('css/css/backgrounds/bg-4.css') }}">
     @vite(['resources/js/app.js'])
@@ -515,10 +515,22 @@
 <script src="{{ asset('js/plugins/infiniteslidev2.js') }}"></script>
 <script src="{{ asset('js/vendor/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('js/plugins/jquery.sticky-sidebar.js') }}"></script>
+<script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
 
 <!-- Main Js -->
 <script src="{{ asset('js/vendor/index.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('js/Ajax.js') }}"></script>
+@yield('script')
+<script>
+    $(function () {
+        $("#rateYo").rateYo({
+            spacing: "5px",
+            onChange: function (rating, rateYoInstance) {
+                $('input[name=rating]').val(rating);
+            }
+        });
+    });
+</script>
 </body>
 </html>

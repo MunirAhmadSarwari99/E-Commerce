@@ -132,11 +132,21 @@
                                     {{ $key->productName }}
                                 </p>
                                 <ul class="ec-rating">
-                                    <li class="ecicon eci-star fill"></li>
-                                    <li class="ecicon eci-star fill"></li>
-                                    <li class="ecicon eci-star fill"></li>
-                                    <li class="ecicon eci-star fill"></li>
-                                    <li class="ecicon eci-star"></li>
+                                    <li class="ecicon">
+                                        <div class="rateYo"></div>
+                                        @foreach($key->comments as $comment)
+                                            @section('script')
+                                                <script>
+                                                    $(function () {
+                                                        $("div.rateYo").rateYo({
+                                                            rating: 4.3,
+                                                            spacing: "5px"
+                                                        });
+                                                    });
+                                                </script>
+                                            @endsection
+                                        @endforeach
+                                    </li>
                                 </ul>
                                 <div class="ec-price">
                                     @if($key->discount != null)

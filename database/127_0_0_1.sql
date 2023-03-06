@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2023 at 02:29 PM
+-- Generation Time: Mar 06, 2023 at 06:00 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -245,6 +245,31 @@ INSERT INTO `child_categories` (`id`, `category_id`, `childName`, `created_at`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `comment` text NOT NULL,
+  `rating` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `product_id`, `comment`, `rating`, `created_at`, `updated_at`) VALUES
+(1, 3, 8, 'Lorem Ipsum is simply dummy text of the printing an typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknow printer took a galley of type and scrambled it to make a type specimen.Munir 1', 1.5, '2023-03-06 14:25:47', '2023-03-06 14:25:47'),
+(2, 3, 8, 'Lorem Ipsum is simply dummy text of the printing an typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknow printer took a galley of type and scrambled it to make a type specimen.Munir 2', 3.6, '2023-03-06 14:29:57', '2023-03-06 14:29:57'),
+(3, 3, 8, 'Lorem Ipsum is simply dummy text of the printing an typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknow printer took a galley of type and scrambled it to make a type specimen.', 5, '2023-03-06 14:30:18', '2023-03-06 14:30:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -287,7 +312,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (54, '2023_02_20_125457_create_products_table', 3),
 (55, '2023_02_20_131649_create_product_details_table', 3),
 (56, '2023_02_23_121219_create_carts_table', 4),
-(57, '2023_02_27_171046_create_orders_table', 5);
+(57, '2023_02_27_171046_create_orders_table', 5),
+(58, '2023_03_06_163325_create_comments_table', 6);
 
 -- --------------------------------------------------------
 
@@ -566,6 +592,14 @@ ALTER TABLE `child_categories`
   ADD KEY `child_categories_category_id_foreign` (`category_id`);
 
 --
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comments_user_id_foreign` (`user_id`),
+  ADD KEY `comments_product_id_foreign` (`product_id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -681,6 +715,12 @@ ALTER TABLE `child_categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -690,7 +730,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -756,6 +796,13 @@ ALTER TABLE `category_tags`
 --
 ALTER TABLE `child_categories`
   ADD CONSTRAINT `child_categories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders`
