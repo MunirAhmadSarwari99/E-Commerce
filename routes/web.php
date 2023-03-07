@@ -89,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::get('QuantityCart',[CustomerAjaxController::class, 'Cart']);
     Route::get('IncrementCart',[CustomerAjaxController::class, 'IncrementCart']);
     Route::get('DecrementCart',[CustomerAjaxController::class, 'DecrementCart']);
+    Route::get('wishlist',[CustomerAjaxController::class, 'wishlist']);
 });
 
 require __DIR__.'/auth.php';

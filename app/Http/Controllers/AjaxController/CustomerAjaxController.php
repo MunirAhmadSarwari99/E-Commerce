@@ -4,6 +4,8 @@ namespace App\Http\Controllers\AjaxController;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -83,5 +85,18 @@ class CustomerAjaxController extends Controller
         ];
         return $data;
         return false;
+    }
+
+    public function wishlist(Request $request){
+        $product = Product::findOrFail($request->input('id'));
+        $wishlists = Wishlist::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
+        if ($wishlists == null){
+            $wishlist = new Wishlist;
+            $wishlist->user()->associate(Auth::user());
+            $wishlist->product()->associate($product);
+            $wishlist->save();
+        }else{
+            $wishlists->delete();
+        }
     }
 }

@@ -115,8 +115,7 @@ $(document).ready(function(){
                 id:query,
             },
             success: function (data) {
-                $('select[name=tagName]').removeAttr('disabled');
-                $('select[name=tagName]').html(data);
+                location.reload();
             }
         });
     });
@@ -125,6 +124,21 @@ $(document).ready(function(){
         var query = $(this).val();
         $.ajax({
             url: "DeleteCart",
+            type: 'GET',
+            data: {
+                _token:'{{ csrf_token() }}',
+                id:query,
+            },
+            success: function (data) {
+                location.reload();
+            }
+        });
+    });
+
+    $(document).on('click', 'a[data-target=wishlist]', function () {
+        var query = $(this).data('role');
+        $.ajax({
+            url: "/wishlist",
             type: 'GET',
             data: {
                 _token:'{{ csrf_token() }}',

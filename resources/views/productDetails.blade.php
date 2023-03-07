@@ -54,11 +54,31 @@
                                         <h5 class="ec-single-title">{{ $product->productName }}</h5>
                                         <div class="ec-single-rating-wrap">
                                             <div class="ec-single-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star-o"></i>
+                                                <li class="ecicon">
+                                                    @if(\App\Models\Comment::average($product->id))
+                                                        <div class="rateYo-{{$product->id}}"></div>
+                                                        <script>
+                                                            $(function () {
+                                                                $("div.rateYo-{{$product->id}}").rateYo({
+                                                                    rating: {{ \App\Models\Comment::average($product->id)}},
+                                                                    spacing: "5px",
+                                                                    readOnly: true
+                                                                });
+                                                            });
+                                                        </script>
+                                                    @else
+                                                        <div class="rateYo"></div>
+                                                        <script>
+                                                            $(function () {
+                                                                $("div.rateYo").rateYo({
+                                                                    rating: 0,
+                                                                    spacing: "5px",
+                                                                    readOnly: true
+                                                                });
+                                                            });
+                                                        </script>
+                                                    @endif
+                                                </li>
                                             </div>
                                         </div>
                                         <div class="ec-single-desc">{{ $product->details }}</div>
@@ -75,7 +95,7 @@
                                         </div>
                                         <div class="ec-single-qty">
                                             <div class="ec-single-cart ">
-                                                <button type="button" class="btn btn-primary" name="AddToCart" value="{{ $product->id }}">Add To Cart</button>
+                                                <button type="button" class="btn btn-primary" name="AddToCart" value="{{ $product->id }}">Sepete Ekle</button>
                                             </div>
                                         </div>
                                     </div>
@@ -93,8 +113,10 @@
                                         <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-details" role="tablist">Detaylar</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-review"
-                                           role="tablist">Yorumlar</a>
+                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-review" role="tablist">
+                                            Yorumlar
+                                            ({{ $product->comments->count()}})
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -119,17 +141,16 @@
                                                                 {{ $comment->user->name }}
                                                             </div>
                                                             <div class="ec-t-review-rating">
-                                                                <div class="rateYo"></div>
-                                                                @section('script')
-                                                                    <script>
-                                                                        $(function () {
-                                                                            $("div.rateYo").rateYo({
-                                                                                rating: {{$comment->rating}},
-                                                                                spacing: "5px"
-                                                                            });
+                                                                <div class="rateYo-{{$comment->id}}"></div>
+                                                                <script>
+                                                                    $(function () {
+                                                                        $("div.rateYo-{{$comment->id}}").rateYo({
+                                                                            rating: {{$comment->rating}},
+                                                                            spacing: "5px",
+                                                                            readOnly: true
                                                                         });
-                                                                    </script>
-                                                                @endsection
+                                                                    });
+                                                                </script>
                                                             </div>
                                                         </div>
                                                         <div class="ec-t-review-bottom">
@@ -187,6 +208,3 @@
     </section>
     <!-- End Single product -->
 </x-guest-layout>
-
-
-
