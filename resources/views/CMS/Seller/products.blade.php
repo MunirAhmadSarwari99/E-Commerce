@@ -83,8 +83,8 @@
                     <x-input-error :messages="$errors->get('tagName')" class="mt-2" />
                 </div>
                 <div class="form-floating mb-3">
-                    <textarea id="details" style="height: 250px;" name="details" class="form-control" required></textarea>
-                    <x-input-label for="details" :value="__('Not')" />
+                    <textarea id="editor" style="height: 250px;" name="details" class="form-control" required></textarea>
+                    <x-input-label for="editor" :value="__('Not')" />
                     <x-input-error :messages="$errors->get('details')" class="mt-2" />
                 </div>
                 <div class="form-floating mb-3">
@@ -102,11 +102,21 @@
                     </div>
                     <div class="col-md-6">
                         <x-danger-button class="btn btn-success">
-                            {{ __('Kayded') }}
+                            {{ __('Kaydet') }}
                         </x-danger-button>
                     </div >
                 </div>
             </div>
         </form>
     </x-modal>
+
+{{--@section('script')--}}
+{{--        <script>--}}
+{{--            ClassicEditor--}}
+{{--                .create( document.querySelector( '#editor' ) )--}}
+{{--                .catch( error => {--}}
+{{--                    console.error( error );--}}
+{{--                } );--}}
+{{--        </script>--}}
+{{-- @endsection--}}
 </x-app-layout>

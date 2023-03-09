@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OrderRequest;
-use App\Models\Cart;
-use App\Models\Order;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class WishlistController extends Controller
 {
     public function __construct()
     {
@@ -21,7 +18,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $wishlist = Wishlist::paginate(1);
+        return view('CMS.Customer.wishlist', compact('wishlist'));
     }
 
     /**
@@ -40,19 +38,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OrderRequest $request)
+    public function store(Request $request)
     {
-        $order = $request->input('order');
-
-        foreach ($order as $key => $key){
-            $orders = new Order;
-            $orders->user()->associate(Auth::user()->id);
-            $orders->cart()->associate($request->input('order')[$key]);
-            $orders->orderNo = rand(10,2000);
-            $orders->total = $request->input('inputToplam');
-            $orders->save();
-        }
-        return back();
+        //
     }
 
     /**

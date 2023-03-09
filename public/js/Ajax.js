@@ -28,14 +28,8 @@ $(document).ready(function(){
         });
     });
 
-    $(document).on('change', 'input[type=checkbox]', function () {
+    $(document).on('click', 'input[type=checkbox]', function () {
         var query = $(this).val();
-
-        $('span#AraToplam').text(0.00 + ' TL');
-        $('span#kdv').text(0 + ' TL');
-        $('span#Toplam').text(0.00 + ' TL');
-        $('input#inputToplam').val('');
-
         if(this.checked) {
             $.ajax({
                 url: "IncrementCart",
@@ -60,12 +54,21 @@ $(document).ready(function(){
                     id:query,
                 },
                 success: function (data) {
-                    $('span#AraToplam').text((data.SubTotal).toFixed(2) + ' TL');
-                    $('span#kdv').text(data.kdv + ' TL');
-                    $('span#Toplam').text((data.total).toFixed(2) + ' TL');
-                    if ((data.total).toFixed(2) == 0.00 || (data.total).toFixed(2) == 0){
-                        $('input#inputToplam').val('');
+                    if (data.SubTotal == 0){
+                        $('span#AraToplam').text(0 + ' TL');
                     }else {
+                        $('span#AraToplam').text((data.SubTotal).toFixed(2) + ' TL');
+                    }
+                    if (data.kdv == 0){
+                        $('span#kdv').text(0 + ' TL');
+                    }else {
+                        $('span#kdv').text(data.kdv + ' TL');
+                    }
+                    if (data.total == 0){
+                        $('span#Toplam').text(0 + ' TL');
+                        $('input#inputToplam').val(0);
+                    }else {
+                        $('span#Toplam').text((data.total).toFixed(2) + ' TL');
                         $('input#inputToplam').val((data.total).toFixed(2));
                     }
                 }
@@ -138,7 +141,22 @@ $(document).ready(function(){
     $(document).on('click', 'a[data-target=wishlist]', function () {
         var query = $(this).data('role');
         $.ajax({
-            url: "/wishlist",
+            url: "/Favori",
+            type: 'GET',
+            data: {
+                _token:'{{ csrf_token() }}',
+                id:query,
+            },
+            success: function (data) {
+                location.reload();
+            }
+        });
+    });
+
+    $(document).on('click', 'button[data-target=wishlist]', function () {
+        var query = $(this).data('role');
+        $.ajax({
+            url: "/Favori",
             type: 'GET',
             data: {
                 _token:'{{ csrf_token() }}',

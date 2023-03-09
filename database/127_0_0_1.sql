@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2023 at 06:52 PM
+-- Generation Time: Mar 09, 2023 at 05:20 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -34,6 +34,7 @@ CREATE TABLE `carts` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
   `quantity` int(11) NOT NULL,
+  `checked` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -42,9 +43,9 @@ CREATE TABLE `carts` (
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(7, 3, 6, 1, '2023-02-23 11:52:25', '2023-03-02 18:27:42'),
-(35, 3, 5, 1, '2023-03-02 18:11:54', '2023-03-02 18:11:54');
+INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`, `checked`, `created_at`, `updated_at`) VALUES
+(52, 3, 14, 1, 1, '2023-03-08 10:47:51', '2023-03-09 16:14:59'),
+(53, 3, 13, 1, 1, '2023-03-09 16:02:16', '2023-03-09 16:15:01');
 
 -- --------------------------------------------------------
 
@@ -263,10 +264,7 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `user_id`, `product_id`, `comment`, `rating`, `created_at`, `updated_at`) VALUES
-(10, 3, 8, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 0, '2023-03-07 08:24:34', '2023-03-07 08:24:34'),
-(11, 3, 8, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 2.5, '2023-03-07 08:25:24', '2023-03-07 08:25:24'),
-(12, 3, 8, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 5, '2023-03-07 08:25:41', '2023-03-07 08:25:41'),
-(15, 3, 6, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 1.5, '2023-03-07 11:25:01', '2023-03-07 11:25:01');
+(16, 3, 13, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 4.5, '2023-03-09 05:53:50', '2023-03-09 05:53:50');
 
 -- --------------------------------------------------------
 
@@ -338,7 +336,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `cart_id`, `orderNo`, `total`, `created_at`, `updated_at`) VALUES
-(4, 3, 7, 601, 509.96, '2023-03-02 17:32:46', '2023-03-02 17:32:46');
+(17, 3, 52, 935, 6156.98, '2023-03-09 16:16:05', '2023-03-09 16:16:05'),
+(18, 3, 53, 660, 6156.98, '2023-03-09 16:16:05', '2023-03-09 16:16:05');
 
 -- --------------------------------------------------------
 
@@ -422,9 +421,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `user_id`, `category_id`, `ChildCategory_id`, `CategoryTag_id`, `productName`, `details`, `tax`, `price`, `oldPrice`, `discount`, `created_at`, `updated_at`) VALUES
-(5, 2, 1, 1, 1, 'Siyah Yarım Boğazlı Bodycon Örme Elbise', 'Modelin Ölçüleri: Boy: 1.77 Göğüs: 83 Bel: 63 Kalça: 92\r\nMankenin üzerindeki ürün S/36 bedendir.\r\n%58 Pamuk %41 Polyester %1 Elastan, Örme Kumaş\r\nOmuzdan Boy: 95 cm\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 100 adetten fazla stok sunulmuştur.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.\r\nÜrünlerimiz TRENDYOL etiketi ile gönderilecektir.', 18, 1600.00, 2000, 20, '2023-02-21 06:24:44', '2023-03-03 10:07:12'),
-(6, 2, 2, 9, 25, 'SİYAH RENK ERKEK YELEKLİ TAKIM ELBİSE', 'D\'S DAMAT ERKEK TAKIM ELBİSESLİM FİTGÜNCEL MODEL Ürün Gömlek ve Kravat içermemektedir.\r\nBu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar.\r\nKampanya fiyatından satılmak üzere 50 adetten fazla stok sunulmuştur.\r\nİncelemiş olduğunuz ürünün satış fiyatını satıcı belirlemektedir.\r\nBir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.', 18, 107.99, NULL, NULL, '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
-(8, 2, 1, 1, 2, 'TRENDYOLMİLLA Beyaz-Gri-Siyah', 'TRENDYOLMİLLA Beyaz-Gri-Siyah %100 Pamuk 3\'lü Paket Basic Bisiklet Yaka Örme T-Shirt TWOAW21TS0094', 18, 1500.99, NULL, NULL, '2023-02-21 11:41:59', '2023-02-28 13:55:27');
+(13, 2, 1, 1, 1, 'Siyah Beli Yüksek Bel Örme Tayt TWOAW20TA0087', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 18, 108.99, NULL, NULL, '2023-03-08 10:36:50', '2023-03-08 10:36:50'),
+(14, 2, 2, 9, 25, 'D\'S Damat SİYAH RENK ERKEK YELEKLİ TAKIM ELBİSE SLİM FİT 4HFY5ORT01599_001', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 18, 2500.00, NULL, NULL, '2023-03-08 10:39:35', '2023-03-08 10:39:35');
 
 -- --------------------------------------------------------
 
@@ -445,21 +443,13 @@ CREATE TABLE `product_details` (
 --
 
 INSERT INTO `product_details` (`id`, `product_id`, `images`, `created_at`, `updated_at`) VALUES
-(4, 5, '1677830303A1.jpg', '2023-02-21 06:24:44', '2023-03-03 07:58:23'),
-(5, 5, '1677830313A2.jpg', '2023-02-21 06:24:44', '2023-03-03 07:58:33'),
-(6, 5, '1677830323A3.jpg', '2023-02-21 06:24:44', '2023-03-03 07:58:43'),
-(7, 5, '1677830334A4.jpg', '2023-02-21 06:24:44', '2023-03-03 07:58:54'),
-(8, 6, '16769609341_org_zoom.jpg', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
-(9, 6, '16769609342_org_zoom (2).jpg', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
-(10, 6, '16769609343_org_zoom (1).jpg', '2023-02-21 06:28:54', '2023-02-21 06:28:54'),
-(11, 8, '16775922362_org_zoom (3).jpg', '2023-02-21 11:41:59', '2023-02-28 13:50:36'),
-(12, 8, '16775922462_org_zoom (4).jpg', '2023-02-21 11:41:59', '2023-02-28 13:50:46'),
-(13, 8, '16775922562_org_zoom (5).jpg', '2023-02-21 11:41:59', '2023-02-28 13:50:56'),
-(14, 8, '16775922652_org_zoom (6).jpg', '2023-02-21 11:41:59', '2023-02-28 13:51:05'),
-(15, 8, '16775922762_org_zoom (7).jpg', '2023-02-21 11:41:59', '2023-02-28 13:51:16'),
-(16, 8, '16775922882_org_zoom (8).jpg', '2023-02-21 11:41:59', '2023-02-28 13:51:28'),
-(17, 8, '16775922992_org_zoom (9).jpg', '2023-02-21 11:41:59', '2023-02-28 13:51:39'),
-(18, 8, '16775923232_org_zoom (4).jpg', '2023-02-21 11:41:59', '2023-02-28 13:52:03');
+(27, 13, '1678271810A1.jpg', '2023-03-08 10:36:50', '2023-03-08 10:36:50'),
+(28, 13, '1678271810A2.jpg', '2023-03-08 10:36:50', '2023-03-08 10:36:50'),
+(29, 13, '1678271810A3.jpg', '2023-03-08 10:36:50', '2023-03-08 10:36:50'),
+(30, 13, '1678271810A4.jpg', '2023-03-08 10:36:50', '2023-03-08 10:36:50'),
+(31, 14, '1678271975A5.jpg', '2023-03-08 10:39:35', '2023-03-08 10:39:35'),
+(32, 14, '1678271975A6.jpg', '2023-03-08 10:39:35', '2023-03-08 10:39:35'),
+(33, 14, '1678271975A7.jpg', '2023-03-08 10:39:35', '2023-03-08 10:39:35');
 
 -- --------------------------------------------------------
 
@@ -580,7 +570,7 @@ CREATE TABLE `wishlists` (
 --
 
 INSERT INTO `wishlists` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
-(11, 3, 8, '2023-03-07 16:49:14', '2023-03-07 16:49:14');
+(17, 3, 14, '2023-03-08 10:42:44', '2023-03-08 10:42:44');
 
 --
 -- Indexes for dumped tables
@@ -725,7 +715,7 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -749,7 +739,7 @@ ALTER TABLE `child_categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -767,7 +757,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -785,13 +775,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `product_details`
 --
 ALTER TABLE `product_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -809,7 +799,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

@@ -164,7 +164,6 @@
 </div>
 
 <!-- JavaScript Libraries -->
-@livewireScripts
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('assets/lib/chart/chart.min.js') }}"></script>
@@ -177,6 +176,9 @@
 
 <!-- Template Javascript -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
+{{--<script src="{{ asset('assets/js/ckeditor.js') }}"></script>--}}
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+@yield('script')
 <script src="{{ asset('js/select2.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/Ajax.js') }}"></script>

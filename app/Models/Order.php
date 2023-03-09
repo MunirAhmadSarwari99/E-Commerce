@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'cart_id', 'orderNo', 'total'];
+    protected $fillable = ['orderNo', 'total'];
 
     public function cart(){
         return $this->belongsTo(Cart::class, 'cart_id', 'id');

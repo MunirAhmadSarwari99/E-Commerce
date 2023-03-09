@@ -20,14 +20,24 @@ class CartController extends Controller
     public function index()
     {
         $carts = Cart::where('user_id', Auth::user()->id)->get();
-        $SubTotal = null;
-        $kdv = null;
-        $total = null;
-        foreach ($carts as $cart){
-            $SubTotal =  $cart->product->price * $cart->sum('quantity');
-            $kdv = round(($cart->product->price * $cart->product->tax) / 100 * $cart->sum('quantity'), 0);
-            $total = $SubTotal + $kdv;
+        $checked = Cart::where('user_id', Auth::user()->id)->where('checked', 1)->get();
+        $SubTotal = 00.00;
+        $kdv = 00;
+        $total = 00.00;
+        if ($checked->count() == 1){
+            foreach ($checked as $cart){
+                $SubTotal =  $cart->product->price * $cart->quantity;
+                $kdv = round(($SubTotal * $cart->product->tax) / 100, 0);
+                $total = $SubTotal + $kdv;
+            }
+        }else{
+            foreach ($checked as $cart){
+                $SubTotal =  $cart->product->sum('price') * $cart->sum('quantity');
+                $kdv = round(($SubTotal * $cart->product->tax) / 100, 0);
+                $total = $SubTotal + $kdv;
+            }
         }
+
         return view('CMS.Customer.carts', compact('carts', 'SubTotal', 'kdv', 'total'));
     }
 

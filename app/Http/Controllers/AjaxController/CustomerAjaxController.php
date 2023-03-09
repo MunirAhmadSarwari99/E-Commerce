@@ -16,20 +16,34 @@ class CustomerAjaxController extends Controller
         $this->middleware('UserAuthorized:' . 2);
     }
 
-    public function Cart(Request $request){
-        $carts = Cart::where('user_id', Auth::user()->id)->get();
-        foreach ($carts as $cart){
-            $SubTotal =  $cart->product->price * $cart->sum('quantity');
-            $kdv = round(($cart->product->price * $cart->product->tax) / 100 * $cart->sum('quantity'), 0);
-            $total = $SubTotal + $kdv;
-            $data = [
-                'SubTotal' => $SubTotal,
-                'kdv' => $kdv,
-                'total' => $total,
-            ];
-            return $data;
+    public function Cart(){
+        $carts = Cart::where('user_id', Auth::user()->id)->where('checked', 1)->get();
+        $data = null;
+        if ($carts->count() == 1){
+            foreach ($carts as $cart){
+                $SubTotal =  $cart->product->price * $cart->quantity;
+                $kdv = round(($SubTotal * $cart->product->tax) / 100, 0);
+                $total = $SubTotal + $kdv;
+                $data = [
+                    'SubTotal' => $SubTotal,
+                    'kdv' => $kdv,
+                    'total' => $total,
+                ];
+            }
+        }else{
+            foreach ($carts as $cart){
+                $SubTotal =  $cart->product->sum('price') * $cart->sum('quantity');
+                $kdv = round(($SubTotal * $cart->product->tax) / 100, 0);
+                $total = $SubTotal + $kdv;
+                $data = [
+                    'SubTotal' => $SubTotal,
+                    'kdv' => $kdv,
+                    'total' => $total,
+                ];
+            }
         }
-        return false;
+
+        return $data;
     }
 
     public function AddToCart(Request $request){
@@ -51,40 +65,85 @@ class CustomerAjaxController extends Controller
     }
 
     public function IncrementCart(Request $request){
-        $carts = Cart::where('user_id', Auth::user()->id)->get();
-        foreach ($carts as $cart){
-            $SubTotal =  $cart->product->price * $cart->sum('quantity');
-            $kdv = round(($cart->product->price * $cart->product->tax) / 100 * $cart->sum('quantity'), 0);
-            $total = $SubTotal + $kdv;
+        $cart = Cart::findOrFail($request->input('id'));
+        $cart->checked = 1;
+        $cart->save();
+        $carts = Cart::where('user_id', Auth::user()->id)->where('checked', 1)->get();
+        $data = null;
+        if ($carts->count() == 0){
             $data = [
-                'SubTotal' => $SubTotal,
-                'kdv' => $kdv,
-                'total' => $total,
+                'SubTotal' => 0,
+                'kdv' => 0,
+                'total' => 0,
             ];
-            return $data;
+
+        }elseif($carts->count() == 1){
+            foreach ($carts as $cart){
+                $SubTotal =  $cart->product->price * $cart->quantity;
+                $kdv = round(($SubTotal * $cart->product->tax) / 100, 0);
+                $total = $SubTotal + $kdv;
+                $data = [
+                    'SubTotal' => $SubTotal,
+                    'kdv' => $kdv,
+                    'total' => $total,
+                ];
+            }
+        }else{
+            foreach ($carts as $cart){
+                $SubTotal =  $cart->product->sum('price') * $cart->sum('quantity');
+                $kdv = round(($SubTotal * $cart->product->tax) / 100, 0);
+                $total = $SubTotal + $kdv;
+                $data = [
+                    'SubTotal' => $SubTotal,
+                    'kdv' => $kdv,
+                    'total' => $total,
+                ];
+            }
         }
-        return false;
+
+        return $data;
     }
 
     public function DecrementCart(Request $request){
-        $carts = Cart::where('user_id', Auth::user()->id)->get();
-        foreach ($carts as $cart){
-            $SubTotal =  $cart->product->price * $cart->sum('quantity');
-            $kdv = round(($cart->product->price * $cart->product->tax) / 100 * $cart->sum('quantity'), 0);
-            $total = $SubTotal + $kdv;
-        }
 
         $cart = Cart::findOrFail($request->input('id'));
-        $Total =  $cart->product->price * $cart->quantity;
-        $tax = round(($cart->product->price * $cart->product->tax) / 100 * $cart->quantity, 0);
-        $totals = $Total + $tax;
-        $data = [
-            'SubTotal' => $SubTotal - $Total,
-            'kdv' => $kdv - $tax,
-            'total' => $total - $totals,
-        ];
+        $cart->checked = 0;
+        $cart->save();
+
+        $carts = Cart::where('user_id', Auth::user()->id)->where('checked', 1)->get();
+        $data = null;
+        if ($carts->count() == 0){
+            $data = [
+                'SubTotal' => 0,
+                'kdv' => 0,
+                'total' => 0,
+            ];
+
+        }elseif($carts->count() == 1){
+            foreach ($carts as $cart){
+                $SubTotal =  $cart->product->price * $cart->quantity;
+                $kdv = round(($SubTotal * $cart->product->tax) / 100, 0);
+                $total = $SubTotal + $kdv;
+                $data = [
+                    'SubTotal' => $SubTotal,
+                    'kdv' => $kdv,
+                    'total' => $total,
+                ];
+            }
+        }else{
+            foreach ($carts as $cart){
+                $SubTotal =  $cart->product->sum('price') * $cart->sum('quantity');
+                $kdv = round(($SubTotal * $cart->product->tax) / 100, 0);
+                $total = $SubTotal + $kdv;
+                $data = [
+                    'SubTotal' => $SubTotal,
+                    'kdv' => $kdv,
+                    'total' => $total,
+                ];
+            }
+        }
+
         return $data;
-        return false;
     }
 
     public function wishlist(Request $request){

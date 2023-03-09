@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('product_id');
             $table->integer('quantity');
+            $table->boolean('checked')->default(1);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');

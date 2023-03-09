@@ -39,25 +39,25 @@
                                                         <th colspan="2">Fiyat</th>
                                                         <th style="text-align: center;" colspan="2">Miktar</th>
                                                         <th colspan="2">Toplam</th>
-                                                        <th colspan="2"></th>
+                                                        <th colspan="2">Aksiyon</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     @foreach($carts as $cart)
                                                         <tr>
-                                                            <td data-label="order" class="ec-cart-pro-order">
-                                                                <input type="checkbox" name="order[]" value="{{ $cart->id }}">
+                                                            <td data-label="Seç" class="ec-cart-pro-order">
+                                                                <input type="checkbox" name="order[]" value="{{ $cart->id }}" {{ ($cart->checked == 1)? "checked" : "" }}>
                                                             </td>
-                                                            <td data-label="Product" class="ec-cart-pro-name">
-                                                                <a href="product-left-sidebar.html">
+                                                            <td data-label="Ürün" class="ec-cart-pro-name">
+                                                                <a href="{{ route('ProductDetails.show', $cart->product_id) }}"  style="width: 30rem; overflow-x: hidden;">
                                                                     <img class="ec-cart-pro-img mr-4" src="{{ asset('images/Products/' . $cart->product->GetOneImage($cart->product_id)) }}" alt="Product">
                                                                     {{ $cart->product->productName }}
                                                                 </a>
                                                             </td>
-                                                            <td data-label="Price" class="ec-cart-pro-price" colspan="2">
+                                                            <td data-label="Fiyat" class="ec-cart-pro-price" colspan="2">
                                                                 <span class="amount">{{ $cart->product->price }} TL</span>
                                                             </td>
-                                                            <td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;">
+                                                            <td data-label="Miktar" class="ec-cart-pro-qty" style="text-align: center;">
                                                                 <div class="cart-qty-plus-minus">
                                                                     <select name="quantity" data-id="{{ $cart->id }}" data-role="{{ $cart->product->price }}" required>
                                                                         @for($i = 1; $i < 11; $i ++)
@@ -68,10 +68,10 @@
                                                                     </select>
                                                                 </div>
                                                             </td>
-                                                            <td id="Total{{ $cart->id }}" data-label="Total" class="ec-cart-pro-subtotal" colspan="2">
+                                                            <td id="Total{{ $cart->id }}" data-label="Toplam" class="ec-cart-pro-subtotal" colspan="2">
                                                                 {{ $cart->product->price * $cart->quantity }} TL
                                                             </td>
-                                                            <td data-label="Remove" class="ec-cart-pro-remove" colspan="2">
+                                                            <td data-label="Aksiyon" class="ec-cart-pro-remove" colspan="2">
                                                                 <button type="button" name="DeleteCart" value="{{ $cart->id }}" class="btn btn-primary  m-2"><i class="ecicon eci-trash-o"></i> </button>
                                                             </td>
                                                         </tr>
@@ -84,9 +84,9 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="ec-cart-update-bottom">
-                                                    <a href="#">Alışverişe Devam Et</a>
+                                                    <a href="{{ route('index') }}">Alışverişe Devam Et</a>
                                                     <button type="submit" class="btn btn-primary">Sepeti Onayla</button>
-                                                    <input id="inputToplam" type="text" name="inputToplam" value="{{ $total }}" required>
+                                                    <input id="inputToplam" type="hidden" name="inputToplam" value="{{ $total }}" required>
                                                 </div>
                                             </div>
                                         </div>

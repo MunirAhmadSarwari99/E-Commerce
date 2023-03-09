@@ -3,6 +3,7 @@
 use App\Http\Controllers\AjaxController\CustomerAjaxController;
 use App\Http\Controllers\AjaxController\SellerAjaxController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CategoryMenuController;
 use App\Http\Controllers\CategoryTagController;
 use App\Http\Controllers\ChildCategoryController;
@@ -78,6 +79,7 @@ Route::middleware('auth')->group(function () {
 //  Customer
     Route::resource('CustomerDashboard', CustomerDashboardController::class);
     Route::resource('Cart',CartController::class);
+    Route::resource('Wishlist',WishlistController::class);
     Route::resource('Order',OrderController::class);
     Route::resource('OrderDetails',OrderDetailsController::class);
     Route::resource('Comment',CommentController::class);
@@ -89,7 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::get('QuantityCart',[CustomerAjaxController::class, 'Cart']);
     Route::get('IncrementCart',[CustomerAjaxController::class, 'IncrementCart']);
     Route::get('DecrementCart',[CustomerAjaxController::class, 'DecrementCart']);
-    Route::get('wishlist',[CustomerAjaxController::class, 'wishlist']);
+    Route::get('Favori',[CustomerAjaxController::class, 'wishlist']);
 });
 
 require __DIR__.'/auth.php';
