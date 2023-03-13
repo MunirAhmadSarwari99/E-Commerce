@@ -47,12 +47,26 @@ class CustomerAjaxController extends Controller
     }
 
     public function AddToCart(Request $request){
-        Cart::create([
-            'user_id' => Auth::user()->id,
-            'product_id' => $request->input('id'),
-            'quantity' => 1,
-        ]);
+        $color = null;
+        if (Product::ProductID($request->input('id'))){
+            $cart = Cart::where('product_id', Product::ProductID($request->input('id')))->first();
+            $cart->quantity = $cart->quantity  + 1;
+            $cart->color = $color;
+            $cart->save();
+        }else{
+            if ($request->input('ProductColor') != null){
+                $color = $request->input('ProductColor');
+            }
+            $cart = new Cart;
+            $cart->user()->associate(Auth::user());
+            $cart->product()->associate($request->input('id'));
+            $cart->quantity = 1;
+            $cart->color = $color;
+            $cart->save();
+        }
+        return Cart::where('user_id', Auth::user()->id)->sum('quantity');
     }
+
     public function DeleteCart(Request $request){
         $cart = Cart::findOrFail($request->input('id'));
         $cart->delete();

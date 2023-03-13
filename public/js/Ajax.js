@@ -110,19 +110,31 @@ $(document).ready(function(){
 
     $(document).on('click', 'button[name=AddToCart]', function () {
         var query = $(this).val();
+        var color = $("input[name=ProductColor]").val();
         $.ajax({
             url: "/AddToCart",
             type: 'GET',
             data: {
                 _token:'{{ csrf_token() }}',
                 id:query,
+                ProductColor:color,
             },
             success: function (data) {
-                location.reload();
+                $('span.CartCounter').text(data);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Ürün Sepete Eklendi.',
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
             }
         });
     });
-
+    $(document).on('click', 'input[name=colors]', function () {
+        var query = $(this).val();
+        $("input[name=ProductColor]").val(query);
+    });
     $(document).on('click', 'button[name=DeleteCart]', function () {
         var query = $(this).val();
         $.ajax({

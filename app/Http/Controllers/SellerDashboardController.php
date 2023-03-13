@@ -9,6 +9,7 @@ class SellerDashboardController extends Controller
     public function __construct()
     {
         $this->middleware('UserAuthorized:' . 1);
+        $this->middleware('verified');
     }
 
     /**

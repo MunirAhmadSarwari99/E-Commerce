@@ -23,7 +23,7 @@ $(document).ready(function(){
                 var reader = new FileReader();
 
                 reader.onload = function(event) {
-                    $($.parseHTML('<img class="col-md-3 mt-3">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                    $($.parseHTML('<img class="col-md-3 mt-3 img-thumbnail">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
                 }
 
                 reader.readAsDataURL(input.files[i]);
@@ -40,6 +40,13 @@ $(document).ready(function(){
         $('#images').trigger('click');
     });
 
+    $('#imagesColor').on('change', function() {
+        imagesPreview(this, 'div#colorPreview');
+    });
+
+    $("#image-colorView").click(function () {
+        $('#imagesColor').trigger('click');
+    });
 
     $(".Select2").select2();
 

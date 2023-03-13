@@ -81,7 +81,7 @@
                                                 </li>
                                             </div>
                                         </div>
-                                        <div class="ec-single-desc">{{ $product->details }}</div>
+                                        <div class="ec-single-desc">{!! $product->details !!}</div>
                                         <div class="ec-single-price-stoke">
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">Düşük fiyat</span>
@@ -93,8 +93,22 @@
                                                 @endif
                                             </div>
                                         </div>
+                                        <div class="row mb-3 ProductColor">
+                                            <h6 class="ec-single-title">Renkler</h6>
+                                            @foreach($product->colors as $color)
+                                                <div class="col-md-3">
+                                                    <div class="tile">
+                                                        <input type="radio" name="colors" id="img{{ $color->id }}" value="{{ $color->colors }}">
+                                                        <label class="label" for="img{{ $color->id }}">
+                                                            <img style="width: 60px;" class="rounded" src="{{ asset('images/Products/Colors/' . $color->colors) }}" alt="">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                         <div class="ec-single-qty">
                                             <div class="ec-single-cart ">
+                                                <input type="hidden" name="ProductColor">
                                                 <button type="button" class="btn btn-primary" name="AddToCart" value="{{ $product->id }}">Sepete Ekle</button>
                                             </div>
                                         </div>
@@ -123,7 +137,7 @@
                             <div class="tab-content  ec-single-pro-tab-content">
                                 <div id="ec-spt-nav-details" class="tab-pane fade show active">
                                     <div class="ec-single-pro-tab-desc">
-                                        <p>{{ $product->details }}</p>
+                                        <p>{!! $product->details !!}</p>
                                     </div>
                                 </div>
 

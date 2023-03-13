@@ -10,9 +10,21 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = ['productName', 'details', 'tax', 'price', 'oldPrice', 'discount'];
+    public static function ProductID($id){
+        $product = Product::findOrFail($id);
+        $cart = Cart::where('product_id', $product->id)->first();
+        if ($cart){
+            return $cart->product_id;
+        }
+        return false;
+    }
 
     public function detail(){
         return $this->hasMany(ProductDetail::class, 'product_id', 'id');
+    }
+
+    public function colors(){
+        return $this->hasMany(ProductColor::class, 'product_id', 'id');
     }
 
     public function GetOneImage($id){

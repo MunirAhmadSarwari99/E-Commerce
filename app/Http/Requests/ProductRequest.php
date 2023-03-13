@@ -25,6 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'image' => ['required'],
+            'colors' => ['required'],
             'productName' => ['string', 'required', 'max:255'],
             'CategoryName' => ['integer', 'required'],
             'childName' => ['integer', 'required'],

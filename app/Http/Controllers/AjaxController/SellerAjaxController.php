@@ -21,8 +21,6 @@ class SellerAjaxController extends Controller
         }
         echo $output;
     }
-//.'selected'
-//
     public function CategoryTags(Request $request){
         $tags = CategoryTag::where('child_id', $request->input('id'))->get();
         $output = '<option value=""></option>';

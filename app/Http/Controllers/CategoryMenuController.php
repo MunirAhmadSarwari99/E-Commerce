@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CategoryMenuController extends Controller
 {
-    public function Woman($id){
+    public function Categories($id){
         $catgory = Category::findOrFail($id);
         return view('category', compact('catgory'));
     }

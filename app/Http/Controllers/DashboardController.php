@@ -20,7 +20,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-//        $category = Category::all();
         return view('dashboard');
     }
 

@@ -9,6 +9,7 @@ class CustomerDashboardController extends Controller
     public function __construct()
     {
         $this->middleware('UserAuthorized:' . 2);
+        $this->middleware('verified');
     }
     /**
      * Display a listing of the resource.

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2023 at 05:20 PM
+-- Generation Time: Mar 13, 2023 at 05:28 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -34,6 +34,7 @@ CREATE TABLE `carts` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
   `quantity` int(11) NOT NULL,
+  `color` varchar(255) DEFAULT NULL,
   `checked` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -43,9 +44,10 @@ CREATE TABLE `carts` (
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`, `checked`, `created_at`, `updated_at`) VALUES
-(52, 3, 14, 1, 1, '2023-03-08 10:47:51', '2023-03-09 16:14:59'),
-(53, 3, 13, 1, 1, '2023-03-09 16:02:16', '2023-03-09 16:15:01');
+INSERT INTO `carts` (`id`, `user_id`, `product_id`, `quantity`, `color`, `checked`, `created_at`, `updated_at`) VALUES
+(52, 3, 14, 2, NULL, 1, '2023-03-08 10:47:51', '2023-03-13 14:35:53'),
+(72, 3, 13, 2, NULL, 1, '2023-03-13 14:13:48', '2023-03-13 14:53:31'),
+(73, 3, 24, 2, NULL, 1, '2023-03-13 14:13:55', '2023-03-13 15:20:43');
 
 -- --------------------------------------------------------
 
@@ -313,7 +315,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (56, '2023_02_23_121219_create_carts_table', 4),
 (57, '2023_02_27_171046_create_orders_table', 5),
 (58, '2023_03_06_163325_create_comments_table', 6),
-(59, '2023_03_07_181900_create_wishlists_table', 7);
+(59, '2023_03_07_181900_create_wishlists_table', 7),
+(60, '2023_03_11_115533_create_product_colors_table', 8);
 
 -- --------------------------------------------------------
 
@@ -336,8 +339,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `cart_id`, `orderNo`, `total`, `created_at`, `updated_at`) VALUES
-(17, 3, 52, 935, 6156.98, '2023-03-09 16:16:05', '2023-03-09 16:16:05'),
-(18, 3, 53, 660, 6156.98, '2023-03-09 16:16:05', '2023-03-09 16:16:05');
+(17, 3, 52, 935, 6156.98, '2023-03-09 16:16:05', '2023-03-09 16:16:05');
 
 -- --------------------------------------------------------
 
@@ -421,8 +423,34 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `user_id`, `category_id`, `ChildCategory_id`, `CategoryTag_id`, `productName`, `details`, `tax`, `price`, `oldPrice`, `discount`, `created_at`, `updated_at`) VALUES
-(13, 2, 1, 1, 1, 'Siyah Beli Yüksek Bel Örme Tayt TWOAW20TA0087', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 18, 108.99, NULL, NULL, '2023-03-08 10:36:50', '2023-03-08 10:36:50'),
-(14, 2, 2, 9, 25, 'D\'S Damat SİYAH RENK ERKEK YELEKLİ TAKIM ELBİSE SLİM FİT 4HFY5ORT01599_001', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 18, 2500.00, NULL, NULL, '2023-03-08 10:39:35', '2023-03-08 10:39:35');
+(13, 2, 1, 1, 1, 'Siyah Beli Yüksek Bel Örme Tayt TWOAW20TA0087', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 18, 108.99, NULL, NULL, '2023-03-08 10:36:50', '2023-03-10 07:36:54'),
+(14, 2, 2, 9, 25, 'D\'S Damat SİYAH RENK ERKEK YELEKLİ TAKIM ELBİSE SLİM FİT 4HFY5ORT01599_001', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 18, 2500.00, NULL, NULL, '2023-03-08 10:39:35', '2023-03-08 10:39:35'),
+(24, 2, 1, 1, 3, 'Curve Yeşil Boyfriend Kalıp Dokuma Gömlek', '<ul><li>Modelin Ölçüleri: Boy: 1.77, Göğüs: 103, Bel: 81, Kalça: 114</li><li>Mankenin üzerindeki ürün 2XL/44 bedendir.</li><li>77% Pamuk,23% Polyester,Dokuma Kumaş</li><li>Ön Boy: 75 cm</li><li>Bu üründen en fazla 10 adet sipariş verilebilir. 10 adetin üzerindeki siparişleri Trendyol iptal etme hakkını saklı tutar</li><li>Kampanya fiyatından satılmak üzere 10 adetten fazla stok sunulmuştur.</li><li>Listelenen fiyat 15 Mart 2023 tarihine kadar geçerlidir.</li><li>Bir ürün, birden fazla satıcı tarafından satılabilir. Birden fazla satıcı tarafından satışa sunulan ürünlerin satıcıları ürün için belirledikleri fiyata, satıcı puanlarına, teslimat statülerine, ürünlerdeki promosyonlara, kargonun bedava olup olmamasına ve ürünlerin hızlı teslimat ile teslim edilip edilememesine, ürünlerin stok ve kategorileri bilgilerine göre sıralanmaktadır.</li><li>Ürünlerimiz TRENDYOL etiketi ile gönderilecektir.</li></ul>', 18, 165.99, NULL, NULL, '2023-03-11 09:09:07', '2023-03-11 09:40:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_colors`
+--
+
+CREATE TABLE `product_colors` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `colors` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `product_colors`
+--
+
+INSERT INTO `product_colors` (`id`, `product_id`, `colors`, `created_at`, `updated_at`) VALUES
+(1, 24, '1678527221A12.jpg', '2023-03-11 09:09:07', '2023-03-11 09:33:41'),
+(2, 24, '1678525747A14.jpg', '2023-03-11 09:09:07', '2023-03-11 09:09:07'),
+(3, 24, '1678525747A15.jpg', '2023-03-11 09:09:07', '2023-03-11 09:09:07'),
+(4, 14, '1678271975A5.jpg', '2023-03-13 08:41:43', '2023-03-12 21:00:00'),
+(5, 13, '1678271810A4.jpg', '2023-03-13 08:41:43', '2023-03-13 08:41:43');
 
 -- --------------------------------------------------------
 
@@ -449,7 +477,12 @@ INSERT INTO `product_details` (`id`, `product_id`, `images`, `created_at`, `upda
 (30, 13, '1678271810A4.jpg', '2023-03-08 10:36:50', '2023-03-08 10:36:50'),
 (31, 14, '1678271975A5.jpg', '2023-03-08 10:39:35', '2023-03-08 10:39:35'),
 (32, 14, '1678271975A6.jpg', '2023-03-08 10:39:35', '2023-03-08 10:39:35'),
-(33, 14, '1678271975A7.jpg', '2023-03-08 10:39:35', '2023-03-08 10:39:35');
+(33, 14, '1678271975A7.jpg', '2023-03-08 10:39:35', '2023-03-08 10:39:35'),
+(49, 24, '1678525747A8.jpg', '2023-03-11 09:09:07', '2023-03-11 09:09:07'),
+(50, 24, '1678525747A9.jpg', '2023-03-11 09:09:07', '2023-03-11 09:09:07'),
+(51, 24, '1678525747A10.jpg', '2023-03-11 09:09:07', '2023-03-11 09:09:07'),
+(52, 24, '1678525747A11.jpg', '2023-03-11 09:09:07', '2023-03-11 09:09:07'),
+(53, 24, '1678525747A13.jpg', '2023-03-11 09:09:07', '2023-03-11 09:09:07');
 
 -- --------------------------------------------------------
 
@@ -570,7 +603,7 @@ CREATE TABLE `wishlists` (
 --
 
 INSERT INTO `wishlists` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
-(17, 3, 14, '2023-03-08 10:42:44', '2023-03-08 10:42:44');
+(18, 3, 14, '2023-03-13 14:14:45', '2023-03-13 14:14:45');
 
 --
 -- Indexes for dumped tables
@@ -665,6 +698,13 @@ ALTER TABLE `products`
   ADD KEY `products_categorytag_id_foreign` (`CategoryTag_id`);
 
 --
+-- Indexes for table `product_colors`
+--
+ALTER TABLE `product_colors`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_colors_product_id_foreign` (`product_id`);
+
+--
 -- Indexes for table `product_details`
 --
 ALTER TABLE `product_details`
@@ -715,7 +755,7 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -751,7 +791,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -775,13 +815,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `product_colors`
+--
+ALTER TABLE `product_colors`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_details`
 --
 ALTER TABLE `product_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -799,7 +845,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
@@ -846,6 +892,12 @@ ALTER TABLE `products`
   ADD CONSTRAINT `products_categorytag_id_foreign` FOREIGN KEY (`CategoryTag_id`) REFERENCES `category_tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `products_childcategory_id_foreign` FOREIGN KEY (`ChildCategory_id`) REFERENCES `child_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `products_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_colors`
+--
+ALTER TABLE `product_colors`
+  ADD CONSTRAINT `product_colors_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product_details`

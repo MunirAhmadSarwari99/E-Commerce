@@ -4,24 +4,51 @@
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">ÜrünLer</h6>
-                    <div class="row mb-5">
-                        @foreach($product->detail as $key)
-                            <form method="POST" action="{{ route('SellerProductPhoto.update',['id' => $key->id]) }}" class="col-md-3" enctype="multipart/form-data">
-                                @csrf
-                                @method('PATCH')
-                                    <div class="col-md-12">
-                                        <img class="col-md-12 img-thumbnail" src="{{ asset('images/Products/' . $key->images) }}" alt="{{ $product->productName }}">
-                                        <x-text-input name="image" type="file" class="form-control" required/>
-                                        <x-input-error :messages="$errors->get('image')" class="mt-2 text-uppercase" />
-                                    </div>
-                                    <div class="col-md-12">
-                                        <x-primary-button type="submit" class="col-md-12 btn btn-primary mt-2">
-                                            {{ __('Fotoğrafı Değiştir') }}
-                                        </x-primary-button>
-                                    </div >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Ürün Fotoğrafları</h6>
+                            <div class="row mb-5">
+                                @foreach($product->detail as $key)
+                                    <form method="POST" action="{{ route('SellerProductPhoto.update',['id' => $key->id]) }}" class="col-md-3" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PATCH')
+                                        <div class="col-md-12">
+                                            <img class="col-md-12 img-thumbnail" src="{{ asset('images/Products/' . $key->images) }}" alt="{{ $product->productName }}">
+                                            <x-text-input name="image" type="file" class="form-control" required/>
+                                            <x-input-error :messages="$errors->get('image')" class="mt-2 text-uppercase" />
+                                        </div>
+                                        <div class="col-md-12">
+                                            <x-primary-button type="submit" class="col-md-12 btn btn-primary mt-2">
+                                                {{ __('Değiştir') }}
+                                            </x-primary-button>
+                                        </div >
 
-                            </form>
-                        @endforeach
+                                    </form>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Ürün Renkleri</h6>
+                            <div class="row mb-5">
+                                @foreach($product->colors as $color)
+                                    <form method="POST" action="{{ route('SellerProductColor.updateColor',['id' => $color->id]) }}" class="col-md-3" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PATCH')
+                                        <div class="col-md-12">
+                                            <img class="col-md-12 img-thumbnail" src="{{ asset('images/Products/Colors/' . $color->colors) }}" alt="{{ $product->productName }}">
+                                            <x-text-input name="image" type="file" class="form-control" required/>
+                                            <x-input-error :messages="$errors->get('image')" class="mt-2 text-uppercase" />
+                                        </div>
+                                        <div class="col-md-12">
+                                            <x-primary-button type="submit" class="col-md-12 btn btn-primary mt-2">
+                                                {{ __('Değiştir') }}
+                                            </x-primary-button>
+                                        </div >
+
+                                    </form>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                     <form method="POST" action="{{ route('SellerProduct.update', $product->id) }}" class="p-6" enctype="multipart/form-data">
                         @csrf
@@ -76,7 +103,7 @@
                             <x-input-error :messages="$errors->get('discount')" class="mt-2" />
                         </div>
                         <div class="form-floating mb-3">
-                            <textarea id="details" style="height: 250px;" name="details" class="form-control" required>{{ $product->details }}</textarea>
+                            <textarea id="details" style="height: 250px;" name="details" class="form-control" required>{!! $product->details !!}</textarea>
                             <x-input-label for="details" :value="__('Not')" />
                             <x-input-error :messages="$errors->get('details')" class="mt-2" />
                         </div>
@@ -92,4 +119,13 @@
             </div>
         </div>
     </div>
+    @section('script')
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#details' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+    @endsection
 </x-app-layout>

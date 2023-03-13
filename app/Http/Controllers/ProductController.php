@@ -7,6 +7,7 @@ use App\Http\Requests\EditProductRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductColor;
 use App\Models\ProductDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,7 +38,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $category = Category::all();
+        return view('CMS.Seller.newProduct', compact('category'));
     }
 
     /**
@@ -48,7 +50,6 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-
         $product = new Product;
         $product->productName = $request->input('productName');
         $product->details = $request->input('details');
@@ -58,24 +59,30 @@ class ProductController extends Controller
         $product->chold()->associate($request->input('childName'));
         $product->tag()->associate($request->input('tagName'));
         $product->save();
-
         $img = $request->file('image');
-
+        $colors = $request->file('colors');
         $imageName = null;
+        $colorName = null;
         foreach ($img as $key => $key){
             $imageName = time() . $request->file('image')[$key]->getClientOriginalName();
             $request->image[$key]->move('images/Products/', $imageName);
-
             $details = new ProductDetail([
                 'images' => $imageName,
             ]);
-
             $Prod = Product::findOrFail($product->id);
             $Prod->detail()->save($details);
         }
+        foreach ($colors as $color => $color){
+            $colorName = time() . $request->file('colors')[$color]->getClientOriginalName();
+            $request->colors[$color]->move('images/Products/Colors/', $colorName);
 
+            $colors = new ProductColor([
+                'colors' => $colorName,
+            ]);
+            $Prod = Product::findOrFail($product->id);
+            $Prod->colors()->save($colors);
+        }
         return back();
-
     }
 
     /**
@@ -126,9 +133,10 @@ class ProductController extends Controller
         if ($request->input('tagName') != null){
             $CategoryTag = $request->input('tagName');
         }
-        $product->category_id = $category;
-        $product->ChildCategory_id = $ChildCategory;
-        $product->CategoryTag_id = $CategoryTag;
+
+        $product->category()->associate($category);
+        $product->chold()->associate($ChildCategory);
+        $product->tag()->associate($CategoryTag);
         $product->productName = $request->input('productName');
         $product->details = $request->input('details');
         $discount = null;
@@ -167,6 +175,20 @@ class ProductController extends Controller
         return back();
     }
 
+    public function SellerProductColor(EditProductImageRequest $request, $id){
+        $product = ProductColor::findOrFail($id);
+
+        $imageName = $product->colors;
+        if ($request->file('image') != null){
+
+            unlink(public_path('images/Products/Colors/' . $product->colors));
+            $imageName = time() . $request->file('image')->getClientOriginalName();
+            $request->image->move('images/Products/Colors/', $imageName);
+        }
+        $product->colors = $imageName;
+        $product->save();
+        return back();
+    }
     /**
      * Remove the specified resource from storage.
      *
